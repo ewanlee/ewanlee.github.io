@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-15T07:59:42.164Z</updated>
+  <updated>2017-02-15T08:01:53.130Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Decision tree</title>
+    <link href="http://yoursite.com/2017/02/15/Decision-tree/"/>
+    <id>http://yoursite.com/2017/02/15/Decision-tree/</id>
+    <published>2017-02-15T08:01:36.000Z</published>
+    <updated>2017-02-15T08:01:53.130Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="决策树的构建"><a href="#决策树的构建" class="headerlink" title="决策树的构建"></a>决策树的构建</h2><p>构造决策树时，所需要解决的第一个问题就是，每划分一个分支时，应该根据哪一维特征进行划分。这时候我们需要定义某种指标，然后对每一维特征进行该指标的评估，最后选择指标值最高的特征进行划分。</p>
+<p>划分完毕之后，原始数据集就被划分为几个数据子集。如果某一个下的数据属于同一类型，则算法停止；否则，重复划分过程。</p>
+<h3 id="伪代码（创建分支）"><a href="#伪代码（创建分支）" class="headerlink" title="伪代码（创建分支）"></a>伪代码（创建分支）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">createbranch()</div><div class="line"></div><div class="line">检测数据集中的每个子项是否属于同一分类:</div><div class="line">	If so return 类标签;</div><div class="line">	Else</div><div class="line">		寻找划分数据集的最好特征</div><div class="line">		划分数据集</div><div class="line">		创建分支节点</div><div class="line">			for 每个划分的子集</div><div class="line">				调用函数createBranch并增加返回结果到分支节点中</div><div class="line">		return 分支节点</div></pre></td></tr></table></figure>
+<p>那么接下来的重点便是如何寻找划分数据集的最好特征，在这里我们使用ID3算法中使用的划分数据集的方法，也即根据熵来划分。</p>
+<h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><p>划分数据的核心思想是将无序的数据变得更加有序。而一个数据有序程度可以进行量化表示，也就是信息，其显然，数据集划分前后其所含的信息会发生变化，这个变化便称为信息增益。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;决策树&quot;&gt;&lt;a href=&quot;#决策树&quot; class=&quot;headerlink&quot; title=&quot;决策树&quot;&gt;&lt;/a&gt;决策树&lt;/h1&gt;&lt;h2 id=&quot;决策树的构建&quot;&gt;&lt;a href=&quot;#决策树的构建&quot; class=&quot;headerlink&quot; title=&quot;决策树的构建&quot;&gt;&lt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>kNN and kd-tree</title>

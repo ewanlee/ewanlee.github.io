@@ -26,3 +26,20 @@ def CalcShannonEnt(data_set):
         prob = float(label_counts[key]) / num_entries
         shannon_ent -= prob * log(prob, 2)
     return shannon_ent
+
+
+def CreateDataSet():
+    """ A naive data generation method.
+
+    Returns:
+        data_set: The data set excepts label info.
+        labels: The data set only contains label info.
+    """
+
+    data_set = [[1, 1, 'yes'],
+                [1, 1, 'yes'],
+                [1, 0, 'no'],
+                [0, 1, 'no'],
+                [0, 1, 'no']]
+    labels = ['no surfacing', 'flippers']
+    return data_set, labels

@@ -29,6 +29,61 @@ def CalcShannonEnt(data_set):
     return shannon_ent
 
 
+def CalcGiniImpurity(data_set):
+    """ Calculate the Gini impurity.
+
+    Arguments:
+        data_set: The object dataset.
+
+    Returns:
+        gini_impurity: The Gini impurity of the object data set.
+    """
+
+    # Initiation
+    num_entries = len(data_set)
+    label_counts = {}
+    # Statistics the frequency of each class in the dataset
+    for feat_vec in data_set:
+        current_label = feat_vec[-1]
+        if current_label not in label_counts.keys():
+            label_counts[current_label] = 0
+        label_counts[current_label] += 1
+    # Calculates the Gini impurity
+    gini_impurity = 0.0
+    for key in label_counts:
+        prob = float(label_counts[key]) / num_entries
+        gini_impurity += pow(prob, 2)
+    gini_impurity = 1 - gini_impurity
+    return gini_impurity
+
+
+def CalcMisClassifyImpurity(data_set):
+    """ Calculate the misclassification impurity.
+
+    Arguments:
+        data_set: The object dataset.
+
+    Returns:
+        mis_classify_impurity:
+            The misclassification impurity of the object data set.
+    """
+
+    # Initiation
+    num_entries = len(data_set)
+    label_counts = {}
+    # Statistics the frequency of each class in the dataset
+    for feat_vec in data_set:
+        current_label = feat_vec[-1]
+        if current_label not in label_counts.keys():
+            label_counts[current_label] = 0
+        label_counts[current_label] += 1
+    # Calculates the misclassification impurity
+    mis_classify_impurity = 0.0
+    max_prob = max(label_counts.values()) / num_entries
+    mis_classify_impurity = 1 - max_prob
+    return mis_classify_impurity
+
+
 def CreateDataSet():
     """ A naive data generation method.
 

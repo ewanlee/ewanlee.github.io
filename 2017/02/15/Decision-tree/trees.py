@@ -183,7 +183,7 @@ def majority_cnt(class_list):
     return sorted_class_count[0][0]
 
 
-def CreateTree(data_set, labels):
+def CreateTree(data_set, feat_labels):
     """ Create decision tree.
 
     Arguments:
@@ -194,6 +194,7 @@ def CreateTree(data_set, labels):
         my_tree: A dict that represents the decision tree.
     """
 
+    labels = feat_labels.copy()
     class_list = [example[-1] for example in data_set]
     # If the classes are fully same
     if class_list.count(class_list[0]) == len(class_list):
@@ -218,3 +219,34 @@ def CreateTree(data_set, labels):
             SplitDataSet(data_set, best_feat, value), sub_labels)
 
     return my_tree
+
+
+def Classify(input_tree, feat_labels, test_vec):
+    """ Classify that uses the given decision tree.
+
+    Arguments:
+        input_tree: The Given decision tree.
+        feat_labels: The labels of correspond feature.
+        test_vec: The test data.
+
+    Returns:
+        class_label: The class label that corresponds to the test data.
+    """
+
+    # Get the start feature label to split
+    first_str = list(input_tree.keys())[0]
+    # Get the sub-tree that corresponds to the start feature to split
+    second_dict = input_tree[first_str]
+    # Get the feature index that the label is the start feature label
+    feat_index = feat_labels.index(first_str)
+
+    # Start recurrence search
+    for key in second_dict.keys():
+        if test_vec[feat_index] == key:
+            if type(second_dict[key]).__name__ == 'dict':
+                # Recurrence calls
+                class_label = Classify(second_dict[key], feat_labels, test_vec)
+            else:
+                class_label = second_dict[key]
+
+    return class_label

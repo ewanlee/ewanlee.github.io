@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2017-02-18T14:49:10.693Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/</loc>
     
     <lastmod>2017-02-18T14:45:53.054Z</lastmod>

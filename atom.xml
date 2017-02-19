@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-19T13:09:19.645Z</updated>
+  <updated>2017-02-19T13:12:35.033Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,25 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>利用Python进行数据分析 学习笔记</title>
-    <link href="http://yoursite.com/2017/02/19/%E5%88%A9%E7%94%A8Python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2017/02/19/利用Python进行数据分析-学习笔记/</id>
-    <published>2017-02-19T13:09:19.000Z</published>
-    <updated>2017-02-19T13:09:19.645Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Spider the house infomation and save to excel file</title>
     <link href="http://yoursite.com/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/"/>
     <id>http://yoursite.com/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/</id>
     <published>2017-02-18T14:11:28.000Z</published>
-    <updated>2017-02-18T14:45:53.054Z</updated>
+    <updated>2017-02-19T13:12:35.033Z</updated>
     
     <content type="html"><![CDATA[<h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p><a href="http://sh.fang.com/" target="_blank" rel="external">http://sh.fang.com/</a></p>
 <h2 id="项目目标"><a href="#项目目标" class="headerlink" title="项目目标"></a>项目目标</h2><p>爬取二手房信息中的小区信息</p>
@@ -57,7 +43,9 @@
     </summary>
     
     
-      <category term="python, spider" scheme="http://yoursite.com/tags/python-spider/"/>
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="spider" scheme="http://yoursite.com/tags/spider/"/>
     
   </entry>
   
@@ -66,7 +54,7 @@
     <link href="http://yoursite.com/2017/02/17/python-god-web-api/"/>
     <id>http://yoursite.com/2017/02/17/python-god-web-api/</id>
     <published>2017-02-17T14:08:35.000Z</published>
-    <updated>2017-02-18T14:45:38.926Z</updated>
+    <updated>2017-02-19T13:12:25.497Z</updated>
     
     <content type="html"><![CDATA[<ol>
 <li><a href="http://lbs.amap.com/api/webservice/guide/api/search" target="_blank" rel="external">http://lbs.amap.com/api/webservice/guide/api/search</a></li>
@@ -88,7 +76,9 @@
     </summary>
     
     
-      <category term="python, map-api" scheme="http://yoursite.com/tags/python-map-api/"/>
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="map-api" scheme="http://yoursite.com/tags/map-api/"/>
     
   </entry>
   

@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/02/19/%E5%88%A9%E7%94%A8Python%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://yoursite.com/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/</loc>
     
-    <lastmod>2017-02-19T13:09:19.645Z</lastmod>
+    <lastmod>2017-02-19T13:12:35.033Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/02/17/python-god-web-api/</loc>
+    
+    <lastmod>2017-02-19T13:12:25.497Z</lastmod>
     
   </url>
   
@@ -12,20 +19,6 @@
     <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2017-02-18T14:49:10.693Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/</loc>
-    
-    <lastmod>2017-02-18T14:45:53.054Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/02/17/python-god-web-api/</loc>
-    
-    <lastmod>2017-02-18T14:45:38.926Z</lastmod>
     
   </url>
   

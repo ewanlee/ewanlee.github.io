@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-21T08:32:38.341Z</updated>
+  <updated>2017-02-24T02:29:06.116Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Correlation Analysis</title>
+    <link href="http://yoursite.com/2017/02/24/Correlation-Analysis/"/>
+    <id>http://yoursite.com/2017/02/24/Correlation-Analysis/</id>
+    <published>2017-02-24T02:22:42.000Z</published>
+    <updated>2017-02-24T02:29:06.116Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有一个关于关联分析的小作业，问题描述如下：</p>
+<p>孩子的情感状况、品行症状、亲社会行为等等与很多因素相关，这个作业主要着眼点在于孩子每天看视频的时间是否对于以上这些指标有着重要的影响，因此需要对输入特征与输出标签之间的相关关系做一个分析</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有一个关于关联分析的小作业，问题描述如下：&lt;/p&gt;
+&lt;p&gt;孩子的情感状况、品行症状、亲社会行为等等与很多因素相关，这个作业主要着眼点在于孩子每天看视频的时间是否对于以上这些指标有着重要的影响，因此需要对输入特征与输出标签之间的相关关系做一个分析&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="Statistics" scheme="http://yoursite.com/tags/Statistics/"/>
+    
+  </entry>
   
   <entry>
     <title>Get Pois uses God-map apis</title>

@@ -327,7 +327,7 @@ def CreateTree(data_set, feat_labels, method='ID3'):
                 if iv > best_iv:
                     best_iv = iv
                     best_split_value = feat_values[sorted_feat[i]]
-            print(best_feat, best_split_value)
+            # print(best_feat, best_split_value)
 
             # print(best_split_value)
 

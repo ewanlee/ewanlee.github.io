@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-24T07:49:06.600Z</updated>
+  <updated>2017-02-24T09:19:23.881Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CS231n Lecture2 note</title>
+    <link href="http://yoursite.com/2017/02/24/CS231n-Lecture2-note/"/>
+    <id>http://yoursite.com/2017/02/24/CS231n-Lecture2-note/</id>
+    <published>2017-02-24T09:14:17.000Z</published>
+    <updated>2017-02-24T09:19:23.881Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="图片分类"><a href="#图片分类" class="headerlink" title="图片分类"></a>图片分类</h1><p>目标：给一张输入图片赋予一个标签</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;图片分类&quot;&gt;&lt;a href=&quot;#图片分类&quot; class=&quot;headerlink&quot; title=&quot;图片分类&quot;&gt;&lt;/a&gt;图片分类&lt;/h1&gt;&lt;p&gt;目标：给一张输入图片赋予一个标签&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Qiniu cloud images batch upload and directory synchronization</title>

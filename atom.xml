@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-24T13:46:24.839Z</updated>
+  <updated>2017-02-24T13:47:44.491Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/24/CS231n-Lecture2-note/"/>
     <id>http://yoursite.com/2017/02/24/CS231n-Lecture2-note/</id>
     <published>2017-02-24T09:14:17.000Z</published>
-    <updated>2017-02-24T13:46:24.839Z</updated>
+    <updated>2017-02-24T13:47:44.491Z</updated>
     
     <content type="html"><![CDATA[<h1 id="图像分类"><a href="#图像分类" class="headerlink" title="图像分类"></a>图像分类</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>给一张输入图片赋予一个标签， 这个标签属于事先定义好的类别集合中</p>
 <h2 id="地位"><a href="#地位" class="headerlink" title="地位"></a>地位</h2><p>计算机视觉的核心问题</p>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-24T07:22:04.251Z</updated>
+  <updated>2017-02-24T07:44:08.561Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qiniu cloud images batch upload and directory synchronization</title>
+    <link href="http://yoursite.com/2017/02/24/Qiniu-cloud-images-batch-upload-and-directory-synchronization/"/>
+    <id>http://yoursite.com/2017/02/24/Qiniu-cloud-images-batch-upload-and-directory-synchronization/</id>
+    <published>2017-02-24T07:28:57.000Z</published>
+    <updated>2017-02-24T07:44:08.561Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近写博客的时候会用到图片，因此用了七牛云的图片外链功能，但是其内容管理不能创建目录，所以图片的命名以及上传都很麻烦，然后去网上查了一下，也看了一下官方文档，发现官方有一个批量上传的工具挺好用，所以记录一下，下面把官方文档中的一些东西贴出来，方便日后查阅。</p>
+<p>​    </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近写博客的时候会用到图片，因此用了七牛云的图片外链功能，但是其内容管理不能创建目录，所以图片的命名以及上传都很麻烦，然后去网上查了一下，也看了一下官方文档，发现官方有一个批量上传的工具挺好用，所以记录一下，下面把官方文档中的一些东西贴出来，方便日后查阅。&lt;/p&gt;
+&lt;p&gt;​
+    
+    </summary>
+    
+    
+      <category term="Tools" scheme="http://yoursite.com/tags/Tools/"/>
+    
+  </entry>
   
   <entry>
     <title>Correlation Analysis</title>

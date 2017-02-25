@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/02/25/Naive-Bayes/</loc>
+    
+    <lastmod>2017-02-25T05:40:23.444Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/02/24/CS231n-Lecture2-note/</loc>
     
     <lastmod>2017-02-24T13:53:28.000Z</lastmod>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-24T13:53:28.000Z</updated>
+  <updated>2017-02-25T05:40:23.444Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Naive Bayes</title>
+    <link href="http://yoursite.com/2017/02/25/Naive-Bayes/"/>
+    <id>http://yoursite.com/2017/02/25/Naive-Bayes/</id>
+    <published>2017-02-25T05:40:23.000Z</published>
+    <updated>2017-02-25T05:40:23.444Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>CS231n Lecture2 note</title>

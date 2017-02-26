@@ -257,9 +257,9 @@
     </summary>
     
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
     
       <category term="statistics" scheme="http://yoursite.com/tags/statistics/"/>
     

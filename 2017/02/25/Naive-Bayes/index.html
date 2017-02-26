@@ -76,8 +76,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Abracdabra" type="application/atom+xml" />
 
@@ -101,12 +99,16 @@
 <meta property="og:description" content="利用朴素贝叶斯进行文本分类准备数据从文本中构建词向量
 下面写一个词表到向量的转换函数
 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960def LoadDataSet():    &quot;&quot;&quot; Load a vector-like d">
-<meta property="og:updated_time" content="2017-02-25T07:59:19.914Z">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/nb/nb.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/nb/gnb_algo.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/nb/gnb_mle.png">
+<meta property="og:updated_time" content="2017-02-25T09:58:29.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Naive Bayes">
 <meta name="twitter:description" content="利用朴素贝叶斯进行文本分类准备数据从文本中构建词向量
 下面写一个词表到向量的转换函数
 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960def LoadDataSet():    &quot;&quot;&quot; Load a vector-like d">
+<meta name="twitter:image" content="http://o7ie0tcjk.bkt.clouddn.com/nb/nb.png">
 
 
 
@@ -412,7 +414,9 @@
 <h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>从词向量计算概率</p>
 <p>我们来看看贝叶斯公式：</p>
 <script type="math/tex; mode=display">p(c_i | w) = \frac{p(w | c_i) p(c_i)}{p(w)}</script><p>这里$w$代表词向量， 可以看出$c_i$的计算十分简单，值得注意的是，根据朴素贝叶斯的假设，有：</p>
-<script type="math/tex; mode=display">p(w | c_i) = p(w_0, w_1, w_2, \cdots, w_N | c_i) = p(w_0 | c_i)p(w_1 | c_i)p(w_2 | c_i) \cdots p(w_N | c_i)</script><p>这样一切就很清楚了，下面给出伪代码：</p>
+<script type="math/tex; mode=display">p(w | c_i) = p(w_0, w_1, w_2, \cdots, w_N | c_i) = p(w_0 | c_i)p(w_1 | c_i)p(w_2 | c_i) \cdots p(w_N | c_i)</script><p>当需要预测新样本的类别时：</p>
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/nb/nb.png" alt="nb"></p>
+<p>这样一切就很清楚了，下面给出伪代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">计算每个类别的文档数目</div><div class="line"><span class="keyword">for</span> 每一篇文档：</div><div class="line">	<span class="keyword">for</span> 每一个类别：</div><div class="line">		<span class="keyword">if</span> 词条出现在文档中：</div><div class="line">			增加该词条的计数值</div><div class="line">		增加总词条数的计数值</div><div class="line">	<span class="keyword">for</span> 每一个类别：</div><div class="line">		<span class="keyword">for</span> 每一个词条：</div><div class="line">			将该词条的数目除以总词条数目得到条件概率</div><div class="line">	返回每个类别的条件概率</div></pre></td></tr></table></figure>
 <p>注意，这里的$p(w_j | c_i)$是要根据整个训练集来算，代码实现如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">TrainNaiveBayes0</span><span class="params">(train_matrix, train_category)</span>:</span></div><div class="line">    <span class="string">""" the training method.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        train_matrix: The train data.</div><div class="line">        train_category: The train label.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        p0_vect: The conditional probability of w by c0</div><div class="line">        p1_vect: The conditional probability of w by c1</div><div class="line">        p_abusive: The conditional probability of c1</div><div class="line">    """</div><div class="line"></div><div class="line">    num_train_docs = len(train_matrix)</div><div class="line">    num_words = len(train_matrix[<span class="number">0</span>])</div><div class="line">    p_abusive = sum(train_category) / num_train_docs</div><div class="line">    p0_num = zeros(num_words)</div><div class="line">    p1_num = zeros(num_words)</div><div class="line">    p0_denom = <span class="number">0.0</span></div><div class="line">    p1_denom = <span class="number">0.0</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num_train_docs):</div><div class="line">        <span class="keyword">if</span> train_category[i] == <span class="number">1</span>:</div><div class="line">            p1_num += train_matrix[i]</div><div class="line">            p1_denom += sum(train_matrix[i])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            p0_num += train_matrix[i]</div><div class="line">            p0_denom += sum(train_matrix[i])</div><div class="line"></div><div class="line">    p1_vect = p1_num / p1_denom</div><div class="line">    p0_vect = p0_num / p0_denom</div><div class="line"></div><div class="line">    <span class="keyword">return</span> p0_vect, p1_vect, p_abusive</div></pre></td></tr></table></figure>
@@ -429,6 +433,11 @@
 <p>Ok, bravo!</p>
 <h2 id="词袋模型"><a href="#词袋模型" class="headerlink" title="词袋模型"></a>词袋模型</h2><p>现在有一个问题， 到目前为止，我们将每个词是否出现作为特征，这被称为词集模型。但是如果有一个词在文档中不止出现一次，那么就需要词袋模型进行建模。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">BagOfWords2Vec</span><span class="params">(vocab_list, input_set)</span>:</span></div><div class="line">    <span class="string">""" Transfer the words list to vector for each posting.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        vocab_list: The vocabulary list.</div><div class="line">        input_set: The posting that ready to transfer to vector.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        return_vec: the result vector.</div><div class="line">    """</div><div class="line"></div><div class="line">    <span class="comment"># Initialize</span></div><div class="line">    return_vec = [<span class="number">0</span>] * len(vocab_list)</div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> input_set:</div><div class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocab_list:</div><div class="line">            return_vec[vocab_list.index(word)] += <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">"the word: %s is not in my Vocabulary"</span> % word)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> return_vec</div></pre></td></tr></table></figure>
+<h1 id="高斯朴素贝叶斯"><a href="#高斯朴素贝叶斯" class="headerlink" title="高斯朴素贝叶斯"></a>高斯朴素贝叶斯</h1><p>一般的朴素贝叶斯算法的输入特征为离散值，那么当输入变量为连续值时就不能处理了，一般这时候假设输入变量服从一个正态分布，这样$p(w_j | c_i)$就可以计算了，所以整个的流程如下：</p>
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/nb/gnb_algo.png" alt="gnb_algo"></p>
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/nb/gnb_mle.png" alt="gnb_mle"></p>
+<p>采用sk-learn进行下实验</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">33</span>]: <span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line">    ...: iris = datasets.load_iris()</div><div class="line">    ...: <span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</div><div class="line">    ...: gnb = GaussianNB()</div><div class="line">    ...: y_pred = gnb.fit(iris.data, iris.target).predict(iris.data)</div><div class="line">    ...: print(<span class="string">"Number of mislabeled points out of a total %d points : %d"</span></div><div class="line">    ...:       % (iris.data.shape[<span class="number">0</span>],(iris.target != y_pred).sum()))</div><div class="line">    ...:</div><div class="line">Number of mislabeled points out of a total <span class="number">150</span> points : <span class="number">6</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -478,6 +487,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/26/Python-data-analysis-Learning-note-Ch04/" rel="prev" title="Python data analysis-Learning note-Ch04">
+                Python data analysis-Learning note-Ch04 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -551,7 +564,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -624,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用朴素贝叶斯进行文本分类"><span class="nav-number">1.</span> <span class="nav-text">利用朴素贝叶斯进行文本分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备数据"><span class="nav-number">1.1.</span> <span class="nav-text">准备数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练"><span class="nav-number">1.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">1.3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词袋模型"><span class="nav-number">1.4.</span> <span class="nav-text">词袋模型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用朴素贝叶斯进行文本分类"><span class="nav-number">1.</span> <span class="nav-text">利用朴素贝叶斯进行文本分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备数据"><span class="nav-number">1.1.</span> <span class="nav-text">准备数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练"><span class="nav-number">1.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">1.3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词袋模型"><span class="nav-number">1.4.</span> <span class="nav-text">词袋模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高斯朴素贝叶斯"><span class="nav-number">2.</span> <span class="nav-text">高斯朴素贝叶斯</span></a></li></ol></div>
             
 
           </div>

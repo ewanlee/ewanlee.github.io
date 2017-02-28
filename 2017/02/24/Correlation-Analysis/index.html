@@ -116,7 +116,20 @@
 <meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/spss_1.png">
 <meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/spss_2.png">
 <meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/fa_result.png">
-<meta property="og:updated_time" content="2017-02-24T07:22:04.251Z">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_diff.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_diff.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_emo.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_emo.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_con.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_con.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_hyp.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_hyp.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_pee.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_pee.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_pro.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_pro.png">
+<meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_cate_with_scr_of_edu_diff.png">
+<meta property="og:updated_time" content="2017-02-28T05:18:06.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Correlation Analysis">
 <meta name="twitter:description" content="问题描述最近有一个关于关联分析的小作业，问题描述如下：
@@ -759,6 +772,908 @@
 <p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/spss_2.png" alt="spss_2"></p>
 <p>实验结果如下：</p>
 <p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/fa_result.png" alt="fa_result"></p>
+<hr>
+<p>2017.2.27 Updates</p>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</div><div class="line"></div><div class="line"><span class="keyword">from</span> IPython.core.interactiveshell <span class="keyword">import</span> InteractiveShell</div><div class="line">InteractiveShell.ast_node_interactivity = <span class="string">"all"</span></div></pre></td></tr></table></figure>
+<h2 id="Read-data"><a href="#Read-data" class="headerlink" title="Read data"></a>Read data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data = pd.read_excel(<span class="string">'./scr_SDQ.xlsx'</span>, sheetname=<span class="string">'data'</span>, index_col=<span class="number">0</span>).dropna().sort_index()</div></pre></td></tr></table></figure>
+<h2 id="Convert-the-data-format"><a href="#Convert-the-data-format" class="headerlink" title="Convert the data format"></a>Convert the data format</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">float_columns = [<span class="string">'scr_ave'</span>, <span class="string">'edu_ave'</span>,<span class="string">'scr_of_edu'</span>]</div><div class="line"><span class="keyword">for</span> column <span class="keyword">in</span> data.columns:</div><div class="line">    <span class="keyword">if</span> column <span class="keyword">not</span> <span class="keyword">in</span> float_columns:</div><div class="line">        data[column] = data[column].astype(int)</div></pre></td></tr></table></figure>
+<h2 id="Split-the-data"><a href="#Split-the-data" class="headerlink" title="Split the data"></a>Split the data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data_feature_with_edu_ave = data.ix[:, :<span class="string">'mediacontact'</span>].drop(<span class="string">'scr_of_edu'</span>, axis=<span class="number">1</span>)</div><div class="line">data_feature_with_scr_of_edu = data.ix[:, :<span class="string">'mediacontact'</span>].drop(<span class="string">'edu_ave'</span>, axis=<span class="number">1</span>)</div><div class="line">data_classes = data.ix[:, <span class="string">'emo_cat'</span>:]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># dtree = tree.DecisionTreeClassifier(min_samples_leaf=500)</span></div><div class="line"><span class="comment"># cross_val_score(dtree,data_feature_with_edu_ave, data_classes['difficulties_cat'], cv=10)</span></div></pre></td></tr></table></figure>
+<pre><code>array([ 0.64356436,  0.64356436,  0.64391855,  0.64391855,  0.64407713,
+        0.64407713,  0.64407713,  0.64407713,  0.64407713,  0.64407713])
+</code></pre><h2 id="difficulties-cat"><a href="#difficulties-cat" class="headerlink" title="difficulties_cat"></a>difficulties_cat</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">dtree_with_edu_ave = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_edu_ave = dtree_with_edu_ave.fit(data_feature_with_edu_ave, data_classes[<span class="string">'difficulties_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_edu_ave.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_edu_ave.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line">dtree_with_scr_of_edu = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_scr_of_edu = dtree_with_scr_of_edu.fit(data_feature_with_scr_of_edu, data_classes[<span class="string">'difficulties_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_scr_of_edu.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_scr_of_edu.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="comment"># dtree_with_edu_ave_diff.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_edu_ave_diff.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_edu_ave, out_file=dot_file, feature_names=data_feature_with_edu_ave.columns)</div><div class="line"><span class="comment"># dtree_with_scr_of_edu_diff.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_scr_of_edu_diff.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_scr_of_edu, out_file=dot_file, feature_names=data_feature_with_scr_of_edu.columns)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+      <tr style="text-align: right;">
+
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.553782</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.217218</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.085820</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.048912</td>
+</tr>
+<tr>
+  <th>edu_ave</th>
+  <td>0.029740</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.026161</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.021336</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.017030</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_diff.png" alt="edu_ave_diff"></p>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.525587</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.213067</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.084708</td>
+</tr>
+<tr>
+  <th>scr_of_edu</th>
+  <td>0.080575</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.029232</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.025661</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.020929</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.020240</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_diff.png" alt="scr_of_edu_diff"></p>
+<h2 id="emo-cat"><a href="#emo-cat" class="headerlink" title="emo_cat"></a>emo_cat</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">dtree_with_edu_ave = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_edu_ave = dtree_with_edu_ave.fit(data_feature_with_edu_ave, data_classes[<span class="string">'emo_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_edu_ave.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_edu_ave.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line">dtree_with_scr_of_edu = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_scr_of_edu = dtree_with_scr_of_edu.fit(data_feature_with_scr_of_edu, data_classes[<span class="string">'emo_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_scr_of_edu.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_scr_of_edu.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="comment"># dtree_with_edu_ave_emo.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_edu_ave_emo.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_edu_ave, out_file=dot_file, feature_names=data_feature_with_edu_ave.columns)</div><div class="line"><span class="comment"># dtree_with_scr_of_edu_emo.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_scr_of_edu_emo.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_scr_of_edu, out_file=dot_file, feature_names=data_feature_with_scr_of_edu.columns)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.521694</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.159798</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.147978</td>
+</tr>
+<tr>
+  <th>edu_ave</th>
+  <td>0.083233</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.040750</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.023781</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.019127</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.003639</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_emo.png" alt="edu_ave_emo"></p>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.520711</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.155111</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.146762</td>
+</tr>
+<tr>
+  <th>scr_of_edu</th>
+  <td>0.115745</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.023767</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.021924</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.011410</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.004571</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_emo.png" alt="scr_of_edu_emo"></p>
+<h2 id="con-cat"><a href="#con-cat" class="headerlink" title="con_cat"></a>con_cat</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">dtree_with_edu_ave = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_edu_ave = dtree_with_edu_ave.fit(data_feature_with_edu_ave, data_classes[<span class="string">'con_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_edu_ave.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_edu_ave.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line">dtree_with_scr_of_edu = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_scr_of_edu = dtree_with_scr_of_edu.fit(data_feature_with_scr_of_edu, data_classes[<span class="string">'con_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_scr_of_edu.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_scr_of_edu.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="comment"># dtree_with_edu_ave_con.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_edu_ave_con.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_edu_ave, out_file=dot_file, feature_names=data_feature_with_edu_ave.columns)</div><div class="line"><span class="comment"># dtree_with_scr_of_edu_con.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_scr_of_edu_con.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_scr_of_edu, out_file=dot_file, feature_names=data_feature_with_scr_of_edu.columns)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.562325</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.098819</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.095089</td>
+</tr>
+<tr>
+  <th>edu_ave</th>
+  <td>0.077572</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.064213</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.056334</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.023696</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.013513</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.008440</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_con.png" alt="edu_ave_con"></p>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.511282</td>
+</tr>
+<tr>
+  <th>scr_of_edu</th>
+  <td>0.110155</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.097473</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.093793</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.082843</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.055566</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.035552</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.013335</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_con.png" alt="scr_of_edu_con"></p>
+<h2 id="hyp-cat"><a href="#hyp-cat" class="headerlink" title="hyp_cat"></a>hyp_cat</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">dtree_with_edu_ave = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_edu_ave = dtree_with_edu_ave.fit(data_feature_with_edu_ave, data_classes[<span class="string">'hyp_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_edu_ave.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_edu_ave.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line">dtree_with_scr_of_edu = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_scr_of_edu = dtree_with_scr_of_edu.fit(data_feature_with_scr_of_edu, data_classes[<span class="string">'hyp_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_scr_of_edu.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_scr_of_edu.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="comment"># dtree_with_edu_ave_hyp.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_edu_ave_hyp.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_edu_ave, out_file=dot_file, feature_names=data_feature_with_edu_ave.columns)</div><div class="line"><span class="comment"># dtree_with_scr_of_edu_hyp.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_scr_of_edu_hyp.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_scr_of_edu, out_file=dot_file, feature_names=data_feature_with_scr_of_edu.columns)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>medu_newcat</th>
+  <td>0.343448</td>
+</tr>
+<tr>
+  <th>scr_ave</th>
+  <td>0.265652</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.165487</td>
+</tr>
+<tr>
+  <th>edu_ave</th>
+  <td>0.076194</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.054466</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.046774</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.020992</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.015532</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.011454</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_hyp.png" alt="edu_ave_hyp"></p>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>medu_newcat</th>
+  <td>0.335192</td>
+</tr>
+<tr>
+  <th>scr_ave</th>
+  <td>0.257218</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.161509</td>
+</tr>
+<tr>
+  <th>scr_of_edu</th>
+  <td>0.105471</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.065618</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.033129</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.022542</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.012901</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.006421</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_hyp.png" alt="scr_of_edu_hyp"></p>
+<h2 id="pee-cat"><a href="#pee-cat" class="headerlink" title="pee_cat"></a>pee_cat</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">dtree_with_edu_ave = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_edu_ave = dtree_with_edu_ave.fit(data_feature_with_edu_ave, data_classes[<span class="string">'pee_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_edu_ave.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_edu_ave.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line">dtree_with_scr_of_edu = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_scr_of_edu = dtree_with_scr_of_edu.fit(data_feature_with_scr_of_edu, data_classes[<span class="string">'pee_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_scr_of_edu.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_scr_of_edu.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="comment"># dtree_with_edu_ave_pee.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_edu_ave_pee.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_edu_ave, out_file=dot_file, feature_names=data_feature_with_edu_ave.columns)</div><div class="line"></div><div class="line"><span class="comment"># dtree_with_scr_of_edu_pee.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_scr_of_edu_pee.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_scr_of_edu, out_file=dot_file, feature_names=data_feature_with_scr_of_edu.columns)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.441246</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.210646</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.152568</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.151888</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.033530</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.009625</td>
+</tr>
+<tr>
+  <th>edu_ave</th>
+  <td>0.000498</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_pee.png" alt="edu_ave_pee"></p>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_ave</th>
+  <td>0.430946</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.200188</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.151286</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.139104</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.033289</td>
+</tr>
+<tr>
+  <th>scr_of_edu</th>
+  <td>0.033259</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.011927</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_pee.png" alt="scr_of_edu_pee"></p>
+<h2 id="pro-cat"><a href="#pro-cat" class="headerlink" title="pro_cat"></a>pro_cat</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">dtree_with_edu_ave = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_edu_ave = dtree_with_edu_ave.fit(data_feature_with_edu_ave, data_classes[<span class="string">'pro_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_edu_ave.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_edu_ave.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line">dtree_with_scr_of_edu = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_with_scr_of_edu = dtree_with_scr_of_edu.fit(data_feature_with_scr_of_edu, data_classes[<span class="string">'pro_cat'</span>])</div><div class="line">pd.DataFrame(dtree_with_scr_of_edu.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_feature_with_scr_of_edu.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="comment"># dtree_with_edu_ave_pro.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_edu_ave_pro.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_edu_ave, out_file=dot_file, feature_names=data_feature_with_edu_ave.columns)</div><div class="line"><span class="comment"># dtree_with_scr_of_edu_pro.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_with_scr_of_edu_pro.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_with_scr_of_edu, out_file=dot_file, feature_names=data_feature_with_scr_of_edu.columns)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>female</th>
+  <td>0.295389</td>
+</tr>
+<tr>
+  <th>scr_ave</th>
+  <td>0.252091</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.145010</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.137453</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.085421</td>
+</tr>
+<tr>
+  <th>edu_ave</th>
+  <td>0.062697</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.021938</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_edu_ave_pro.png" alt="edu_ave_pro"></p>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>female</th>
+  <td>0.299316</td>
+</tr>
+<tr>
+  <th>scr_ave</th>
+  <td>0.204496</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.131972</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.125169</td>
+</tr>
+<tr>
+  <th>scr_of_edu</th>
+  <td>0.111909</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.080072</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.047066</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_with_scr_of_edu_pro.png" alt="scr_of_edu_pro"></p>
+<h2 id="Convert-continuous-variables-to-categorical-variables"><a href="#Convert-continuous-variables-to-categorical-variables" class="headerlink" title="Convert continuous variables to categorical variables"></a>Convert continuous variables to categorical variables</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">data_category = data.copy()</div><div class="line"><span class="keyword">for</span> column <span class="keyword">in</span> data_category.columns:</div><div class="line">    <span class="keyword">if</span> column <span class="keyword">in</span> float_columns:</div><div class="line">        data_category[column] = pd.cut(data_category[column], <span class="number">10</span>, labels=np.arange(<span class="number">10</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data_cate_feature_with_edu_ave = data_category.ix[:, :<span class="string">'mediacontact'</span>].drop(<span class="string">'scr_of_edu'</span>, axis=<span class="number">1</span>)</div><div class="line">data_cate_feature_with_scr_of_edu = data_category.ix[:, :<span class="string">'mediacontact'</span>].drop(<span class="string">'edu_ave'</span>, axis=<span class="number">1</span>)</div><div class="line">data_cate_classes = data.ix[:, <span class="string">'emo_cat'</span>:]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dtree_cate = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">50</span>)</div><div class="line">cross_val_score(dtree_cate,data_cate_feature_with_edu_ave, data_cate_classes[<span class="string">'difficulties_cat'</span>], cv=<span class="number">10</span>).sum() / <span class="number">10</span></div></pre></td></tr></table></figure>
+<pre><code>0.63948514409153423
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">dtree_cate_with_edu_ave = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_cate_with_edu_ave = dtree_with_edu_ave.fit(data_cate_feature_with_edu_ave, data_cate_classes[<span class="string">'difficulties_cat'</span>])</div><div class="line">pd.DataFrame(dtree_cate_with_edu_ave.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_cate_feature_with_edu_ave.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line">dtree_cate_with_scr_of_edu = tree.DecisionTreeClassifier(min_samples_leaf=<span class="number">500</span>)</div><div class="line">dtree_cate_with_scr_of_edu = dtree_cate_with_scr_of_edu.fit(data_cate_feature_with_scr_of_edu, data_cate_classes[<span class="string">'difficulties_cat'</span>])</div><div class="line">pd.DataFrame(dtree_cate_with_scr_of_edu.feature_importances_, columns = [<span class="string">"Imp"</span>], </div><div class="line">             index = data_cate_feature_with_scr_of_edu.columns).sort_values(by=<span class="string">'Imp'</span>, ascending = <span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="comment"># dtree_cate_with_edu_ave_diff.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_cate_with_edu_ave_diff.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_cate_with_edu_ave, out_file=dot_file, feature_names=data_cate_feature_with_edu_ave.columns)</div><div class="line"><span class="comment"># dtree_cate_with_scr_of_edu_diff.png</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'dtree_cate_with_scr_of_edu_diff.dot'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> dot_file:</div><div class="line">    tree.export_graphviz(dtree_cate_with_scr_of_edu, out_file=dot_file, feature_names=data_cate_feature_with_scr_of_edu.columns)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.528976</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.221779</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.092168</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.057032</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.034724</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.027193</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.021036</td>
+</tr>
+<tr>
+  <th>scr_ave</th>
+  <td>0.011653</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.005439</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>edu_ave</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Imp</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>scr_h_cat</th>
+  <td>0.507678</td>
+</tr>
+<tr>
+  <th>medu_newcat</th>
+  <td>0.215210</td>
+</tr>
+<tr>
+  <th>age_m</th>
+  <td>0.089438</td>
+</tr>
+<tr>
+  <th>scr_of_edu</th>
+  <td>0.042832</td>
+</tr>
+<tr>
+  <th>mediacontact</th>
+  <td>0.041463</td>
+</tr>
+<tr>
+  <th>income_newcat</th>
+  <td>0.035742</td>
+</tr>
+<tr>
+  <th>onlychild</th>
+  <td>0.033695</td>
+</tr>
+<tr>
+  <th>female</th>
+  <td>0.020413</td>
+</tr>
+<tr>
+  <th>scr_ave</th>
+  <td>0.013527</td>
+</tr>
+<tr>
+  <th>divorce</th>
+  <td>0.000000</td>
+</tr>
+<tr>
+  <th>mediacoview</th>
+  <td>0.000000</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<p><img src="http://o7ie0tcjk.bkt.clouddn.com/Correlation-Analysis/dtree_cate_with_scr_of_edu_diff.png" alt="cate_scr_of_edu_diff"></p>
 
       
     </div>
@@ -956,7 +1871,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卡方检验"><span class="nav-number">2.</span> <span class="nav-text">卡方检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一维情况"><span class="nav-number">2.1.</span> <span class="nav-text">一维情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二维情况"><span class="nav-number">2.2.</span> <span class="nav-text">二维情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ANOVA方差检验"><span class="nav-number">3.</span> <span class="nav-text">ANOVA方差检验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#因子分析"><span class="nav-number">5.</span> <span class="nav-text">因子分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卡方检验"><span class="nav-number">2.</span> <span class="nav-text">卡方检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一维情况"><span class="nav-number">2.1.</span> <span class="nav-text">一维情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二维情况"><span class="nav-number">2.2.</span> <span class="nav-text">二维情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ANOVA方差检验"><span class="nav-number">3.</span> <span class="nav-text">ANOVA方差检验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#因子分析"><span class="nav-number">5.</span> <span class="nav-text">因子分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树"><span class="nav-number">6.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Read-data"><span class="nav-number">6.1.</span> <span class="nav-text">Read data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convert-the-data-format"><span class="nav-number">6.2.</span> <span class="nav-text">Convert the data format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Split-the-data"><span class="nav-number">6.3.</span> <span class="nav-text">Split the data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#difficulties-cat"><span class="nav-number">6.4.</span> <span class="nav-text">difficulties_cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emo-cat"><span class="nav-number">6.5.</span> <span class="nav-text">emo_cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#con-cat"><span class="nav-number">6.6.</span> <span class="nav-text">con_cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hyp-cat"><span class="nav-number">6.7.</span> <span class="nav-text">hyp_cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pee-cat"><span class="nav-number">6.8.</span> <span class="nav-text">pee_cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pro-cat"><span class="nav-number">6.9.</span> <span class="nav-text">pro_cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convert-continuous-variables-to-categorical-variables"><span class="nav-number">6.10.</span> <span class="nav-text">Convert continuous variables to categorical variables</span></a></li></ol></li></ol></div>
             
 
           </div>

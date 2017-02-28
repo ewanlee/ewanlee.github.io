@@ -300,6 +300,3716 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/Python-data-analysis-Learning-note-Ch07/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Ewan Li">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abracdabra">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abracdabra" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/28/Python-data-analysis-Learning-note-Ch07/" itemprop="url">
+                  Python data analysis Learning note Ch07
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T22:36:30+08:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/28/Python-data-analysis-Learning-note-Ch07/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/Python-data-analysis-Learning-note-Ch07/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/28/Python-data-analysis-Learning-note-Ch07/" class="leancloud_visitors" data-flag-title="Python data analysis Learning note Ch07">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="数据规整化：清理、转换、合并、重塑"><a href="#数据规整化：清理、转换、合并、重塑" class="headerlink" title="数据规整化：清理、转换、合并、重塑"></a>数据规整化：清理、转换、合并、重塑</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</div><div class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> randn</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">np.random.seed(<span class="number">12345</span>)</div><div class="line">plt.rc(<span class="string">'figure'</span>, figsize=(<span class="number">10</span>, <span class="number">6</span>))</div><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div><div class="line"><span class="keyword">import</span> pandas</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">np.set_printoptions(precision=<span class="number">4</span>, threshold=<span class="number">500</span>)</div><div class="line">pd.options.display.max_rows = <span class="number">100</span></div><div class="line"><span class="keyword">from</span> IPython.core.interactiveshell <span class="keyword">import</span> InteractiveShell</div><div class="line">InteractiveShell.ast_node_interactivity = <span class="string">"all"</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div></pre></td></tr></table></figure>
+<h2 id="合并数据集"><a href="#合并数据集" class="headerlink" title="合并数据集"></a>合并数据集</h2><h3 id="数据库风格的DataFrame合并"><a href="#数据库风格的DataFrame合并" class="headerlink" title="数据库风格的DataFrame合并"></a>数据库风格的DataFrame合并</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df1 = DataFrame(&#123;<span class="string">'key'</span>: [<span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>],</div><div class="line">                 <span class="string">'data1'</span>: range(<span class="number">7</span>)&#125;)</div><div class="line">df2 = DataFrame(&#123;<span class="string">'key'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>],</div><div class="line">                 <span class="string">'data2'</span>: range(<span class="number">3</span>)&#125;)</div><div class="line">df1</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>key</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3</td>
+  <td>c</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>6</th>
+  <td>6</td>
+  <td>b</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df2</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data2</th>
+  <th>key</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2</td>
+  <td>d</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>默认情况下根据重叠的列名进行合并</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(df1, df2)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>key</th>
+  <th>data2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>6</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>2</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>最好进行显式地指定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(df1, df2, on=<span class="string">'key'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>key</th>
+  <th>data2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>6</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>2</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">df3 = DataFrame(&#123;<span class="string">'lkey'</span>: [<span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>],</div><div class="line">                 <span class="string">'data1'</span>: range(<span class="number">7</span>)&#125;)</div><div class="line">df4 = DataFrame(&#123;<span class="string">'rkey'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>],</div><div class="line">                 <span class="string">'data2'</span>: range(<span class="number">3</span>)&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df3</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>lkey</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3</td>
+  <td>c</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>6</th>
+  <td>6</td>
+  <td>b</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df4</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data2</th>
+  <th>rkey</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2</td>
+  <td>d</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>如果两个对象的列名不同，那么就需要分别指定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(df3, df4, left_on=<span class="string">'lkey'</span>, right_on=<span class="string">'rkey'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>lkey</th>
+  <th>data2</th>
+  <th>rkey</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>6</td>
+  <td>b</td>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>2</td>
+  <td>a</td>
+  <td>0</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4</td>
+  <td>a</td>
+  <td>0</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5</td>
+  <td>a</td>
+  <td>0</td>
+  <td>a</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>默认是进行inner连接（交集）， outer是求取并集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(df1, df2, how=<span class="string">'outer'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>key</th>
+  <th>data2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0.0</td>
+  <td>b</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1.0</td>
+  <td>b</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>6.0</td>
+  <td>b</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>2.0</td>
+  <td>a</td>
+  <td>0.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4.0</td>
+  <td>a</td>
+  <td>0.0</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5.0</td>
+  <td>a</td>
+  <td>0.0</td>
+</tr>
+<tr>
+  <th>6</th>
+  <td>3.0</td>
+  <td>c</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>7</th>
+  <td>NaN</td>
+  <td>d</td>
+  <td>2.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">df1 = DataFrame(&#123;<span class="string">'key'</span>: [<span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>],</div><div class="line">                 <span class="string">'data1'</span>: range(<span class="number">6</span>)&#125;)</div><div class="line">df2 = DataFrame(&#123;<span class="string">'key'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>],</div><div class="line">                 <span class="string">'data2'</span>: range(<span class="number">5</span>)&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df1</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>key</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3</td>
+  <td>c</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5</td>
+  <td>b</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df2</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data2</th>
+  <th>key</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2</td>
+  <td>a</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3</td>
+  <td>b</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4</td>
+  <td>d</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(df1, df2, on=<span class="string">'key'</span>, how=<span class="string">'left'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>key</th>
+  <th>data2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>0</td>
+  <td>b</td>
+  <td>3.0</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>1</td>
+  <td>b</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>1</td>
+  <td>b</td>
+  <td>3.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>2</td>
+  <td>a</td>
+  <td>0.0</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>2</td>
+  <td>a</td>
+  <td>2.0</td>
+</tr>
+<tr>
+  <th>6</th>
+  <td>3</td>
+  <td>c</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>7</th>
+  <td>4</td>
+  <td>a</td>
+  <td>0.0</td>
+</tr>
+<tr>
+  <th>8</th>
+  <td>4</td>
+  <td>a</td>
+  <td>2.0</td>
+</tr>
+<tr>
+  <th>9</th>
+  <td>5</td>
+  <td>b</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>10</th>
+  <td>5</td>
+  <td>b</td>
+  <td>3.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(df1, df2, how=<span class="string">'inner'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data1</th>
+  <th>key</th>
+  <th>data2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>0</td>
+  <td>b</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>1</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>1</td>
+  <td>b</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>5</td>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>5</td>
+  <td>b</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>6</th>
+  <td>2</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>7</th>
+  <td>2</td>
+  <td>a</td>
+  <td>2</td>
+</tr>
+<tr>
+  <th>8</th>
+  <td>4</td>
+  <td>a</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>9</th>
+  <td>4</td>
+  <td>a</td>
+  <td>2</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">left = DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'foo'</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>],</div><div class="line">                  <span class="string">'key2'</span>: [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>],</div><div class="line">                  <span class="string">'lval'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;)</div><div class="line">right = DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'foo'</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'bar'</span>],</div><div class="line">                   <span class="string">'key2'</span>: [<span class="string">'one'</span>, <span class="string">'one'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>],</div><div class="line">                   <span class="string">'rval'</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key1</th>
+  <th>key2</th>
+  <th>lval</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>foo</td>
+  <td>two</td>
+  <td>2</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>bar</td>
+  <td>one</td>
+  <td>3</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">right</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key1</th>
+  <th>key2</th>
+  <th>rval</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>bar</td>
+  <td>one</td>
+  <td>6</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>bar</td>
+  <td>two</td>
+  <td>7</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(left, right, on=[<span class="string">'key1'</span>, <span class="string">'key2'</span>], how=<span class="string">'outer'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key1</th>
+  <th>key2</th>
+  <th>lval</th>
+  <th>rval</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>1.0</td>
+  <td>4.0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>1.0</td>
+  <td>5.0</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>foo</td>
+  <td>two</td>
+  <td>2.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>bar</td>
+  <td>one</td>
+  <td>3.0</td>
+  <td>6.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>bar</td>
+  <td>two</td>
+  <td>NaN</td>
+  <td>7.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>列名重复问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(left, right, on=<span class="string">'key1'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key1</th>
+  <th>key2_x</th>
+  <th>lval</th>
+  <th>key2_y</th>
+  <th>rval</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>1</td>
+  <td>one</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>1</td>
+  <td>one</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>foo</td>
+  <td>two</td>
+  <td>2</td>
+  <td>one</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>foo</td>
+  <td>two</td>
+  <td>2</td>
+  <td>one</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>bar</td>
+  <td>one</td>
+  <td>3</td>
+  <td>one</td>
+  <td>6</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>bar</td>
+  <td>one</td>
+  <td>3</td>
+  <td>two</td>
+  <td>7</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(left, right, on=<span class="string">'key1'</span>, suffixes=(<span class="string">'_left'</span>, <span class="string">'_right'</span>))</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key1</th>
+  <th>key2_left</th>
+  <th>lval</th>
+  <th>key2_right</th>
+  <th>rval</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>1</td>
+  <td>one</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>foo</td>
+  <td>one</td>
+  <td>1</td>
+  <td>one</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>foo</td>
+  <td>two</td>
+  <td>2</td>
+  <td>one</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>foo</td>
+  <td>two</td>
+  <td>2</td>
+  <td>one</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>bar</td>
+  <td>one</td>
+  <td>3</td>
+  <td>one</td>
+  <td>6</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>bar</td>
+  <td>one</td>
+  <td>3</td>
+  <td>two</td>
+  <td>7</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="索引上的合并"><a href="#索引上的合并" class="headerlink" title="索引上的合并"></a>索引上的合并</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">left1 = DataFrame(&#123;<span class="string">'key'</span>: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>],</div><div class="line">                  <span class="string">'value'</span>: range(<span class="number">6</span>)&#125;)</div><div class="line">right1 = DataFrame(&#123;<span class="string">'group_val'</span>: [<span class="number">3.5</span>, <span class="number">7</span>]&#125;, index=[<span class="string">'a'</span>, <span class="string">'b'</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left1</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key</th>
+  <th>value</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>a</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>b</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>a</td>
+  <td>2</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>a</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>b</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>c</td>
+  <td>5</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">right1</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>group_val</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>7.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(left1, right1, left_on=<span class="string">'key'</span>, right_index=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key</th>
+  <th>value</th>
+  <th>group_val</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>a</td>
+  <td>0</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>a</td>
+  <td>2</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>a</td>
+  <td>3</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>b</td>
+  <td>1</td>
+  <td>7.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>b</td>
+  <td>4</td>
+  <td>7.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(left1, right1, left_on=<span class="string">'key'</span>, right_index=<span class="keyword">True</span>, how=<span class="string">'outer'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key</th>
+  <th>value</th>
+  <th>group_val</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>a</td>
+  <td>0</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>a</td>
+  <td>2</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>a</td>
+  <td>3</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>b</td>
+  <td>1</td>
+  <td>7.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>b</td>
+  <td>4</td>
+  <td>7.0</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>c</td>
+  <td>5</td>
+  <td>NaN</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">lefth = DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'Ohio'</span>, <span class="string">'Ohio'</span>, <span class="string">'Ohio'</span>, <span class="string">'Nevada'</span>, <span class="string">'Nevada'</span>],</div><div class="line">                   <span class="string">'key2'</span>: [<span class="number">2000</span>, <span class="number">2001</span>, <span class="number">2002</span>, <span class="number">2001</span>, <span class="number">2002</span>],</div><div class="line">                   <span class="string">'data'</span>: np.arange(<span class="number">5.</span>)&#125;)</div><div class="line">righth = DataFrame(np.arange(<span class="number">12</span>).reshape((<span class="number">6</span>, <span class="number">2</span>)),</div><div class="line">                   index=[[<span class="string">'Nevada'</span>, <span class="string">'Nevada'</span>, <span class="string">'Ohio'</span>, <span class="string">'Ohio'</span>, <span class="string">'Ohio'</span>, <span class="string">'Ohio'</span>],</div><div class="line">                          [<span class="number">2001</span>, <span class="number">2000</span>, <span class="number">2000</span>, <span class="number">2000</span>, <span class="number">2001</span>, <span class="number">2002</span>]],</div><div class="line">                   columns=[<span class="string">'event1'</span>, <span class="string">'event2'</span>])</div><div class="line">lefth</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data</th>
+  <th>key1</th>
+  <th>key2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0.0</td>
+  <td>Ohio</td>
+  <td>2000</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1.0</td>
+  <td>Ohio</td>
+  <td>2001</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2.0</td>
+  <td>Ohio</td>
+  <td>2002</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3.0</td>
+  <td>Nevada</td>
+  <td>2001</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4.0</td>
+  <td>Nevada</td>
+  <td>2002</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">righth</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th></th>
+  <th>event1</th>
+  <th>event2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th rowspan="2" valign="top">Nevada</th>
+  <th>2001</th>
+  <td>0</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>2000</th>
+  <td>2</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th rowspan="4" valign="top">Ohio</th>
+  <th>2000</th>
+  <td>4</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>2000</th>
+  <td>6</td>
+  <td>7</td>
+</tr>
+<tr>
+  <th>2001</th>
+  <td>8</td>
+  <td>9</td>
+</tr>
+<tr>
+  <th>2002</th>
+  <td>10</td>
+  <td>11</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(lefth, righth, left_on=[<span class="string">'key1'</span>, <span class="string">'key2'</span>], right_index=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data</th>
+  <th>key1</th>
+  <th>key2</th>
+  <th>event1</th>
+  <th>event2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0.0</td>
+  <td>Ohio</td>
+  <td>2000</td>
+  <td>4</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>0</th>
+  <td>0.0</td>
+  <td>Ohio</td>
+  <td>2000</td>
+  <td>6</td>
+  <td>7</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1.0</td>
+  <td>Ohio</td>
+  <td>2001</td>
+  <td>8</td>
+  <td>9</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2.0</td>
+  <td>Ohio</td>
+  <td>2002</td>
+  <td>10</td>
+  <td>11</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3.0</td>
+  <td>Nevada</td>
+  <td>2001</td>
+  <td>0</td>
+  <td>1</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pd.merge(lefth, righth, left_on=[<span class="string">'key1'</span>, <span class="string">'key2'</span>],</div><div class="line">         right_index=<span class="keyword">True</span>, how=<span class="string">'outer'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>data</th>
+  <th>key1</th>
+  <th>key2</th>
+  <th>event1</th>
+  <th>event2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0.0</td>
+  <td>Ohio</td>
+  <td>2000.0</td>
+  <td>4.0</td>
+  <td>5.0</td>
+</tr>
+<tr>
+  <th>0</th>
+  <td>0.0</td>
+  <td>Ohio</td>
+  <td>2000.0</td>
+  <td>6.0</td>
+  <td>7.0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1.0</td>
+  <td>Ohio</td>
+  <td>2001.0</td>
+  <td>8.0</td>
+  <td>9.0</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>2.0</td>
+  <td>Ohio</td>
+  <td>2002.0</td>
+  <td>10.0</td>
+  <td>11.0</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3.0</td>
+  <td>Nevada</td>
+  <td>2001.0</td>
+  <td>0.0</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>4.0</td>
+  <td>Nevada</td>
+  <td>2002.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>NaN</td>
+  <td>Nevada</td>
+  <td>2000.0</td>
+  <td>2.0</td>
+  <td>3.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">left2 = DataFrame([[<span class="number">1.</span>, <span class="number">2.</span>], [<span class="number">3.</span>, <span class="number">4.</span>], [<span class="number">5.</span>, <span class="number">6.</span>]], index=[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>],</div><div class="line">                 columns=[<span class="string">'Ohio'</span>, <span class="string">'Nevada'</span>])</div><div class="line">right2 = DataFrame([[<span class="number">7.</span>, <span class="number">8.</span>], [<span class="number">9.</span>, <span class="number">10.</span>], [<span class="number">11.</span>, <span class="number">12.</span>], [<span class="number">13</span>, <span class="number">14</span>]],</div><div class="line">                   index=[<span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>], columns=[<span class="string">'Missouri'</span>, <span class="string">'Alabama'</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left2</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Ohio</th>
+  <th>Nevada</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>1.0</td>
+  <td>2.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>3.0</td>
+  <td>4.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>5.0</td>
+  <td>6.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">right2</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Missouri</th>
+  <th>Alabama</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>b</th>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>9.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>d</th>
+  <td>11.0</td>
+  <td>12.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>13.0</td>
+  <td>14.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(left2, right2, how=<span class="string">'outer'</span>, left_index=<span class="keyword">True</span>, right_index=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Ohio</th>
+  <th>Nevada</th>
+  <th>Missouri</th>
+  <th>Alabama</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>1.0</td>
+  <td>2.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>3.0</td>
+  <td>4.0</td>
+  <td>9.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>d</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>11.0</td>
+  <td>12.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>5.0</td>
+  <td>6.0</td>
+  <td>13.0</td>
+  <td>14.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left2.join(right2, how=<span class="string">'outer'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Ohio</th>
+  <th>Nevada</th>
+  <th>Missouri</th>
+  <th>Alabama</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>1.0</td>
+  <td>2.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>3.0</td>
+  <td>4.0</td>
+  <td>9.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>d</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>11.0</td>
+  <td>12.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>5.0</td>
+  <td>6.0</td>
+  <td>13.0</td>
+  <td>14.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left1.join(right1, on=<span class="string">'key'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>key</th>
+  <th>value</th>
+  <th>group_val</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>a</td>
+  <td>0</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>b</td>
+  <td>1</td>
+  <td>7.0</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>a</td>
+  <td>2</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>a</td>
+  <td>3</td>
+  <td>3.5</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>b</td>
+  <td>4</td>
+  <td>7.0</td>
+</tr>
+<tr>
+  <th>5</th>
+  <td>c</td>
+  <td>5</td>
+  <td>NaN</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">another = DataFrame([[<span class="number">7.</span>, <span class="number">8.</span>], [<span class="number">9.</span>, <span class="number">10.</span>], [<span class="number">11.</span>, <span class="number">12.</span>], [<span class="number">16.</span>, <span class="number">17.</span>]],</div><div class="line">                    index=[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>], columns=[<span class="string">'New York'</span>, <span class="string">'Oregon'</span>])</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>New York</th>
+  <th>Oregon</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>9.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>11.0</td>
+  <td>12.0</td>
+</tr>
+<tr>
+  <th>f</th>
+  <td>16.0</td>
+  <td>17.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>相当于三个表进行合并</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">left2</div><div class="line">right2</div><div class="line">another</div><div class="line">left2.join([right2, another])</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Ohio</th>
+  <th>Nevada</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>1.0</td>
+  <td>2.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>3.0</td>
+  <td>4.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>5.0</td>
+  <td>6.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Missouri</th>
+  <th>Alabama</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>b</th>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>9.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>d</th>
+  <td>11.0</td>
+  <td>12.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>13.0</td>
+  <td>14.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>New York</th>
+  <th>Oregon</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>9.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>11.0</td>
+  <td>12.0</td>
+</tr>
+<tr>
+  <th>f</th>
+  <td>16.0</td>
+  <td>17.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>Ohio</th>
+  <th>Nevada</th>
+  <th>Missouri</th>
+  <th>Alabama</th>
+  <th>New York</th>
+  <th>Oregon</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>1.0</td>
+  <td>2.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>3.0</td>
+  <td>4.0</td>
+  <td>9.0</td>
+  <td>10.0</td>
+  <td>9.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>5.0</td>
+  <td>6.0</td>
+  <td>13.0</td>
+  <td>14.0</td>
+  <td>11.0</td>
+  <td>12.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left2.join([right2, another], how=<span class="string">'outer'</span>)</div></pre></td></tr></table></figure>
+<h3 id="轴向连接"><a href="#轴向连接" class="headerlink" title="轴向连接"></a>轴向连接</h3><p>之前指的都是行级别的连接操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr = np.arange(<span class="number">12</span>).reshape((<span class="number">3</span>, <span class="number">4</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr</div></pre></td></tr></table></figure>
+<pre><code>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">np.concatenate([arr, arr], axis=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<pre><code>array([[ 0,  1,  2,  3,  0,  1,  2,  3],
+       [ 4,  5,  6,  7,  4,  5,  6,  7],
+       [ 8,  9, 10, 11,  8,  9, 10, 11]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s1 = Series([<span class="number">0</span>, <span class="number">1</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>])</div><div class="line">s2 = Series([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], index=[<span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</div><div class="line">s3 = Series([<span class="number">5</span>, <span class="number">6</span>], index=[<span class="string">'f'</span>, <span class="string">'g'</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.concat([s1, s2, s3])</div></pre></td></tr></table></figure>
+<pre><code>a    0
+b    1
+c    2
+d    3
+e    4
+f    5
+g    6
+dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.concat([s1, s2, s3], axis=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>0</th>
+  <th>1</th>
+  <th>2</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>1.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>NaN</td>
+  <td>2.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>d</th>
+  <td>NaN</td>
+  <td>3.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>NaN</td>
+  <td>4.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>f</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>5.0</td>
+</tr>
+<tr>
+  <th>g</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>6.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s4 = pd.concat([s1 * <span class="number">5</span>, s3])</div><div class="line">s4</div></pre></td></tr></table></figure>
+<pre><code>a    0
+b    5
+f    5
+g    6
+dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.concat([s1, s4], axis=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>0</th>
+  <th>1</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0.0</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>1.0</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>f</th>
+  <td>NaN</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>g</th>
+  <td>NaN</td>
+  <td>6</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.concat([s1, s4], axis=<span class="number">1</span>, join=<span class="string">'inner'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>0</th>
+  <th>1</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>1</td>
+  <td>5</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.concat([s1, s4], axis=<span class="number">1</span>, join_axes=[[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'e'</span>]])</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>0</th>
+  <th>1</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0.0</td>
+  <td>0.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>1.0</td>
+  <td>5.0</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>在连接轴上建立一个层次化索引</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s1</div><div class="line">s3</div><div class="line">result = pd.concat([s1, s1, s3], keys=[<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>])</div></pre></td></tr></table></figure>
+<pre><code>a    0
+b    1
+dtype: int64
+
+
+
+
+
+
+f    5
+g    6
+dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result</div></pre></td></tr></table></figure>
+<pre><code>one    a    0
+       b    1
+two    a    0
+       b    1
+three  f    5
+       g    6
+dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Much more on the unstack function later</span></div><div class="line">result.unstack()</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+  <th>f</th>
+  <th>g</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>one</th>
+  <td>0.0</td>
+  <td>1.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>0.0</td>
+  <td>1.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>three</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>5.0</td>
+  <td>6.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.concat([s1, s2, s3], axis=<span class="number">1</span>, keys=[<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>])</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>one</th>
+  <th>two</th>
+  <th>three</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>1.0</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>NaN</td>
+  <td>2.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>d</th>
+  <td>NaN</td>
+  <td>3.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>e</th>
+  <td>NaN</td>
+  <td>4.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>f</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>5.0</td>
+</tr>
+<tr>
+  <th>g</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>6.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">df1 = DataFrame(np.arange(<span class="number">6</span>).reshape(<span class="number">3</span>, <span class="number">2</span>), index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>],</div><div class="line">                columns=[<span class="string">'one'</span>, <span class="string">'two'</span>])</div><div class="line">df2 = DataFrame(<span class="number">5</span> + np.arange(<span class="number">4</span>).reshape(<span class="number">2</span>, <span class="number">2</span>), index=[<span class="string">'a'</span>, <span class="string">'c'</span>],</div><div class="line">                columns=[<span class="string">'three'</span>, <span class="string">'four'</span>])</div><div class="line">df1</div><div class="line">df2</div><div class="line">pd.concat([df1, df2], keys=[<span class="string">'level1'</span>, <span class="string">'level2'</span>])</div><div class="line">pd.concat([df1, df2], axis=<span class="number">1</span>, keys=[<span class="string">'level1'</span>, <span class="string">'level2'</span>])</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>one</th>
+  <th>two</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0</td>
+  <td>1</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>2</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>4</td>
+  <td>5</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>three</th>
+  <th>four</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>5</td>
+  <td>6</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>7</td>
+  <td>8</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th></th>
+  <th>four</th>
+  <th>one</th>
+  <th>three</th>
+  <th>two</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th rowspan="3" valign="top">level1</th>
+  <th>a</th>
+  <td>NaN</td>
+  <td>0.0</td>
+  <td>NaN</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>NaN</td>
+  <td>2.0</td>
+  <td>NaN</td>
+  <td>3.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>NaN</td>
+  <td>4.0</td>
+  <td>NaN</td>
+  <td>5.0</td>
+</tr>
+<tr>
+  <th rowspan="2" valign="top">level2</th>
+  <th>a</th>
+  <td>6.0</td>
+  <td>NaN</td>
+  <td>5.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>8.0</td>
+  <td>NaN</td>
+  <td>7.0</td>
+  <td>NaN</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr>
+  <th></th>
+  <th colspan="2" halign="left">level1</th>
+  <th colspan="2" halign="left">level2</th>
+</tr>
+<tr>
+  <th></th>
+  <th>one</th>
+  <th>two</th>
+  <th>three</th>
+  <th>four</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0</td>
+  <td>1</td>
+  <td>5.0</td>
+  <td>6.0</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>2</td>
+  <td>3</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>4</td>
+  <td>5</td>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pd.concat(&#123;<span class="string">'level1'</span>: df1, <span class="string">'level2'</span>: df2&#125;, axis=<span class="number">0</span>)</div><div class="line">pd.concat(&#123;<span class="string">'level1'</span>: df1, <span class="string">'level2'</span>: df2&#125;, axis=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th></th>
+  <th>four</th>
+  <th>one</th>
+  <th>three</th>
+  <th>two</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th rowspan="3" valign="top">level1</th>
+  <th>a</th>
+  <td>NaN</td>
+  <td>0.0</td>
+  <td>NaN</td>
+  <td>1.0</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>NaN</td>
+  <td>2.0</td>
+  <td>NaN</td>
+  <td>3.0</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>NaN</td>
+  <td>4.0</td>
+  <td>NaN</td>
+  <td>5.0</td>
+</tr>
+<tr>
+  <th rowspan="2" valign="top">level2</th>
+  <th>a</th>
+  <td>6.0</td>
+  <td>NaN</td>
+  <td>5.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>8.0</td>
+  <td>NaN</td>
+  <td>7.0</td>
+  <td>NaN</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr>
+  <th></th>
+  <th colspan="2" halign="left">level1</th>
+  <th colspan="2" halign="left">level2</th>
+</tr>
+<tr>
+  <th></th>
+  <th>one</th>
+  <th>two</th>
+  <th>three</th>
+  <th>four</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0</td>
+  <td>1</td>
+  <td>5.0</td>
+  <td>6.0</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>2</td>
+  <td>3</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>4</td>
+  <td>5</td>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pd.concat([df1, df2], axis=<span class="number">1</span>, keys=[<span class="string">'level1'</span>, <span class="string">'level2'</span>],</div><div class="line">          names=[<span class="string">'upper'</span>, <span class="string">'lower'</span>])</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr>
+  <th>upper</th>
+  <th colspan="2" halign="left">level1</th>
+  <th colspan="2" halign="left">level2</th>
+</tr>
+<tr>
+  <th>lower</th>
+  <th>one</th>
+  <th>two</th>
+  <th>three</th>
+  <th>four</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>a</th>
+  <td>0</td>
+  <td>1</td>
+  <td>5.0</td>
+  <td>6.0</td>
+</tr>
+<tr>
+  <th>b</th>
+  <td>2</td>
+  <td>3</td>
+  <td>NaN</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>c</th>
+  <td>4</td>
+  <td>5</td>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df1 = DataFrame(np.random.randn(<span class="number">3</span>, <span class="number">4</span>), columns=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>])</div><div class="line">df2 = DataFrame(np.random.randn(<span class="number">2</span>, <span class="number">3</span>), columns=[<span class="string">'b'</span>, <span class="string">'d'</span>, <span class="string">'a'</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df1</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+  <th>d</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>-0.204708</td>
+  <td>0.478943</td>
+  <td>-0.519439</td>
+  <td>-0.555730</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1.965781</td>
+  <td>1.393406</td>
+  <td>0.092908</td>
+  <td>0.281746</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>0.769023</td>
+  <td>1.246435</td>
+  <td>1.007189</td>
+  <td>-1.296221</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df2</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>b</th>
+  <th>d</th>
+  <th>a</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>0.274992</td>
+  <td>0.228913</td>
+  <td>1.352917</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>0.886429</td>
+  <td>-2.001637</td>
+  <td>-0.371843</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>去除无关的行索引</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pd.concat([df1, df2], ignore_index=<span class="keyword">False</span>)</div><div class="line">pd.concat([df1, df2], ignore_index=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+  <th>d</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>-0.204708</td>
+  <td>0.478943</td>
+  <td>-0.519439</td>
+  <td>-0.555730</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1.965781</td>
+  <td>1.393406</td>
+  <td>0.092908</td>
+  <td>0.281746</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>0.769023</td>
+  <td>1.246435</td>
+  <td>1.007189</td>
+  <td>-1.296221</td>
+</tr>
+<tr>
+  <th>0</th>
+  <td>1.352917</td>
+  <td>0.274992</td>
+  <td>NaN</td>
+  <td>0.228913</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>-0.371843</td>
+  <td>0.886429</td>
+  <td>NaN</td>
+  <td>-2.001637</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+  <th>d</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>-0.204708</td>
+  <td>0.478943</td>
+  <td>-0.519439</td>
+  <td>-0.555730</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>1.965781</td>
+  <td>1.393406</td>
+  <td>0.092908</td>
+  <td>0.281746</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>0.769023</td>
+  <td>1.246435</td>
+  <td>1.007189</td>
+  <td>-1.296221</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>1.352917</td>
+  <td>0.274992</td>
+  <td>NaN</td>
+  <td>0.228913</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>-0.371843</td>
+  <td>0.886429</td>
+  <td>NaN</td>
+  <td>-2.001637</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="合并重叠数据"><a href="#合并重叠数据" class="headerlink" title="合并重叠数据"></a>合并重叠数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = Series([np.nan, <span class="number">2.5</span>, np.nan, <span class="number">3.5</span>, <span class="number">4.5</span>, np.nan],</div><div class="line">           index=[<span class="string">'f'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>])</div><div class="line">b = Series(np.arange(len(a), dtype=np.float64),</div><div class="line">           index=[<span class="string">'f'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>])</div><div class="line">b[<span class="number">-1</span>] = np.nan</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a</div></pre></td></tr></table></figure>
+<pre><code>f    NaN
+e    2.5
+d    NaN
+c    3.5
+b    4.5
+a    NaN
+dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b</div></pre></td></tr></table></figure>
+<pre><code>f    0.0
+e    1.0
+d    2.0
+c    3.0
+b    4.0
+a    NaN
+dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">np.where(pd.isnull(a), b, a)</div></pre></td></tr></table></figure>
+<pre><code>array([ 0. ,  2.5,  2. ,  3.5,  4.5,  nan])
+</code></pre><p>combine_first, 重叠值合并，且进行数据对其</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b[:<span class="number">-2</span>].combine_first(a[<span class="number">2</span>:])</div></pre></td></tr></table></figure>
+<pre><code>a    NaN
+b    4.5
+c    3.0
+d    2.0
+e    1.0
+f    0.0
+dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">df1 = DataFrame(&#123;<span class="string">'a'</span>: [<span class="number">1.</span>, np.nan, <span class="number">5.</span>, np.nan],</div><div class="line">                 <span class="string">'b'</span>: [np.nan, <span class="number">2.</span>, np.nan, <span class="number">6.</span>],</div><div class="line">                 <span class="string">'c'</span>: range(<span class="number">2</span>, <span class="number">18</span>, <span class="number">4</span>)&#125;)</div><div class="line">df2 = DataFrame(&#123;<span class="string">'a'</span>: [<span class="number">5.</span>, <span class="number">4.</span>, np.nan, <span class="number">3.</span>, <span class="number">7.</span>],</div><div class="line">                 <span class="string">'b'</span>: [np.nan, <span class="number">3.</span>, <span class="number">4.</span>, <span class="number">6.</span>, <span class="number">8.</span>]&#125;)</div><div class="line">df1</div><div class="line">df2</div><div class="line">df1.combine_first(df2)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>1.0</td>
+  <td>NaN</td>
+  <td>2</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>NaN</td>
+  <td>2.0</td>
+  <td>6</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>5.0</td>
+  <td>NaN</td>
+  <td>10</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>NaN</td>
+  <td>6.0</td>
+  <td>14</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>5.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>4.0</td>
+  <td>3.0</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>NaN</td>
+  <td>4.0</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3.0</td>
+  <td>6.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>7.0</td>
+  <td>8.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>0</th>
+  <td>1.0</td>
+  <td>NaN</td>
+  <td>2.0</td>
+</tr>
+<tr>
+  <th>1</th>
+  <td>4.0</td>
+  <td>2.0</td>
+  <td>6.0</td>
+</tr>
+<tr>
+  <th>2</th>
+  <td>5.0</td>
+  <td>4.0</td>
+  <td>10.0</td>
+</tr>
+<tr>
+  <th>3</th>
+  <td>3.0</td>
+  <td>6.0</td>
+  <td>14.0</td>
+</tr>
+<tr>
+  <th>4</th>
+  <td>7.0</td>
+  <td>8.0</td>
+  <td>NaN</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="重塑和轴向旋转"><a href="#重塑和轴向旋转" class="headerlink" title="重塑和轴向旋转"></a>重塑和轴向旋转</h2><h3 id="重塑层次化索引"><a href="#重塑层次化索引" class="headerlink" title="重塑层次化索引"></a>重塑层次化索引</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">data = DataFrame(np.arange(<span class="number">6</span>).reshape((<span class="number">2</span>, <span class="number">3</span>)),</div><div class="line">                 index=pd.Index([<span class="string">'Ohio'</span>, <span class="string">'Colorado'</span>], name=<span class="string">'state'</span>),</div><div class="line">                 columns=pd.Index([<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>], name=<span class="string">'number'</span>))</div><div class="line">data</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th>number</th>
+  <th>one</th>
+  <th>two</th>
+  <th>three</th>
+</tr>
+<tr>
+  <th>state</th>
+  <th></th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>Ohio</th>
+  <td>0</td>
+  <td>1</td>
+  <td>2</td>
+</tr>
+<tr>
+  <th>Colorado</th>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>stack将列旋转为行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">result = data.stack()</div><div class="line">result</div></pre></td></tr></table></figure>
+<pre><code>state     number
+Ohio      one       0
+          two       1
+          three     2
+Colorado  one       3
+          two       4
+          three     5
+dtype: int32
+</code></pre><p>unstack将行旋转为列，默认操作最内层</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result.unstack()</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th>number</th>
+  <th>one</th>
+  <th>two</th>
+  <th>three</th>
+</tr>
+<tr>
+  <th>state</th>
+  <th></th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>Ohio</th>
+  <td>0</td>
+  <td>1</td>
+  <td>2</td>
+</tr>
+<tr>
+  <th>Colorado</th>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result.unstack(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th>state</th>
+  <th>Ohio</th>
+  <th>Colorado</th>
+</tr>
+<tr>
+  <th>number</th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>one</th>
+  <td>0</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>1</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>three</th>
+  <td>2</td>
+  <td>5</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result.unstack(<span class="string">'state'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th>state</th>
+  <th>Ohio</th>
+  <th>Colorado</th>
+</tr>
+<tr>
+  <th>number</th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>one</th>
+  <td>0</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>1</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>three</th>
+  <td>2</td>
+  <td>5</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s1 = Series([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>])</div><div class="line">s2 = Series([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], index=[<span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</div><div class="line">s1</div><div class="line">s2</div><div class="line">data2 = pd.concat([s1, s2], keys=[<span class="string">'one'</span>, <span class="string">'two'</span>])</div><div class="line">data2</div><div class="line">data2.unstack()</div></pre></td></tr></table></figure>
+<pre><code>a    0
+b    1
+c    2
+d    3
+dtype: int64
+
+
+
+
+
+
+c    4
+d    5
+e    6
+dtype: int64
+
+
+
+
+
+
+one  a    0
+     b    1
+     c    2
+     d    3
+two  c    4
+     d    5
+     e    6
+dtype: int64
+</code></pre><div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>a</th>
+  <th>b</th>
+  <th>c</th>
+  <th>d</th>
+  <th>e</th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>one</th>
+  <td>0.0</td>
+  <td>1.0</td>
+  <td>2.0</td>
+  <td>3.0</td>
+  <td>NaN</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>NaN</td>
+  <td>NaN</td>
+  <td>4.0</td>
+  <td>5.0</td>
+  <td>6.0</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>stack默认会滤除缺失值，因此两者可逆</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data2.unstack().stack()</div></pre></td></tr></table></figure>
+<pre><code>one  a    0.0
+     b    1.0
+     c    2.0
+     d    3.0
+two  c    4.0
+     d    5.0
+     e    6.0
+dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data2.unstack().stack(dropna=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<pre><code>one  a    0.0
+     b    1.0
+     c    2.0
+     d    3.0
+     e    NaN
+two  a    NaN
+     b    NaN
+     c    4.0
+     d    5.0
+     e    6.0
+dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">result</div><div class="line">df = DataFrame(&#123;<span class="string">'left'</span>: result, <span class="string">'right'</span>: result + <span class="number">5</span>&#125;,</div><div class="line">               columns=pd.Index([<span class="string">'left'</span>, <span class="string">'right'</span>], name=<span class="string">'side'</span>))</div><div class="line">df</div></pre></td></tr></table></figure>
+<pre><code>state     number
+Ohio      one       0
+          two       1
+          three     2
+Colorado  one       3
+          two       4
+          three     5
+dtype: int32
+</code></pre><div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>side</th>
+  <th>left</th>
+  <th>right</th>
+</tr>
+<tr>
+  <th>state</th>
+  <th>number</th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th rowspan="3" valign="top">Ohio</th>
+  <th>one</th>
+  <td>0</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>1</td>
+  <td>6</td>
+</tr>
+<tr>
+  <th>three</th>
+  <td>2</td>
+  <td>7</td>
+</tr>
+<tr>
+  <th rowspan="3" valign="top">Colorado</th>
+  <th>one</th>
+  <td>3</td>
+  <td>8</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>4</td>
+  <td>9</td>
+</tr>
+<tr>
+  <th>three</th>
+  <td>5</td>
+  <td>10</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>DataFrame作为旋转轴的级别将成为结果中的最低级别（axis=MAX）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.unstack(<span class="string">'state'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr>
+  <th>side</th>
+  <th colspan="2" halign="left">left</th>
+  <th colspan="2" halign="left">right</th>
+</tr>
+<tr>
+  <th>state</th>
+  <th>Ohio</th>
+  <th>Colorado</th>
+  <th>Ohio</th>
+  <th>Colorado</th>
+</tr>
+<tr>
+  <th>number</th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>one</th>
+  <td>0</td>
+  <td>3</td>
+  <td>5</td>
+  <td>8</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>1</td>
+  <td>4</td>
+  <td>6</td>
+  <td>9</td>
+</tr>
+<tr>
+  <th>three</th>
+  <td>2</td>
+  <td>5</td>
+  <td>7</td>
+  <td>10</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+<p>stack操作将axis-1?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.unstack(<span class="string">'state'</span>).stack(<span class="string">'side'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>state</th>
+  <th>Ohio</th>
+  <th>Colorado</th>
+</tr>
+<tr>
+  <th>number</th>
+  <th>side</th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th rowspan="2" valign="top">one</th>
+  <th>left</th>
+  <td>0</td>
+  <td>3</td>
+</tr>
+<tr>
+  <th>right</th>
+  <td>5</td>
+  <td>8</td>
+</tr>
+<tr>
+  <th rowspan="2" valign="top">two</th>
+  <th>left</th>
+  <td>1</td>
+  <td>4</td>
+</tr>
+<tr>
+  <th>right</th>
+  <td>6</td>
+  <td>9</td>
+</tr>
+<tr>
+  <th rowspan="2" valign="top">three</th>
+  <th>left</th>
+  <td>2</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>right</th>
+  <td>7</td>
+  <td>10</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df.unstack(<span class="string">'state'</span>)</div><div class="line">df.unstack(<span class="string">'state'</span>).stack(<span class="string">'state'</span>)</div></pre></td></tr></table></figure>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr>
+  <th>side</th>
+  <th colspan="2" halign="left">left</th>
+  <th colspan="2" halign="left">right</th>
+</tr>
+<tr>
+  <th>state</th>
+  <th>Ohio</th>
+  <th>Colorado</th>
+  <th>Ohio</th>
+  <th>Colorado</th>
+</tr>
+<tr>
+  <th>number</th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th>one</th>
+  <td>0</td>
+  <td>3</td>
+  <td>5</td>
+  <td>8</td>
+</tr>
+<tr>
+  <th>two</th>
+  <td>1</td>
+  <td>4</td>
+  <td>6</td>
+  <td>9</td>
+</tr>
+<tr>
+  <th>three</th>
+  <td>2</td>
+  <td>5</td>
+  <td>7</td>
+  <td>10</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+
+<tr style="text-align: right;">
+  <th></th>
+  <th>side</th>
+  <th>left</th>
+  <th>right</th>
+</tr>
+<tr>
+  <th>number</th>
+  <th>state</th>
+  <th></th>
+  <th></th>
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr>
+  <th rowspan="2" valign="top">one</th>
+  <th>Ohio</th>
+  <td>0</td>
+  <td>5</td>
+</tr>
+<tr>
+  <th>Colorado</th>
+  <td>3</td>
+  <td>8</td>
+</tr>
+<tr>
+  <th rowspan="2" valign="top">two</th>
+  <th>Ohio</th>
+  <td>1</td>
+  <td>6</td>
+</tr>
+<tr>
+  <th>Colorado</th>
+  <td>4</td>
+  <td>9</td>
+</tr>
+<tr>
+  <th rowspan="2" valign="top">three</th>
+  <th>Ohio</th>
+  <td>2</td>
+  <td>7</td>
+</tr>
+<tr>
+  <th>Colorado</th>
+  <td>5</td>
+  <td>10</td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/Python-data-analysis-Learning-note-Ch06/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -12753,159 +16463,6 @@ array([[-5.0281,  2.7734, -2.8428, -1.0619, -3.0078],
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Ewan Li">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abracdabra">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abracdabra" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/" itemprop="url">
-                  Spider the house infomation and save to excel file
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-18T22:11:28+08:00">
-                2017-02-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/" class="leancloud_visitors" data-flag-title="Spider the house infomation and save to excel file">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><p><a href="http://sh.fang.com/" target="_blank" rel="external">http://sh.fang.com/</a></p>
-<h2 id="项目目标"><a href="#项目目标" class="headerlink" title="项目目标"></a>项目目标</h2><p>爬取二手房信息中的小区信息</p>
-<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><p>【1】爬取小区信息（核心代码，下同）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""	&lt;A spider to crawl the house information.&gt;</span></div><div class="line">    Copyright (C) &lt;2017&gt;  Li W.H., Duan X</div><div class="line"></div><div class="line">    This program is free software: you can redistribute it and/or modify</div><div class="line">    it under the terms of the GNU General Public License as published by</div><div class="line">    the Free Software Foundation, either version 3 of the License, or</div><div class="line">    (at your option) any later version.</div><div class="line"></div><div class="line">    This program is distributed in the hope that it will be useful,</div><div class="line">    but WITHOUT ANY WARRANTY; without even the implied warranty of</div><div class="line">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div><div class="line">    GNU General Public License for more details.</div><div class="line"></div><div class="line">    You should have received a copy of the GNU General Public License</div><div class="line">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;. </div><div class="line">"""</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HouseSpider</span><span class="params">(scrapy.Spider)</span>:</span></div><div class="line">    name = <span class="string">"house"</span></div><div class="line">    head = <span class="string">"http://esf.sh.fang.com"</span></div><div class="line">    allowed_domains = [<span class="string">"sh.fang.com"</span>]</div><div class="line">    start_urls = [</div><div class="line">        <span class="string">"http://esf.sh.fang.com/housing/"</span></div><div class="line">    ]</div><div class="line">    <span class="comment"># 各区对应的编号（由于丧心病狂的url）</span></div><div class="line">    area_map = &#123;<span class="number">25</span>: <span class="string">'pudong'</span>, <span class="number">18</span>: <span class="string">'minhang'</span>, <span class="number">19</span>: <span class="string">'xuhui'</span>, <span class="number">30</span>: <span class="string">'baoshan'</span>,</div><div class="line">                <span class="number">28</span>: <span class="string">'putuo'</span>, <span class="number">20</span>: <span class="string">'changning'</span>, <span class="number">26</span>: <span class="string">'yangpu'</span>, <span class="number">586</span>: <span class="string">'songjiang'</span>,</div><div class="line">                <span class="number">29</span>: <span class="string">'jiading'</span>, <span class="number">23</span>: <span class="string">'hongkou'</span>, <span class="number">27</span>: <span class="string">'zhabei'</span>, <span class="number">21</span>: <span class="string">'jingan'</span>,</div><div class="line">                <span class="number">24</span>: <span class="string">'huangpu'</span>, <span class="number">22</span>: <span class="string">'luwan'</span>, <span class="number">31</span>: <span class="string">'qingpu'</span>, <span class="number">32</span>: <span class="string">'fengxian'</span>,</div><div class="line">                <span class="number">35</span>: <span class="string">'jinshan'</span>, <span class="number">996</span>: <span class="string">'chongming'</span>&#125;</div><div class="line">    estate_to_area_map = &#123;&#125;</div><div class="line">    seperator = <span class="string">'=\n'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> self.area_map.items():</div><div class="line">            self.estate_to_area_map[key] = []</div><div class="line">        <span class="comment"># print(self.estate_to_area_map)</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="comment"># 解析出上海市各区的地址</span></div><div class="line">        area_lis = response.xpath(<span class="string">'//*[@id="houselist_B03_02"]/div[1]'</span>)</div><div class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> area_lis.xpath(<span class="string">'./a'</span>):</div><div class="line">            <span class="comment"># areas = items.AreaItem()</span></div><div class="line">            <span class="comment"># areas['name'] = a.xpath('text()').extract()[0]</span></div><div class="line">            <span class="keyword">yield</span> Request(self.head + a.xpath(<span class="string">'@href'</span>).extract()[<span class="number">0</span>],</div><div class="line">                          callback=self.parse_area)</div><div class="line">            <span class="comment"># print(a.xpath('text()').extract()[0])</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_area</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="comment"># 确定response来源于哪一个区</span></div><div class="line">        area_index = str(response).split(<span class="string">'/'</span>)[<span class="number">-2</span>].split(<span class="string">'_'</span>)[<span class="number">0</span>]</div><div class="line">        <span class="keyword">if</span> area_index == <span class="string">''</span>:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># 解析出各区中小区的详情页面地址</span></div><div class="line">            detail_str = <span class="string">'xiangqing'</span></div><div class="line">            estate_list = response.xpath(<span class="string">'/html/body/div[4]/div[5]/div[4]'</span>)</div><div class="line">            <span class="keyword">for</span> a <span class="keyword">in</span> estate_list.xpath(<span class="string">'.//a[@class="plotTit"]'</span>):</div><div class="line">                estate_url = a.xpath(<span class="string">'@href'</span>).extract()[<span class="number">0</span>]</div><div class="line">                <span class="keyword">if</span> estate_url.find(<span class="string">'esf'</span>) != <span class="number">-1</span>:</div><div class="line">                    estate_url = estate_url.replace(<span class="string">'esf'</span>, detail_str)</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    estate_url = estate_url + detail_str</div><div class="line">                <span class="keyword">if</span> estate_url.find(<span class="string">'http'</span>) != <span class="number">-1</span>:</div><div class="line">                    <span class="comment"># print(estate_url)</span></div><div class="line">                    self.estate_to_area_map[int(area_index)].append(estate_url)</div><div class="line">            <span class="comment"># print(len(self.estate_to_area_map[int(area_index)]))</span></div><div class="line">            next_page = response.xpath(<span class="string">'//*[@id="PageControl1_hlk_next"]'</span>)</div><div class="line">            <span class="keyword">if</span> len(next_page) != <span class="number">0</span>:</div><div class="line">                <span class="keyword">yield</span> Request(self.head +</div><div class="line">                              next_page.xpath(<span class="string">'@href'</span>).extract()[<span class="number">0</span>],</div><div class="line">                              callback=self.parse_area)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="comment"># print(len(self.estate_to_area_map[int(area_index)]))</span></div><div class="line">                <span class="keyword">for</span> url <span class="keyword">in</span> self.estate_to_area_map[int(area_index)]:</div><div class="line">                    request = Request(url, callback=self.parse_house,</div><div class="line">                                      dont_filter=<span class="keyword">True</span>)</div><div class="line">                    request.meta[<span class="string">'index'</span>] = int(area_index)</div><div class="line">                    <span class="keyword">yield</span> request</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_house</span><span class="params">(self, response)</span>:</span></div><div class="line">        flag = <span class="number">0</span></div><div class="line">        area_index = response.meta[<span class="string">'index'</span>]</div><div class="line">        area_name = self.area_map[area_index]</div><div class="line">        filename = area_name + <span class="string">'.txt'</span></div><div class="line">        <span class="comment"># print(response.xpath('/html'))</span></div><div class="line">        <span class="comment"># 详情页面存在两种，因此分情况讨论</span></div><div class="line">        house_name = response.xpath(</div><div class="line">            <span class="string">'/html/body/div[4]/div[2]/div[2]/h1/a/text()'</span>)</div><div class="line">        <span class="keyword">if</span> len(house_name) == <span class="number">0</span>:</div><div class="line">            <span class="comment"># house_name = response.xpath(</span></div><div class="line">            <span class="comment">#     '/html/body/div[1]/div[3]/div[2]/h1/a/text()')</span></div><div class="line">            <span class="comment"># flag = 1</span></div><div class="line">            <span class="keyword">return</span></div><div class="line">        house_name = house_name.extract()[<span class="number">0</span>]</div><div class="line">        <span class="comment"># 清洁小区名</span></div><div class="line">        house_name = re.sub(<span class="string">r'小区网'</span>, <span class="string">''</span>, house_name)</div><div class="line">        result_str = <span class="string">'【小区名称】'</span> + house_name + <span class="string">'\n'</span></div><div class="line">        <span class="keyword">if</span> flag == <span class="number">0</span>:</div><div class="line">            avg_price_xpath = response.xpath(</div><div class="line">                <span class="string">'/html/body/div[4]/div[4]/div[1]/div[1]/dl[1]/dd/span/text()'</span>)</div><div class="line">            avg_price = avg_price_xpath.extract()[<span class="number">0</span>]</div><div class="line">            result_str = result_str + <span class="string">'【平均价格】'</span> + avg_price + <span class="string">'\n'</span></div><div class="line">            detail_block_list = response.xpath(</div><div class="line">                <span class="string">'/html/body/div[4]/div[4]/div[1]'</span>)</div><div class="line">            <span class="keyword">for</span> headline <span class="keyword">in</span> detail_block_list.xpath(<span class="string">'.//h3'</span>):</div><div class="line">                head_str = headline.xpath(<span class="string">'./text()'</span>).extract()[<span class="number">0</span>]</div><div class="line">                <span class="keyword">if</span> head_str == <span class="string">'基本信息'</span>:</div><div class="line">                    result_str = result_str + \</div><div class="line">                        <span class="string">'【'</span> + \</div><div class="line">                        head_str + <span class="string">'】\n'</span></div><div class="line">                    <span class="keyword">for</span> item <span class="keyword">in</span> headline.xpath(</div><div class="line">                            <span class="string">'../../div[@class="inforwrap clearfix"]/dl/dd'</span>):</div><div class="line">                        <span class="keyword">if</span> len(item.xpath(<span class="string">'./strong/text()'</span>)) != <span class="number">0</span>:</div><div class="line">                            <span class="keyword">if</span> len(item.xpath(<span class="string">'./text()'</span>)) != <span class="number">0</span>:</div><div class="line">                                result_str = result_str + \</div><div class="line">                                    item.xpath(</div><div class="line">                                        <span class="string">'./strong/text()'</span>).extract()[<span class="number">0</span>]</div><div class="line">                                result_str = result_str + \</div><div class="line">                                    item.xpath(<span class="string">'./text()'</span>).extract()[<span class="number">0</span>] + <span class="string">'\n'</span></div><div class="line">                    <span class="comment"># print(result_str)</span></div><div class="line">                <span class="comment"># elif head_str == '交通状况':</span></div><div class="line">                <span class="comment">#     result_str = result_str + \</span></div><div class="line">                <span class="comment">#         '【' + \</span></div><div class="line">                <span class="comment">#         head_str + '】\n'</span></div><div class="line">                <span class="comment">#     tempstr = headline.xpath(</span></div><div class="line">                <span class="comment">#         '../../div[@class="inforwrap clearfix"]/dl/dt/text()').extract()[0]</span></div><div class="line">                <span class="comment">#     result_str = result_str + tempstr + '\n'</span></div><div class="line">                <span class="comment">#     # print(result_str)</span></div><div class="line">                <span class="comment"># elif head_str == '周边信息':</span></div><div class="line">                <span class="comment">#     result_str = result_str + \</span></div><div class="line">                <span class="comment">#         '【' + \</span></div><div class="line">                <span class="comment">#         head_str + '】\n'</span></div><div class="line">                <span class="comment">#     for item in headline.xpath(</span></div><div class="line">                <span class="comment">#             '../../div[@class="inforwrap clearfix"]/dl/dt'):</span></div><div class="line">                <span class="comment">#         result_str = result_str + \</span></div><div class="line">                <span class="comment">#             item.xpath('./text()').extract()[0] + '\n'</span></div><div class="line">                <span class="comment">#     # print(result_str)</span></div><div class="line">                <span class="keyword">elif</span> head_str == <span class="string">'就近楼群'</span>:</div><div class="line">                    result_str = result_str + \</div><div class="line">                        <span class="string">'【'</span> + \</div><div class="line">                        head_str + <span class="string">'】\n'</span></div><div class="line">                    <span class="keyword">for</span> item <span class="keyword">in</span> headline.xpath(</div><div class="line">                            <span class="string">'../../div[@class="inforwrap clearfix"]/dl/dd'</span>):</div><div class="line">                        result_str = result_str + \</div><div class="line">                            item.xpath(<span class="string">'./a/text()'</span>).extract()[<span class="number">0</span>] + <span class="string">'\n'</span></div><div class="line">            result_str = result_str + self.seperator</div><div class="line">            <span class="comment"># print(result_str)</span></div><div class="line">            <span class="keyword">with</span> open(filename, <span class="string">'a'</span>, errors=<span class="string">'ignore'</span>) <span class="keyword">as</span> f:</div><div class="line">                f.write(result_str)</div></pre></td></tr></table></figure>
-<p>【2】格式化</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div></pre></td><td class="code"><pre><div class="line"><span class="string">""" &lt;A formatter&gt;</span></div><div class="line">    Copyright (C) &lt;2017&gt;  Li W.H., Duan X</div><div class="line"></div><div class="line">    This program is free software: you can redistribute it and/or modify</div><div class="line">    it under the terms of the GNU General Public License as published by</div><div class="line">    the Free Software Foundation, either version 3 of the License, or</div><div class="line">    (at your option) any later version.</div><div class="line"></div><div class="line">    This program is distributed in the hope that it will be useful,</div><div class="line">    but WITHOUT ANY WARRANTY; without even the implied warranty of</div><div class="line">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div><div class="line">    GNU General Public License for more details.</div><div class="line"></div><div class="line">    You should have received a copy of the GNU General Public License</div><div class="line">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</div><div class="line">"""</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetDataFileList</span><span class="params">(path=<span class="string">'.'</span>)</span>:</span></div><div class="line">    <span class="string">""" Get the houses file list.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        path: Dir path.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        file_list: the list of data file that find houses data.</div><div class="line"></div><div class="line">    """</div><div class="line"></div><div class="line">    file_list = [x <span class="keyword">for</span> x <span class="keyword">in</span> os.listdir(path) <span class="keyword">if</span> os.path.isfile(</div><div class="line">        x) <span class="keyword">and</span> os.path.splitext(x)[<span class="number">1</span>] == <span class="string">'.txt'</span>]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> file_list</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Parse</span><span class="params">(file_list)</span>:</span></div><div class="line">    <span class="string">""" Parse the txt file that find houses data.</span></div><div class="line"></div><div class="line">    Extract some import infomation such as house name,</div><div class="line">    avarage price, address and so on.</div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        file_list: the list of data file that find houses data.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        houses_dict_list: the list that each item find the detail</div><div class="line">                          dict of each house.</div><div class="line">    """</div><div class="line"></div><div class="line">    HOUSE_NAME = <span class="string">'小区名称'</span></div><div class="line">    HOUSE_NAME_SPLITOR = <span class="string">'】'</span></div><div class="line">    HOUSE_ADDRESS = <span class="string">'小区地址'</span></div><div class="line">    HOUSE_ADDRESS_SPLITOR = <span class="string">'：'</span></div><div class="line">    HOUSE_AVG_PRICE = <span class="string">'平均价格'</span></div><div class="line">    HOUSE_AVG_PRICE_SPLITOR = <span class="string">'】'</span></div><div class="line">    AREA_OF_HOUSE_BELONGS_TO = <span class="string">'所属区域'</span></div><div class="line">    AREA_OF_HOUSE_BELONGS_TO_SPLITOR_1 = <span class="string">'：'</span></div><div class="line">    AREA_OF_HOUSE_BELONGS_TO_SPLITOR_2 = <span class="string">' '</span></div><div class="line">    PROPERTY_CATEGORY = <span class="string">'物业类别'</span></div><div class="line">    PROPERTY_CATEGORY_SPLITOR = <span class="string">'：'</span></div><div class="line">    GREEN_RATE = <span class="string">'绿 化 率'</span></div><div class="line">    GREEN_RATE_SPLITOR = <span class="string">'：'</span></div><div class="line">    VOLUME_RATE = <span class="string">'容 积 率'</span></div><div class="line">    VOLUME_RATE_SPLITOR = <span class="string">'：'</span></div><div class="line">    PROPERTY_COSTS = <span class="string">'物 业 费'</span></div><div class="line">    PROPERTY_COSTS_SPLITOR = <span class="string">'：'</span></div><div class="line">    NO_INFO_NOW = <span class="string">'暂无信息'</span></div><div class="line">    DETAIL_LIST = [HOUSE_NAME, HOUSE_AVG_PRICE, HOUSE_ADDRESS, AREA_OF_HOUSE_BELONGS_TO,</div><div class="line">                   PROPERTY_CATEGORY, GREEN_RATE, VOLUME_RATE, PROPERTY_COSTS]</div><div class="line"></div><div class="line">    houses_dict_list = []</div><div class="line">    <span class="keyword">for</span> file_name <span class="keyword">in</span> file_list:</div><div class="line">        raw_houses_string = <span class="string">''</span></div><div class="line">        <span class="comment"># read all lines as a string</span></div><div class="line">        <span class="keyword">with</span> open(file_name, <span class="string">'r'</span>, errors=<span class="string">'ignore'</span>) <span class="keyword">as</span> f:</div><div class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</div><div class="line">                raw_houses_string += line</div><div class="line">        <span class="comment"># split the string to the houses raw info list</span></div><div class="line">        raw_houses_list = raw_houses_string.split(<span class="string">'=\n'</span>)</div><div class="line"></div><div class="line">        raw_houses_details_list = []</div><div class="line">        <span class="keyword">for</span> raw_house <span class="keyword">in</span> raw_houses_list:</div><div class="line">            <span class="comment"># format house raw info to lines</span></div><div class="line">            raw_houses_details = raw_house.split(<span class="string">'\n'</span>)[:<span class="number">-1</span>]</div><div class="line">            <span class="keyword">if</span> len(raw_houses_details) == <span class="number">0</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="comment"># combine the all formated house raw info to a list</span></div><div class="line">            raw_houses_details_list.append(raw_houses_details)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> raw_house_details <span class="keyword">in</span> raw_houses_details_list:</div><div class="line">            house_details_dict = &#123;&#125;</div><div class="line">            <span class="keyword">for</span> raw_detail <span class="keyword">in</span> raw_house_details:</div><div class="line">                <span class="comment"># search house name</span></div><div class="line">                <span class="keyword">if</span> re.search(HOUSE_NAME, raw_detail):</div><div class="line">                    house_details_dict[HOUSE_NAME] = raw_detail.split(</div><div class="line">                        HOUSE_NAME_SPLITOR)[<span class="number">-1</span>]</div><div class="line">                <span class="comment"># search house avarage price</span></div><div class="line">                <span class="keyword">elif</span> re.search(HOUSE_AVG_PRICE, raw_detail):</div><div class="line">                    <span class="comment"># print(raw_detail)</span></div><div class="line">                    house_details_dict[HOUSE_AVG_PRICE] = raw_detail.split(</div><div class="line">                        HOUSE_AVG_PRICE_SPLITOR)[<span class="number">-1</span>]</div><div class="line">                <span class="comment"># search house address</span></div><div class="line">                <span class="keyword">elif</span> re.search(HOUSE_ADDRESS, raw_detail):</div><div class="line">                    house_details_dict[HOUSE_ADDRESS] = raw_detail.split(</div><div class="line">                        HOUSE_ADDRESS_SPLITOR)[<span class="number">-1</span>]</div><div class="line">                <span class="comment"># search the area of house belongs to</span></div><div class="line">                <span class="keyword">elif</span> re.search(AREA_OF_HOUSE_BELONGS_TO, raw_detail):</div><div class="line">                    temp_detail_value = raw_detail.split(</div><div class="line">                        AREA_OF_HOUSE_BELONGS_TO_SPLITOR_1)[<span class="number">-1</span>]</div><div class="line">                    detail_value = temp_detail_value.split(</div><div class="line">                        AREA_OF_HOUSE_BELONGS_TO_SPLITOR_2)[<span class="number">0</span>]</div><div class="line">                    house_details_dict[AREA_OF_HOUSE_BELONGS_TO] = detail_value</div><div class="line">                <span class="comment"># search the property category of house</span></div><div class="line">                <span class="keyword">elif</span> re.search(PROPERTY_CATEGORY, raw_detail):</div><div class="line">                    house_details_dict[PROPERTY_CATEGORY] = raw_detail.split(</div><div class="line">                        PROPERTY_CATEGORY_SPLITOR)[<span class="number">-1</span>]</div><div class="line">                <span class="comment"># search the green rate</span></div><div class="line">                <span class="keyword">elif</span> re.search(GREEN_RATE, raw_detail):</div><div class="line">                    house_details_dict[GREEN_RATE] = raw_detail.split(</div><div class="line">                        GREEN_RATE_SPLITOR)[<span class="number">-1</span>]</div><div class="line">                <span class="comment"># search the volume rate</span></div><div class="line">                <span class="keyword">elif</span> re.search(VOLUME_RATE, raw_detail):</div><div class="line">                    house_details_dict[VOLUME_RATE] = raw_detail.split(</div><div class="line">                        VOLUME_RATE_SPLITOR)[<span class="number">-1</span>]</div><div class="line">                <span class="comment"># search the property costs</span></div><div class="line">                <span class="keyword">elif</span> re.search(PROPERTY_COSTS, raw_detail):</div><div class="line">                    house_details_dict[PROPERTY_COSTS] = raw_detail.split(</div><div class="line">                        PROPERTY_COSTS_SPLITOR)[<span class="number">-1</span>]</div><div class="line">            <span class="comment"># Judge if all details are contained.</span></div><div class="line">            <span class="comment"># If not, set to null.</span></div><div class="line">            house_details_dict_keys = house_details_dict.keys()</div><div class="line">            <span class="keyword">for</span> detail_name <span class="keyword">in</span> DETAIL_LIST:</div><div class="line">                <span class="keyword">if</span> detail_name <span class="keyword">not</span> <span class="keyword">in</span> house_details_dict_keys:</div><div class="line">                    house_details_dict[detail_name] = NO_INFO_NOW</div><div class="line">            houses_dict_list.append(house_details_dict)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> houses_dict_list</div></pre></td></tr></table></figure>
-<p>【3】通过高德地图api获取经纬度信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="string">""" &lt;A toolto transfer position.&gt;</span></div><div class="line">    Copyright (C) &lt;2017&gt;  Li W.H., Duan X</div><div class="line"></div><div class="line">    This program is free software: you can redistribute it and/or modify</div><div class="line">    it under the terms of the GNU General Public License as published by</div><div class="line">    the Free Software Foundation, either version 3 of the License, or</div><div class="line">    (at your option) any later version.</div><div class="line"></div><div class="line">    This program is distributed in the hope that it will be useful,</div><div class="line">    but WITHOUT ANY WARRANTY; without even the implied warranty of</div><div class="line">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div><div class="line">    GNU General Public License for more details.</div><div class="line"></div><div class="line">    You should have received a copy of the GNU General Public License</div><div class="line">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</div><div class="line">"""</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Geocode</span><span class="params">(address)</span>:</span></div><div class="line">    <span class="string">""" A tool that call the God-Map api.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        address: the address to transfer.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        location: the transfered location.</div><div class="line">    """</div><div class="line"></div><div class="line">    CITY_NAME = <span class="string">'上海'</span></div><div class="line"></div><div class="line">    parameters = &#123;<span class="string">'address'</span>: address,</div><div class="line">                  <span class="string">'key'</span>: <span class="string">'your key'</span>,</div><div class="line">                  <span class="string">'city'</span>: CITY_NAME&#125;</div><div class="line">    base = <span class="string">'http://restapi.amap.com/v3/geocode/geo'</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        response = requests.get(base, parameters)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        print(<span class="string">'error!'</span>, e)</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        <span class="keyword">pass</span></div><div class="line">    answer = response.json()</div><div class="line"></div><div class="line">    <span class="keyword">return</span> answer</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">GETGodMapLocation</span><span class="params">(houses)</span>:</span></div><div class="line">    <span class="string">""" Get the location that corresponds to the house name.</span></div><div class="line"></div><div class="line">    Use the God-Map api to get the corresponding location.</div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        houses_dict_list: the houses info.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        houses_dict_list_contains_loc: the houses info that</div><div class="line">                                           contains the location info.</div><div class="line">    """</div><div class="line"></div><div class="line">    HOUSE_NAME = <span class="string">'小区名称'</span></div><div class="line">    HOUSE_LOCATION = <span class="string">'经纬度'</span></div><div class="line">    NO_INFO_NOW = <span class="string">'暂无信息'</span></div><div class="line"></div><div class="line">    houses_dict_list = houses.copy()</div><div class="line">    error_count = <span class="number">0</span></div><div class="line">    count = <span class="number">0</span></div><div class="line">    size = len(houses)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> house_dict <span class="keyword">in</span> houses_dict_list:</div><div class="line">        <span class="comment"># Count</span></div><div class="line">        count = count + <span class="number">1</span></div><div class="line">        <span class="comment"># Loading needs</span></div><div class="line">        <span class="keyword">if</span> count % <span class="number">1000</span> == <span class="number">0</span>:</div><div class="line">            print(count, <span class="string">'/'</span>, size)</div><div class="line">        address = house_dict[HOUSE_NAME]</div><div class="line">        answer = Geocode(address)</div><div class="line">        <span class="comment"># print(answer)</span></div><div class="line">        <span class="comment"># If find</span></div><div class="line">        <span class="keyword">if</span> len(answer[<span class="string">'geocodes'</span>]) != <span class="number">0</span>:</div><div class="line">            <span class="comment"># print(address + "的经纬度：", answer['geocodes'][0]['location'])</span></div><div class="line">            house_dict[HOUSE_LOCATION] = answer[<span class="string">'geocodes'</span>][<span class="number">0</span>][<span class="string">'location'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># remaking the invalid address</span></div><div class="line">            <span class="comment"># print('address remaking...')</span></div><div class="line">            <span class="keyword">if</span> re.search(<span class="string">r'别墅'</span>, address):</div><div class="line">                re.sub(<span class="string">r'别墅'</span>, <span class="string">''</span>, address)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                address = address + <span class="string">'小区'</span></div><div class="line">            <span class="comment"># print('retransfering...')</span></div><div class="line">            <span class="comment"># transfer again</span></div><div class="line">            answer = Geocode(address)</div><div class="line">            <span class="keyword">if</span> len(answer[<span class="string">'geocodes'</span>]) != <span class="number">0</span>:</div><div class="line">                <span class="comment"># print(address + "的经纬度：", answer['geocodes'][0]['location'])</span></div><div class="line">                house_dict[HOUSE_LOCATION] = answer[<span class="string">'geocodes'</span>][<span class="number">0</span>][<span class="string">'location'</span>]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="comment"># print(address)</span></div><div class="line">                error_count += <span class="number">1</span></div><div class="line">                house_dict[HOUSE_LOCATION] = NO_INFO_NOW</div><div class="line"></div><div class="line">    print(<span class="string">'error counts: '</span>, error_count)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> houses_dict_list</div></pre></td></tr></table></figure>
-<p>【4】存储成excel文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="string">""" &lt;A tool to save the excel file.&gt;</span></div><div class="line">    Copyright (C) &lt;2017&gt;  Li W.H., Duan X</div><div class="line"></div><div class="line">    This program is free software: you can redistribute it and/or modify</div><div class="line">    it under the terms of the GNU General Public License as published by</div><div class="line">    the Free Software Foundation, either version 3 of the License, or</div><div class="line">    (at your option) any later version.</div><div class="line"></div><div class="line">    This program is distributed in the hope that it will be useful,</div><div class="line">    but WITHOUT ANY WARRANTY; without even the implied warranty of</div><div class="line">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</div><div class="line">    GNU General Public License for more details.</div><div class="line"></div><div class="line">    You should have received a copy of the GNU General Public License</div><div class="line">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</div><div class="line">"""</div><div class="line">        </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Save2ExcelFile</span><span class="params">(houses)</span>:</span></div><div class="line">    <span class="string">""" Save the python based list file to excel file.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        houses: the houses list.</div><div class="line"></div><div class="line">    """</div><div class="line"></div><div class="line">    houses_dict_list = houses.copy()</div><div class="line">    house_list = []</div><div class="line">    <span class="comment"># format the source data to fit the xlwt package</span></div><div class="line">    keys = houses[<span class="number">0</span>].keys()</div><div class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> keys:</div><div class="line">        house = []</div><div class="line">        house.append(key)</div><div class="line">        <span class="keyword">for</span> house_dict <span class="keyword">in</span> houses_dict_list:</div><div class="line">            house.append(house_dict[key])</div><div class="line">        house_list.append(house)</div><div class="line">    <span class="comment"># return house_list</span></div><div class="line">    xls = ExcelWrite.Workbook()</div><div class="line">    sheet = xls.add_sheet(<span class="string">'小区信息'</span>)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(house_list)):</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(house_list[<span class="number">0</span>])):</div><div class="line">            sheet.write(j, i, house_list[i][j])</div><div class="line"></div><div class="line">    xls.save(<span class="string">'houses.xls'</span>)</div></pre></td></tr></table></figure>
-<h2 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h2><p><img src="http://o7ie0tcjk.bkt.clouddn.com/spider_house_txt_result.png" alt="spider_house_txt_result"></p>
-<p><img src="http://o7ie0tcjk.bkt.clouddn.com/spider_house_excel_result.png" alt="spider_house_excel_result"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -12953,7 +16510,7 @@ array([[-5.0281,  2.7734, -2.8428, -1.0619, -3.0078],
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

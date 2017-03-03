@@ -99,7 +99,7 @@ Multiclass Support Vector Machine lossThe SVM loss is set up so that the SVM “
 Multiclass Support Vector Machine lossThe SVM loss is set up so that the SVM “wants” the correct class for each image to a have a score higher than the incorrect classes b">
 <meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/cs231n/03/margin.jpg">
 <meta property="og:image" content="http://o7ie0tcjk.bkt.clouddn.com/cs231n/03/stepsize.jpg">
-<meta property="og:updated_time" content="2017-03-02T09:12:16.493Z">
+<meta property="og:updated_time" content="2017-03-03T11:06:37.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n Lecture3 note">
 <meta name="twitter:description" content="Loss functionSource is here.
@@ -422,7 +422,9 @@ Multiclass Support Vector Machine lossThe SVM loss is set up so that the SVM “
 <h2 id="Softmax-classifier"><a href="#Softmax-classifier" class="headerlink" title="Softmax classifier"></a>Softmax classifier</h2><p>In the Softmax classifier, the function mapping $f(x_i; W) =  W x_i$ stays unchanged, but we now interpret these scores as the unnormalized log probabilities for each class and replace the <em>hinge loss</em> with a <strong>cross-entropy loss</strong> that has the form:</p>
 <script type="math/tex; mode=display">L_i = -\log\left(\frac{e^{f_{y_i}}}{ \sum_j e^{f_j} }\right) \hspace{0.5in} \text{or equivalently} \hspace{0.5in} L_i = -f_{y_i} + \log\sum_j e^{f_j}</script><p>The function $f_j(z) = \frac{e^{z_j}}{\sum_k e^{z_k}}$ is called the <strong>softmax function</strong>.</p>
 <h3 id="Information-theory-view"><a href="#Information-theory-view" class="headerlink" title="Information theory view"></a>Information theory view</h3><p>The <em>cross-entropy</em> between a “true” distribution $p$ and an estimated distribution $q$ is defined as:</p>
-<script type="math/tex; mode=display">H(p,q) = - \sum_x p(x) \log q(x)</script><p>The Softmax classifier is hence minimizing the cross-entropy between the estimated class probabilities ( $q = e^{f<em>{y_i}}  / \sum_j e^{f_j}$ as seen above) and the “true” distribution, which in this interpretation is the distribution where all probability mass is on the correct class (i.e. $p = [0, \ldots 1, \ldots, 0]$ contains a single 1 at the $y_i$ -th position.). Moreover, since the cross-entropy can be written in terms of entropy and the Kullback-Leibler divergence as $H(p,q) = H(p) + D</em>{KL}(p||q)$, and the entropy of the delta function $p$ is zero, this is also equivalent to minimizing the <strong>KL</strong> divergence between the two distributions (a measure of distance). In other words, the cross-entropy objective <em>wants</em> the predicted distribution to have all of its mass on the correct answer.</p>
+<script type="math/tex; mode=display">
+H(p,q) = - \sum_x p(x) \log q(x)</script><p>The Softmax classifier is hence minimizing the cross-entropy between the estimated class probabilities ( $q = e^{f_{y_i}}  / \sum_j e^{f_j}$ as seen above) and the “true” distribution, which in this interpretation is the distribution where all probability mass is on the correct class (i.e. $p = [0, \ldots 1, \ldots, 0]$ contains a single 1 at the $y_i$ -th position.). </p>
+<p>Moreover, since the cross-entropy can be written in terms of entropy and the Kullback-Leibler divergence as $H(p,q) = H(p) + D_{KL}(p||q)$, and the entropy of the delta function $p$ is zero, this is also equivalent to minimizing the <strong>KL</strong> divergence between the two distributions (a measure of distance). In other words, the cross-entropy objective <em>wants</em> the predicted distribution to have all of its mass on the correct answer.</p>
 <h3 id="Probabilistic-interpretation"><a href="#Probabilistic-interpretation" class="headerlink" title="Probabilistic interpretation"></a>Probabilistic interpretation</h3><script type="math/tex; mode=display">P(y_i \mid x_i; W) = \frac{e^{f_{y_i}}}{\sum_j e^{f_j} }</script><p>can be interpreted as the (normalized) probability assigned to the correct label $y_i$given the image $x_i$ and parameterized by <strong>W</strong>. To see this, remember that the Softmax classifier interprets the scores inside the output vector $f$ as the unnormalized log probabilities. Exponentiating these quantities therefore gives the (unnormalized) probabilities, and the division performs the normalization so that the probabilities sum to one. In the probabilistic interpretation, we are therefore minimizing the negative log likelihood of the correct class, which can be interpreted as performing <em>Maximum Likelihood Estimation</em> (MLE). A nice feature of this view is that we can now also interpret the regularization term $R(W)$ in the full loss function as coming from a Gaussian prior over the weight matrix <strong>W</strong>, where instead of MLE we are performing the <em>Maximum a posteriori</em> (MAP) estimation. </p>
 <h3 id="Numeric-stability"><a href="#Numeric-stability" class="headerlink" title="Numeric stability"></a>Numeric stability</h3><p>When you’re writing code for computing the Softmax function in practice, the intermediate term $e^{f_{y_i}}$ and $\sum_j e^{f_j}$ may be very large due to the exponentials. Dividing large numbers can be numerically unstable, so it is important to use a normalization trick. Notice that if we multiply the top and bottom of the fraction by a constant <strong>C</strong> and push it into the sum, we get the following (mathematically equivalent) expression:</p>
 <script type="math/tex; mode=display">\frac{e^{f_{y_i}}}{\sum_j e^{f_j}}= \frac{Ce^{f_{y_i}}}{C\sum_j e^{f_j}}= \frac{e^{f_{y_i} + \log C}}{\sum_j e^{f_j + \log C}}</script><p>We are free to choose the value of <strong>C</strong>. This will not change any of the results, but we can use this value to improve the numerical stability of the computation. A common choice for <strong>C</strong> is to set $\log C = -\max_j f_j$. This simply states that we should shift the values inside the vector ff so that the highest value is zero. In code:</p>
@@ -588,7 +590,7 @@ L_i = \sum_{j\neq y_i} \left[ \max(0, w_j^Tx_i - w_{y_i}^Tx_i + \Delta) \right]<
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -599,7 +601,7 @@ L_i = \sum_{j\neq y_i} \left[ \max(0, w_j^Tx_i - w_{y_i}^Tx_i + \Delta) \right]<
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

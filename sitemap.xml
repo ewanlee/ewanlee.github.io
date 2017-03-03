@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/03/02/cs231n-Assignment-1-kNN/</loc>
+    <loc>http://yoursite.com/2017/03/02/CS231n-Lecture3-note/</loc>
     
-    <lastmod>2017-03-02T14:43:27.690Z</lastmod>
+    <lastmod>2017-03-03T11:06:37.472Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/03/02/CS231n-Lecture3-note/</loc>
+    <loc>http://yoursite.com/2017/03/03/cs231n-Assignment-1-svm/</loc>
     
-    <lastmod>2017-03-02T09:12:16.493Z</lastmod>
+    <lastmod>2017-03-03T11:04:37.635Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/02/cs231n-Assignment-1-kNN/</loc>
+    
+    <lastmod>2017-03-02T14:43:27.690Z</lastmod>
     
   </url>
   

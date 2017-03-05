@@ -92,7 +92,7 @@
 <meta name="description" content="Ewan&apos;s IT Blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Abracdabra">
-<meta property="og:url" content="http://yoursite.com/archives/2017/02/index.html">
+<meta property="og:url" content="http://yoursite.com/page/13/index.html">
 <meta property="og:site_name" content="Abracdabra">
 <meta property="og:description" content="Ewan&apos;s IT Blog">
 <meta name="twitter:card" content="summary">
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/02/"/>
+  <link rel="canonical" href="http://yoursite.com/page/13/"/>
 
 
 
 
 
-  <title> Archive | Abracdabra </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Abracdabra </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -166,7 +166,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -310,584 +312,167 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 19 posts in total. Keep on posting.
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/Get-Pois-uses-God-map-apis/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Ewan Li">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abracdabra">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abracdabra" src="">
     </span>
+  </span>
 
     
+      <header class="post-header">
 
-      
-      
-      
-
-      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/21/Get-Pois-uses-God-map-apis/" itemprop="url">
+                  Get Pois uses God-map apis
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-21T12:13:20+08:00">
+                2017-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/21/Get-Pois-uses-God-map-apis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/21/Get-Pois-uses-God-map-apis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/21/Get-Pois-uses-God-map-apis/" class="leancloud_visitors" data-flag-title="Get Pois uses God-map apis">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
         </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
         
-            <a class="post-title-link" href="/2017/02/28/Python-data-analysis-Learning-note-Ch07/" itemprop="url">
-              
-                <span itemprop="name">Python data analysis Learning note Ch07</span>
-              
-            </a>
+          
+            <p>伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">从Excel文件中读出数据</div><div class="line">对于每一个house:</div><div class="line">	提取出其location字段（经纬度）</div><div class="line">	将location字段作为输入参数传给map api</div><div class="line">	将返回值进行适当筛选最后存入原数据集中</div></pre></td></tr></table></figure>
+<p>代码实现如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> xlrd</div><div class="line"><span class="keyword">import</span> pickle</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ReadHousesInfoFromExcel</span><span class="params">(</span></span></div><div class="line">        file_name=<span class="string">'houses_nadrop.xls'</span>, sheet_name=<span class="string">'小区信息'</span>):</div><div class="line">    <span class="string">""" Read the houses detail information from the excel-type file.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        file_name: the name of the excel-type file.</div><div class="line">        sheet_name: the name of the sheet of the excel file.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        houses: A dict that contains the detail information of each house.</div><div class="line">    """</div><div class="line"></div><div class="line">    HOUSES_FILE_NAME = <span class="string">'houses.pkl'</span></div><div class="line">    HOUSES_DETAIL_TAB = [<span class="string">'name'</span>, <span class="string">'address'</span>, <span class="string">'property_category'</span>, <span class="string">'area'</span>,</div><div class="line">                         <span class="string">'avg_price'</span>, <span class="string">'location'</span>, <span class="string">'property_costs'</span>,</div><div class="line">                         <span class="string">'volume_rate'</span>, <span class="string">'green_rate'</span>]</div><div class="line"></div><div class="line">    houses = []</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (os.path.isfile(HOUSES_FILE_NAME)):</div><div class="line">        <span class="keyword">with</span> open(HOUSES_FILE_NAME, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</div><div class="line">            houses = pickle.load(f)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        workBook = xlrd.open_workbook(file_name)</div><div class="line">        bookSheet = workBook.sheet_by_name(sheet_name)</div><div class="line">        <span class="comment"># read from second row because of the first row has tabs</span></div><div class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">1</span>, bookSheet.nrows):</div><div class="line">            house = &#123;&#125;</div><div class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(bookSheet.ncols):</div><div class="line">                cel = bookSheet.cell(row, col)</div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    val = cel.value</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    <span class="keyword">pass</span></div><div class="line">                val = str(val)</div><div class="line">                house[HOUSES_DETAIL_TAB[col]] = val</div><div class="line">            houses.append(house)</div><div class="line">        <span class="keyword">with</span> open(HOUSES_FILE_NAME, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">            pickle.dump(houses, f)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> houses</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Geocode</span><span class="params">(location, poi_type)</span>:</span></div><div class="line">    <span class="string">""" A tool that call the God-Map api.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        location: The location of house.</div><div class="line">        poi_type: The poi type.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        answer: The JSON-type data that contains pois infomation.</div><div class="line">    """</div><div class="line"></div><div class="line">    location = str(location).strip()</div><div class="line"></div><div class="line">    parameters = &#123;<span class="string">'location'</span>: location,</div><div class="line">                  <span class="string">'key'</span>: <span class="string">'e798a5bfb344a09977b79552ae415974'</span>,</div><div class="line">                  <span class="string">'types'</span>: poi_type,</div><div class="line">                  <span class="string">'offset'</span>: <span class="number">10</span>,</div><div class="line">                  <span class="string">'page'</span>: <span class="number">1</span>,</div><div class="line">                  <span class="string">'extensions'</span>: <span class="string">'base'</span>&#125;</div><div class="line">    base = <span class="string">'http://restapi.amap.com/v3/place/around'</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        response = requests.get(base, parameters)</div><div class="line">        answer = response.json()</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        print(<span class="string">'error!'</span>, e)</div><div class="line">        answer = <span class="string">'null'</span></div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> answer</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetPOI</span><span class="params">(houses)</span>:</span></div><div class="line">    <span class="string">""" Get the pois information of the houses according to the location.</span></div><div class="line"></div><div class="line">    Arguments:</div><div class="line">        houses: The house detail information.</div><div class="line"></div><div class="line">    Returns:</div><div class="line">        houses_with_pois: The house detail information</div><div class="line">                          that contains the pois information.</div><div class="line">    """</div><div class="line"></div><div class="line">    POI_TYPE_LAB = [<span class="string">'subway_station'</span>, <span class="string">'bus_station'</span>, <span class="string">'parking_lot'</span>,</div><div class="line">                    <span class="string">'primary_school'</span>, <span class="string">'secondary_school'</span>, <span class="string">'university'</span>,</div><div class="line">                    <span class="string">'mall'</span>, <span class="string">'park'</span>]</div><div class="line">    POI_TYPE_CODE = [<span class="string">'150500'</span>, <span class="string">'150700'</span>, <span class="string">'150904'</span>, <span class="string">'141203'</span>, <span class="string">'141202'</span>,</div><div class="line">                     <span class="string">'141201'</span>, <span class="string">'060100'</span>, <span class="string">'110101'</span>]</div><div class="line">    KEEP_INFO_LAB = [<span class="string">'name'</span>, <span class="string">'location'</span>, <span class="string">'distance'</span>]</div><div class="line">    NO_INFO_NOW = <span class="string">'-'</span></div><div class="line">    SIZE = len(houses)</div><div class="line"></div><div class="line">    houses_with_pois = houses.copy()</div><div class="line">    count = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> house <span class="keyword">in</span> houses_with_pois:</div><div class="line">        count = count + <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> count % <span class="number">100</span> == <span class="number">0</span>:</div><div class="line">            print(count, <span class="string">''</span>, SIZE)</div><div class="line"></div><div class="line">        house[<span class="string">'pois'</span>] = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> poi_type_index <span class="keyword">in</span> range(len(POI_TYPE_LAB)):</div><div class="line">            poi_info_json = Geocode(house[<span class="string">'location'</span>],</div><div class="line">                                    POI_TYPE_CODE[poi_type_index])</div><div class="line">            <span class="keyword">if</span> poi_info_json == <span class="string">'null'</span> <span class="keyword">or</span> poi_info_json[<span class="string">'pois'</span>] <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">                house[<span class="string">'pois'</span>][POI_TYPE_LAB[poi_type_index]] = NO_INFO_NOW</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                house[<span class="string">'pois'</span>][POI_TYPE_LAB[poi_type_index]] = []</div><div class="line">                <span class="keyword">for</span> poi <span class="keyword">in</span> poi_info_json[<span class="string">'pois'</span>]:</div><div class="line">                    pois_without_useless = &#123;&#125;</div><div class="line">                    <span class="keyword">for</span> key <span class="keyword">in</span> poi.keys():</div><div class="line">                        <span class="keyword">if</span> key <span class="keyword">in</span> KEEP_INFO_LAB:</div><div class="line">                            pois_without_useless[key] = poi[key]</div><div class="line">                    house[<span class="string">'pois'</span>][POI_TYPE_LAB[poi_type_index]].append(</div><div class="line">                        pois_without_useless)</div><div class="line">        <span class="comment"># return houses_with_pois</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> houses_with_pois</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    houses = ReadHousesInfoFromExcel()</div><div class="line">    <span class="comment"># answer = Geocode(houses[0]['location'], '150905')</span></div><div class="line">    houses_with_pois = GetPOI(houses)</div></pre></td></tr></table></figure>
+<p>总结一下有几个注意点：</p>
+<ol>
+<li>传给parameters的location参数的格式一定要规范，前后都不能有空格</li>
+<li>for循环中不能改变字典的大小，这里的大小不仅指其元素的数目，也包括其总占用空间的大小</li>
+<li>注意pickle的用法</li>
+<li>从Excel中读出的内容要转成str格式</li>
+</ol>
+<p><strong>整个过程十分清晰明了，值得注意的是细节问题</strong></p>
+
+          
         
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T22:36:30+08:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
+    <div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
-
     
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/Python-data-analysis-Learning-note-Ch06/" itemprop="url">
-              
-                <span itemprop="name">Python data analysis Learning note Ch06</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T21:15:17+08:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/Python-data-analysis-Learning-note-ch05/" itemprop="url">
-              
-                <span itemprop="name">Python data analysis Learning note ch05</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T18:05:03+08:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/26/Python-data-analysis-Learning-note-Ch04/" itemprop="url">
-              
-                <span itemprop="name">Python data analysis-Learning note-Ch04</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-26T11:25:50+08:00"
-              content="2017-02-26" >
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/25/Naive-Bayes/" itemprop="url">
-              
-                <span itemprop="name">Naive Bayes</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-25T13:40:23+08:00"
-              content="2017-02-25" >
-          02-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/24/CS231n-Lecture2-note/" itemprop="url">
-              
-                <span itemprop="name">CS231n Lecture2 note</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-24T17:14:17+08:00"
-              content="2017-02-24" >
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/24/Qiniu-cloud-images-batch-upload-and-directory-synchronization/" itemprop="url">
-              
-                <span itemprop="name">Qiniu cloud images batch upload and directory synchronization</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-24T15:28:57+08:00"
-              content="2017-02-24" >
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/24/Correlation-Analysis/" itemprop="url">
-              
-                <span itemprop="name">Correlation Analysis</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-24T10:22:42+08:00"
-              content="2017-02-24" >
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/21/Get-Pois-uses-God-map-apis/" itemprop="url">
-              
-                <span itemprop="name">Get Pois uses God-map apis</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-21T12:13:20+08:00"
-              content="2017-02-21" >
-          02-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/19/Python data analysis-Learning notes-ch02/" itemprop="url">
-              
-                <span itemprop="name">Python data analysis-Learning note-Ch02</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-19T21:09:19+08:00"
-              content="2017-02-19" >
-          02-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/18/Spider-the-house-infomation-and-save-to-excel-file/" itemprop="url">
-              
-                <span itemprop="name">Spider the house infomation and save to excel file</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-18T22:11:28+08:00"
-              content="2017-02-18" >
-          02-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/17/python-god-web-api/" itemprop="url">
-              
-                <span itemprop="name">python_god_web_api</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-17T22:08:35+08:00"
-              content="2017-02-17" >
-          02-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/15/Decision-tree/" itemprop="url">
-              
-                <span itemprop="name">Decision tree</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-15T16:01:36+08:00"
-              content="2017-02-15" >
-          02-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/15/kNN-and-kd-tree/" itemprop="url">
-              
-                <span itemprop="name">kNN and kd-tree</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-15T15:53:55+08:00"
-              content="2017-02-15" >
-          02-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/15/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-15T15:44:56+08:00"
-              content="2017-02-15" >
-          02-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
   </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 
           
@@ -1107,12 +692,6 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
-
 
   
 

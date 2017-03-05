@@ -17568,11 +17568,11 @@ array([[-5.0281,  2.7734, -2.8428, -1.0619, -3.0078],
     </summary>
     
     
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
   </entry>
   

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/03/05/cs231n-Assignment-1-softmax/</loc>
+    
+    <lastmod>2017-03-05T03:14:56.331Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/03/02/CS231n-Lecture3-note/</loc>
     
     <lastmod>2017-03-03T11:06:37.472Z</lastmod>

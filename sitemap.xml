@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/2017/03/07/python%20data%20analysis%20learning%20note%2009/</loc>
     
-    <lastmod>2017-03-06T12:18:44.992Z</lastmod>
+    <lastmod>2017-03-07T07:39:13.235Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/07/python-data-analysis-learning-note-09/</loc>
+    
+    <lastmod>2017-03-07T07:37:24.055Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/03/06/cs231n-Lecture4-note/</loc>
     
-    <lastmod>2017-03-06T12:06:26.762Z</lastmod>
+    <lastmod>2017-03-06T12:44:06.198Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2017-03-06T12:18:44.992Z</lastmod>
     
   </url>
   

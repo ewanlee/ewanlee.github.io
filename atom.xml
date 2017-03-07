@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-07T07:39:13.235Z</updated>
+  <updated>2017-03-07T07:41:01.512Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/03/07/python%20data%20analysis%20learning%20note%2009/"/>
     <id>http://yoursite.com/2017/03/07/python data analysis learning note 09/</id>
     <published>2017-03-07T07:38:40.324Z</published>
-    <updated>2017-03-07T07:39:13.235Z</updated>
+    <updated>2017-03-07T07:41:01.512Z</updated>
     
     <content type="html"><![CDATA[<!DOCTYPE html><html><head><meta charset="utf-8"><title>ch09</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><style type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->/*!
 *
@@ -4469,9 +4469,9 @@ array([[-5.0281,  2.7734, -2.8428, -1.0619, -3.0078],
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="statistics" scheme="http://yoursite.com/tags/statistics/"/>
     
@@ -4493,11 +4493,11 @@ array([[-5.0281,  2.7734, -2.8428, -1.0619, -3.0078],
     </summary>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
   </entry>
   

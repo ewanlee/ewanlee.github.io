@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/03/08/cs231n-Assignment-1-two-layer-net/</loc>
+    
+    <lastmod>2017-03-08T08:11:39.188Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/03/06/cs231n-Lecture4-note/</loc>
     
     <lastmod>2017-03-07T14:18:11.268Z</lastmod>

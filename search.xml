@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Excel merge the same value that in a column to a cell]]></title>
+      <url>%2F2017%2F03%2F16%2FExcel-merge-the-same-value-that-in-a-column-to-a-cell%2F</url>
+      <content type="text"><![CDATA[]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[Installing ptproc on Ubuntu 16.04 LTS]]></title>
       <url>%2F2017%2F03%2F16%2FInstalling-ptproc-on-Ubuntu-16-04-LTS%2F</url>
       <content type="text"><![CDATA[想对事件数据用点过程进行建模，为了不用重复造轮子，所以找到了一个R包ptproc，但是安装时报错1234install.packages("ptproc")-------------------------------package ‘ptproc’ is not available (as a binary package for R version 3.2.3)既然仓库里没有，那就只好用源码安装了，源码下载地址, 但是依旧报错：123456789101112131415&gt; install.packages("ptproc", repos="http://www.biostat.jhsph.edu/~rpeng/software", type="source")trying URL 'http://www.biostat.jhsph.edu/~rpeng/software/src/contrib/ptproc_1.5-1.tar.gz'Content type 'application/x-gzip' length 282002 bytes (275 KB)opened URL==================================================downloaded 275 KB * installing *source* package ‘ptproc’ ...ERROR: a 'NAMESPACE' file is required* removing ‘/Library/Frameworks/R.framework/Versions/3.1/Resources/library/ptproc’ The downloaded source packages are in ‘/private/var/folders/0b/qdw3f3zn0gq5yy2cjjpm8cgw0000gn/T/RtmpuW1EPA/downloaded_packages’Warning message:In install.packages("ptproc", repos = "http://www.biostat.jhsph.edu/~rpeng/software", : installation of package ‘ptproc’ had non-zero exit status看来只有手动添加一个NAMESPACE,12345cd ptprocecho &apos;exportPattern( &quot;.&quot; )&apos; &gt; NAMESPACEcd ../rm ptproc_1.5-1.tar.gztar cvzf ptproc/ ptproc_1.5-1.tar.gz继续源码安装：1R CMD INSTALL -l &lt;ourRlibrarylocation&gt; &lt;path where I saved the packagename.tar.gz file&gt;Got it.]]></content>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/03/26/lda-for-news-classification/</loc>
+    
+    <lastmod>2017-03-26T08:54:12.906Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/26/netease-news-spider/</loc>
+    
+    <lastmod>2017-03-26T08:53:50.064Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/03/24/LDA/</loc>
     
     <lastmod>2017-03-24T07:29:41.159Z</lastmod>

@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[usr/bin/ld: cannot find -lxxx Solutions]]></title>
+      <url>%2F2017%2F04%2F11%2Fusr-bin-ld-cannot-find-lxxx-Solutions%2F</url>
+      <content type="text"><![CDATA[在Ubuntu上运行Qt5的过程中报错：1usr/bin/ld: cannot find -lGL最后发现问题是系统中没有对应的库文件 libgl.so那么解决方式也很简单，安装即可：1sudo apt-get install libgl-devTada =)]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[Reinforcement Learning (GT) Notes]]></title>
       <url>%2F2017%2F04%2F10%2FReinforcement-Learning-GT-Notes%2F</url>
       <content type="text"><![CDATA[Decision Making &amp; Reinforcement LearningSupervised Learning: $y = f(x)$Unsupervised Learning: $f(x)$Reinforcement Learning: $y = f(x), z$Markov Decision ProcessStates: $S$Model: $T(s, a, s^{\prime}) \sim Pr(s^{\prime} | s, a)$Actions: $A(s), A$Reword: $R(s), R(s, a), R(s, a, s^{\prime})$Policy: $\pi(s) \rightarrow a$​ $\pi^{*}$Sequences of Rewards: AssumptionInfinite HorizonsUtility of sequencesif $U(s_0, s_1, s_2, \cdots) &gt; U(s_0, s^{\prime}_1, s^{\prime}_2, \cdots)$then $U(s_1, s_2, \cdots) &gt; U(s^{\prime}_1, s^{\prime}_2, \cdots)$U(s_0, s_1, s_2, \cdots)=\sum_{t=0}^{\infty}\gamma^{t}R(s_t), 0 \leq \gamma \leq 1U\leq\frac{R_{max}}{1 - \gamma}Policies\pi^{\star}=argmax_{\pi} E[\sum_{t=0}^{\infty}\gamma^{t}R(S_t)|\pi]U^{\pi}(s)=E[\sum_{t=0}^{\infty}\gamma^{t}R(s_t)|\pi,s_0=s]\pi^{\star}(s)=argmax_{a}\sum_{s^{\prime}}T(s, a, s^{\prime})U(s^{\prime})U(s)=R(s)+\gamma \max_{a}\sum_{s^{\prime}}T(s, a, s^{\prime})U(s^{\prime})Above is the Bellman Equation.]]></content>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/04/17/Hadoop-ch02-MapReduce-notes/</loc>
+    
+    <lastmod>2017-04-17T11:24:16.646Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/04/16/Machine-Learning-ECNU-Assignment-1/</loc>
     
     <lastmod>2017-04-16T05:15:09.386Z</lastmod>

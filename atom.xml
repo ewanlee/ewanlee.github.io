@@ -231,9 +231,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="dynet" scheme="http://yoursite.com/tags/dynet/"/>
     
@@ -255,9 +255,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="dynet" scheme="http://yoursite.com/tags/dynet/"/>
     
@@ -307,9 +307,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   

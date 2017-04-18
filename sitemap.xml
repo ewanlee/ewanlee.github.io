@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/04/18/Hadoop-namenode-not-getting-started/</loc>
+    
+    <lastmod>2017-04-18T02:15:12.035Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/04/17/Hadoop-ch02-MapReduce-notes/</loc>
     
     <lastmod>2017-04-17T11:36:52.331Z</lastmod>

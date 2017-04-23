@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[Solution for Bracket in markdown link address]]></title>
+      <title><![CDATA[Solution for Bracket in markdown link address]]></title>
       <url>%2F2017%2F04%2F23%2F%C2%96Solution-for-Bracket-in-markdown-link-address%2F</url>
       <content type="text"><![CDATA[Markdown创造一个链接或者图片是使用 [title](link) 和 ![title](link).我们可以避免[]内出现中括号, 或者使用转义.但是在小括号的链接里面就可能会出问题. 有些网址上面会具有小括号. 例如,https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20%28O%27Reilly%2C%202015%29%28274s%29.pdf解决方法:%28 代替(, %29代替) 主要是后者会歧义链接部分的结束. 这是使用url符号码去代替ascii的符号. 能够解决这个问题]]></content>
     </entry>

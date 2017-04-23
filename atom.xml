@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-23T11:54:53.876Z</updated>
+  <updated>2017-04-23T11:59:09.457Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Solution for Bracket in markdown link address</title>
+    <link href="http://yoursite.com/2017/04/23/%C2%96Solution-for-Bracket-in-markdown-link-address/"/>
+    <id>http://yoursite.com/2017/04/23/Solution-for-Bracket-in-markdown-link-address/</id>
+    <published>2017-04-23T11:56:40.000Z</published>
+    <updated>2017-04-23T11:59:09.457Z</updated>
+    
+    <content type="html"><![CDATA[<p>Markdown创造一个链接或者图片是使用 <code>[title](link)</code> 和 <code>![title](link)</code>.</p><p>我们可以避免<code>[]</code>内出现中括号, 或者使用转义.</p><p>但是在小括号的链接里面就可能会出问题. 有些网址上面会具有小括号. 例如,</p><p><a href="https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20%28O%27Reilly%2C%202015%29%28274s%29.pdf" target="_blank" rel="external">https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20%28O%27Reilly%2C%202015%29%28274s%29.pdf</a></p><p>解决方法:</p><p><code>%28</code> 代替<code>(</code>, <code>%29</code>代替<code>)</code> 主要是后者会歧义链接部分的结束. 这是使用url符号码去代替ascii的符号. 能够解决这个问题</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Markdown创造一个链接或者图片是使用 &lt;code&gt;[title](link)&lt;/code&gt; 和 &lt;code&gt;![title](link)&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;我们可以避免&lt;code&gt;[]&lt;/code&gt;内出现中括号, 或者使用转义.&lt;/p&gt;&lt;p&gt;但是在小括号的链
+    
+    </summary>
+    
+    
+      <category term="markdown" scheme="http://yoursite.com/tags/markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>The first course of the Spark</title>
@@ -416,30 +436,6 @@
     
     
       <category term="Excel" scheme="http://yoursite.com/tags/Excel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Installing ptproc on Ubuntu 16.04 LTS</title>
-    <link href="http://yoursite.com/2017/03/16/Installing-ptproc-on-Ubuntu-16-04-LTS/"/>
-    <id>http://yoursite.com/2017/03/16/Installing-ptproc-on-Ubuntu-16-04-LTS/</id>
-    <published>2017-03-16T03:32:55.000Z</published>
-    <updated>2017-03-16T03:41:16.706Z</updated>
-    
-    <content type="html"><![CDATA[<p>想对事件数据用点过程进行建模，为了不用重复造轮子，所以找到了一个R包ptproc，但是安装时报错</p><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">install.packages(<span class="string">"ptproc"</span>)</div><div class="line"></div><div class="line">-------------------------------</div><div class="line">package ‘ptproc’ is not available (as a binary package <span class="keyword">for</span> R version <span class="number">3.2</span><span class="number">.3</span>)</div></pre></td></tr></table></figure><p>既然仓库里没有，那就只好用源码安装了，源码<a href="http://www.biostat.jhsph.edu/~rpeng/software/src/contrib/ptproc_1.5-1.tar.gz" target="_blank" rel="external">下载地址</a>, 但是依旧报错：</p><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&gt; install.packages(<span class="string">"ptproc"</span>, repos=<span class="string">"http://www.biostat.jhsph.edu/~rpeng/software"</span>, type=<span class="string">"source"</span>)</div><div class="line">trying URL <span class="string">'http://www.biostat.jhsph.edu/~rpeng/software/src/contrib/ptproc_1.5-1.tar.gz'</span></div><div class="line">Content type <span class="string">'application/x-gzip'</span> length <span class="number">282002</span> bytes (<span class="number">275</span> KB)</div><div class="line">opened URL</div><div class="line">==================================================</div><div class="line">downloaded <span class="number">275</span> KB </div><div class="line"></div><div class="line">* installing *<span class="keyword">source</span>* package ‘ptproc’ <span class="keyword">...</span></div><div class="line">ERROR: a <span class="string">'NAMESPACE'</span> file is required</div><div class="line">* removing ‘/Library/Frameworks/R.framework/Versions/<span class="number">3.1</span>/Resources/<span class="keyword">library</span>/ptproc’ </div><div class="line"></div><div class="line">The downloaded <span class="keyword">source</span> packages are <span class="keyword">in</span> 		‘/private/var/folders/0b/qdw3f3zn0gq5yy2cjjpm8cgw0000gn/<span class="literal">T</span>/RtmpuW1EPA/downloaded_packages’</div><div class="line">Warning message:</div><div class="line">In install.packages(<span class="string">"ptproc"</span>, repos = <span class="string">"http://www.biostat.jhsph.edu/~rpeng/software"</span>, :</div><div class="line">                    installation of package ‘ptproc’ had non-zero exit status</div></pre></td></tr></table></figure><p>看来只有手动添加一个NAMESPACE,</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd ptproc</div><div class="line">echo &apos;exportPattern( &quot;.&quot; )&apos; &gt; NAMESPACE</div><div class="line">cd ../</div><div class="line">rm ptproc_1.5-1.tar.gz</div><div class="line">tar cvzf ptproc/ ptproc_1.5-1.tar.gz</div></pre></td></tr></table></figure><p>继续源码安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">R CMD INSTALL -l &lt;ourRlibrarylocation&gt; &lt;path where I saved the packagename.tar.gz file&gt;</div></pre></td></tr></table></figure><p>Got it.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;想对事件数据用点过程进行建模，为了不用重复造轮子，所以找到了一个R包ptproc，但是安装时报错&lt;/p&gt;&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/d
-    
-    </summary>
-    
-    
-      <category term="R" scheme="http://yoursite.com/tags/R/"/>
-    
-      <category term="Ubuntu" scheme="http://yoursite.com/tags/Ubuntu/"/>
-    
-      <category term="point process" scheme="http://yoursite.com/tags/point-process/"/>
     
   </entry>
   

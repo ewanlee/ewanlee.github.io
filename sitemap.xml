@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/04/28/Generative-Adversarial-Networks-GANs-in-50-lines-of-code-PyTorch/</loc>
+    
+    <lastmod>2017-04-28T11:53:35.942Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/04/26/LSTM-by-Example-using-Tensorflow-Text-Generate/</loc>
     
     <lastmod>2017-04-26T13:10:20.095Z</lastmod>

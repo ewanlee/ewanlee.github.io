@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/04/30/The-basic-of-Hidden-Markov-Model/</loc>
+    
+    <lastmod>2017-04-30T15:20:27.900Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/04/29/The-awesome-Wasserstein-GAN/</loc>
     
     <lastmod>2017-04-29T15:44:04.853Z</lastmod>

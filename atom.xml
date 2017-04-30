@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-29T15:42:29.191Z</updated>
+  <updated>2017-04-30T15:20:27.900Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The basic of Hidden Markov Model</title>
+    <link href="http://yoursite.com/2017/04/30/The-basic-of-Hidden-Markov-Model/"/>
+    <id>http://yoursite.com/2017/04/30/The-basic-of-Hidden-Markov-Model/</id>
+    <published>2017-04-30T15:04:54.000Z</published>
+    <updated>2017-04-30T15:20:27.900Z</updated>
+    
+    <content type="html"><![CDATA[<div class="row"><embed src="http://7xov2f.com1.z0.glb.clouddn.com/bash_freshman.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;row&quot;&gt;&lt;embed src=&quot;http://7xov2f.com1.z0.glb.clouddn.com/bash_freshman.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot; type=&quot;application/pdf&quot;&gt;&lt;/div
+    
+    </summary>
+    
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="HMM" scheme="http://yoursite.com/tags/HMM/"/>
+    
+  </entry>
   
   <entry>
     <title>WGAN implemented by PyTorch</title>
@@ -438,30 +460,6 @@
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cs231n Lecture 11 Recap</title>
-    <link href="http://yoursite.com/2017/04/10/cs231n-Lecture-11-Recap/"/>
-    <id>http://yoursite.com/2017/04/10/cs231n-Lecture-11-Recap/</id>
-    <published>2017-04-10T02:30:44.000Z</published>
-    <updated>2017-04-10T03:00:37.566Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Working-with-CNNs-in-practice"><a href="#Working-with-CNNs-in-practice" class="headerlink" title="Working with CNNs in practice"></a>Working with CNNs in practice</h1><ul><li>Making the most of your data<ul><li>Data augmentation</li><li>Transfer learning</li></ul></li><li>All about convolutions<ul><li>How to arrange them</li><li>How to compute them fast</li></ul></li><li>Implementation details<ul><li>GPU / CPU, bottlenecks, ditributed training</li></ul></li></ul><h2 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h2><h3 id="Horizontal-flips"><a href="#Horizontal-flips" class="headerlink" title="Horizontal flips"></a>Horizontal flips</h3><h3 id="Random-crops-scales"><a href="#Random-crops-scales" class="headerlink" title="Random crops/scales"></a>Random crops/scales</h3><p><strong>Training:</strong> sample random crops /scales</p><p>ResNet:</p><ol><li>Pick random L in range [256, 480]</li><li>Resize training image, short side = L</li><li>Sample random 224 x 224 patch</li></ol><p><strong>Testing:</strong> average a fixed set of crops</p><p>ResNet:</p><ol><li>Resize image at 5 scales: {224, 256, 384, 480, 640}</li><li>For each size, use 10 224 x 224 crops: 4 corners + center, + flips</li></ol><h3 id="Color-jitter"><a href="#Color-jitter" class="headerlink" title="Color jitter"></a>Color jitter</h3><p><strong>Simple:</strong><br>Randomly jitter contrast</p><p><strong>Complex:</strong></p><ol><li>Apply PCA to all [R, G, B] pixels in training set</li><li>Sample a “color offset” along principal component directions</li><li>Add offset to all pixels of a training image</li></ol><p>(As seen in [Krizhevsky et al. 2012], ResNet, etc)</p><h2 id="Transfer-Learning"><a href="#Transfer-Learning" class="headerlink" title="Transfer Learning"></a>Transfer Learning</h2><p>“You need a lot of a data if you want to train/use CNNs”</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lec11/tl.png" alt="tl"></p><p>some tricks:</p><div class="table-container"><table><thead><tr><th></th><th>very similar dataset</th><th>very different dataset</th></tr></thead><tbody><tr><td>very little data</td><td>Use Linear Classifer on top layer</td><td>Try linear classifer from different stages</td></tr><tr><td>quite a lot of data</td><td>Finetune a few layers</td><td>Finetune a larger number of layers</td></tr></tbody></table></div><h2 id="All-about-Convolutions"><a href="#All-about-Convolutions" class="headerlink" title="All about Convolutions"></a>All about Convolutions</h2><h3 id="How-to-stack-them"><a href="#How-to-stack-them" class="headerlink" title="How to stack them"></a>How to stack them</h3><ul><li>Replace large convolutions (5 x 5, 7 x 7) with stacks of 3 x 3 convolutions</li><li>1 x 1 “bottleneck” convolutions are very efficient</li><li>Can factor N x N convolutions into 1 x N and N x 1</li><li>All of the above give fewer parameters, less compute, more nonlinearity</li></ul><h3 id="How-to-compute-them"><a href="#How-to-compute-them" class="headerlink" title="How to compute them"></a>How to compute them</h3><h4 id="im2col"><a href="#im2col" class="headerlink" title="im2col"></a>im2col</h4><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lec11/cs231n11_im2col.png" alt="im2col"></p><h4 id="BLAS"><a href="#BLAS" class="headerlink" title="BLAS"></a>BLAS</h4><h4 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h4><ol><li>Compute FFT of weights: F(W)</li><li>Compute FFT of image: F(X)</li><li>Compute elementwise product: F(W) ○ F(X)</li><li>Compute inverse FFT: Y = F-1(F(W) ○ F(X))</li></ol><p>FFT convolutions get a big speedup for larger filters</p><p>Not much speedup for 3x3 filters =(</p><h4 id="Fast-algorithms"><a href="#Fast-algorithms" class="headerlink" title="Fast algorithms"></a>Fast algorithms</h4><ul><li>Strassen’s Algorithm</li><li>And so on…</li></ul><h2 id="Implementation-Details"><a href="#Implementation-Details" class="headerlink" title="Implementation Details"></a>Implementation Details</h2><ul><li>GPUs much faster than CPUs</li><li>Distributed training is sometimes used<ul><li>Not needed for small problems</li></ul></li><li>Be aware of bottlenecks: CPU / GPU, CPU / disk</li><li>Low precison makes things faster and still works<ul><li>32 bit is standard now, 16 bit soon</li><li>In the future: binary nets?</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Working-with-CNNs-in-practice&quot;&gt;&lt;a href=&quot;#Working-with-CNNs-in-practice&quot; class=&quot;headerlink&quot; title=&quot;Working with CNNs in practice&quot;&gt;&lt;/a
-    
-    </summary>
-    
-    
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
-      <category term="cs231n" scheme="http://yoursite.com/tags/cs231n/"/>
     
   </entry>
   

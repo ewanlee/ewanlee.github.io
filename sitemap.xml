@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/01/The-first-course-of-the-Docker/</loc>
+    
+    <lastmod>2017-05-01T11:16:45.076Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/01/HMM-implemented-by-hmmlearn/</loc>
     
     <lastmod>2017-05-01T05:47:05.948Z</lastmod>

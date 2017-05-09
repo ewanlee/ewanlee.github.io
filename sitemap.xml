@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/09/GRADIENTS-BATCH-NORMALIZATION-AND-LAYER-NORMALIZATION/</loc>
+    
+    <lastmod>2017-05-09T02:21:59.280Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/04/What-Is-Local-Response-Normalization-In-Convolutional-Neural-Networks/</loc>
     
     <lastmod>2017-05-04T03:37:33.386Z</lastmod>

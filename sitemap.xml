@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/24/Reproduce-DQN-result/</loc>
+    
+    <lastmod>2017-05-24T05:22:53.864Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/05/13/Question-Answering-A-Very-Brief-Introduction/</loc>
+    
+    <lastmod>2017-05-13T07:18:22.688Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/12/Bot-Sample-MultiDialog/</loc>
     
-    <lastmod>2017-05-12T14:08:04.424Z</lastmod>
+    <lastmod>2017-05-12T14:12:56.112Z</lastmod>
     
   </url>
   

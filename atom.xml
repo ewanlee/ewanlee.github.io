@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-31T02:27:39.747Z</updated>
+  <updated>2017-05-31T02:35:10.696Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/05/31/Dynamic-Programming/"/>
     <id>http://yoursite.com/2017/05/31/Dynamic-Programming/</id>
     <published>2017-05-31T02:19:52.000Z</published>
-    <updated>2017-05-31T02:27:39.747Z</updated>
+    <updated>2017-05-31T02:35:10.696Z</updated>
     
     <content type="html"><![CDATA[<p>The term dynamic programming (DP) refers to a collection of algorithms that can be used to compute optimal policies given a perfect model of environment as a Markov decision process (MDP). Classical DP algorithms are of limited utility in reinforcement learning both because of their assumption of a perfect model and because of their great computational expense, but they are provides an essential foundation for the understanding of the methods presented later. In fact, all of these methods can be viewed as attempts to achieve much the same effect as DP, only with less computation and without assuming a perfect model of the environment.</p><p>The key idea of DP, and of reinforcement learning generally, is the use of value functions to organize and structure the search for good policies. In here we show how DP can be used to compute the value functions defined in earlier. As discussed there, we can easily obtain optimal policies once we have found the optimal value functions $v<em>{\star}$ or $q</em>{\star}$ which satisfy the Bellman optimality equations:</p><script type="math/tex;mode=display">\begin{align}
 v_{\star}(s) &= \max_{a} \mathbb{E} [R_{t+1} + \gamma v_{\star}(S_{t+1}) \ | \ S_{t}=s, A_{t}=a]  \\

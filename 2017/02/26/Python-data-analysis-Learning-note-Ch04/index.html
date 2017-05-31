@@ -23,7 +23,7 @@ array([[ 0.3168,  0.5979, -0.5109],
 
 
 
-dtype(&#39;float64&#39;)
+dtype(&apos;float64&apos;)
 </code></pre><h3 id="创建ndarray"><a href="#创建ndarray" class="headerlink" title="创建ndarray"></a>创建ndarray</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data1 = [<span class="number">6</span>, <span class="number">7.5</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">1</span>]</div><div class="line">arr1 = np.array(data1)</div><div class="line">arr1</div></pre></td></tr></table></figure><pre><code>array([ 6. ,  7.5,  8. ,  0. ,  1. ])
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data2 = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]]</div><div class="line">arr2 = np.array(data2)</div><div class="line">arr2</div><div class="line">arr2.ndim</div><div class="line">arr2.shape</div></pre></td></tr></table></figure><pre><code>array([[1, 2, 3, 4],
        [5, 6, 7, 8]])
@@ -41,14 +41,14 @@ dtype(&#39;float64&#39;)
 
 
 (2, 4)
-</code></pre><p>除非显示说明，np.array会尝试为新建的数组选择一个合适的类型</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arr1.dtype</div><div class="line">arr2.dtype</div></pre></td></tr></table></figure><pre><code>dtype(&#39;float64&#39;)
+</code></pre><p>除非显示说明，np.array会尝试为新建的数组选择一个合适的类型</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arr1.dtype</div><div class="line">arr2.dtype</div></pre></td></tr></table></figure><pre><code>dtype(&apos;float64&apos;)
 
 
 
 
 
 
-dtype(&#39;int32&#39;)
+dtype(&apos;int32&apos;)
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">np.zeros(<span class="number">10</span>)</div><div class="line">np.zeros((<span class="number">3</span>, <span class="number">6</span>))</div><div class="line">np.empty((<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>))</div></pre></td></tr></table></figure><pre><code>array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.])
 
 
@@ -73,22 +73,22 @@ array([[[ 0.,  0.],
         [ 0.,  0.],
         [ 0.,  0.]]])
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">np.arange(<span class="number">15</span>)</div></pre></td></tr></table></figure><pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
-</code></pre><p>ones_like, zeros_like, empty_like这三个方法接受一个数组为对象，创建和这个数组形状和dtype一样的全1， 全0和分配的初始空间</p><h3 id="ndarray的数据类型"><a href="#ndarray的数据类型" class="headerlink" title="ndarray的数据类型"></a>ndarray的数据类型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=np.float64)</div><div class="line">arr2 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=np.int32)</div><div class="line">arr1.dtype</div><div class="line">arr2.dtype</div></pre></td></tr></table></figure><pre><code>dtype(&#39;float64&#39;)
+</code></pre><p>ones_like, zeros_like, empty_like这三个方法接受一个数组为对象，创建和这个数组形状和dtype一样的全1， 全0和分配的初始空间</p><h3 id="ndarray的数据类型"><a href="#ndarray的数据类型" class="headerlink" title="ndarray的数据类型"></a>ndarray的数据类型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=np.float64)</div><div class="line">arr2 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=np.int32)</div><div class="line">arr1.dtype</div><div class="line">arr2.dtype</div></pre></td></tr></table></figure><pre><code>dtype(&apos;float64&apos;)
 
 
 
 
 
 
-dtype(&#39;int32&#39;)
-</code></pre><p>当需要控制数据在内存和磁盘中的存储方式时（尤其是对大数据集），那就得了解如何控制存储类型</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</div><div class="line">arr.dtype</div><div class="line">float_arr = arr.astype(np.float64) </div><div class="line">float_arr.dtype</div></pre></td></tr></table></figure><pre><code>dtype(&#39;int32&#39;)
+dtype(&apos;int32&apos;)
+</code></pre><p>当需要控制数据在内存和磁盘中的存储方式时（尤其是对大数据集），那就得了解如何控制存储类型</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</div><div class="line">arr.dtype</div><div class="line">float_arr = arr.astype(np.float64) </div><div class="line">float_arr.dtype</div></pre></td></tr></table></figure><pre><code>dtype(&apos;int32&apos;)
 
 
 
 
 
 
-dtype(&#39;float64&#39;)
+dtype(&apos;float64&apos;)
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arr = np.array([<span class="number">3.7</span>, <span class="number">-1.2</span>, <span class="number">-2.6</span>, <span class="number">0.5</span>, <span class="number">12.9</span>, <span class="number">10.1</span>])</div><div class="line">arr</div><div class="line">arr.astype(np.int32)</div></pre></td></tr></table></figure><pre><code>array([  3.7,  -1.2,  -2.6,   0.5,  12.9,  10.1])
 
 
@@ -216,8 +216,8 @@ array([7])
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr2d[:, :<span class="number">1</span>]</div></pre></td></tr></table></figure><pre><code>array([[1],
        [4],
        [7]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr2d[:<span class="number">2</span>, <span class="number">1</span>:] = <span class="number">0</span></div></pre></td></tr></table></figure><h3 id="布尔型索引"><a href="#布尔型索引" class="headerlink" title="布尔型索引"></a>布尔型索引</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">names = np.array([<span class="string">'Bob'</span>, <span class="string">'Joe'</span>, <span class="string">'Will'</span>, <span class="string">'Bob'</span>, <span class="string">'Will'</span>, <span class="string">'Joe'</span>, <span class="string">'Joe'</span>])</div><div class="line">data = randn(<span class="number">7</span>, <span class="number">4</span>)</div><div class="line">names</div><div class="line">data</div></pre></td></tr></table></figure><pre><code>array([&#39;Bob&#39;, &#39;Joe&#39;, &#39;Will&#39;, &#39;Bob&#39;, &#39;Will&#39;, &#39;Joe&#39;, &#39;Joe&#39;], 
-      dtype=&#39;&lt;U4&#39;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr2d[:<span class="number">2</span>, <span class="number">1</span>:] = <span class="number">0</span></div></pre></td></tr></table></figure><h3 id="布尔型索引"><a href="#布尔型索引" class="headerlink" title="布尔型索引"></a>布尔型索引</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">names = np.array([<span class="string">'Bob'</span>, <span class="string">'Joe'</span>, <span class="string">'Will'</span>, <span class="string">'Bob'</span>, <span class="string">'Will'</span>, <span class="string">'Joe'</span>, <span class="string">'Joe'</span>])</div><div class="line">data = randn(<span class="number">7</span>, <span class="number">4</span>)</div><div class="line">names</div><div class="line">data</div></pre></td></tr></table></figure><pre><code>array([&apos;Bob&apos;, &apos;Joe&apos;, &apos;Will&apos;, &apos;Bob&apos;, &apos;Will&apos;, &apos;Joe&apos;, &apos;Joe&apos;], 
+      dtype=&apos;&lt;U4&apos;)
 
 
 
@@ -927,8 +927,8 @@ array([-2.9433, -2.87  , -2.6518, -2.5489, -2.5465, -2.5264, -2.4542,
 
 
 -1.5519406239259821
-</code></pre><h3 id="唯一化以及其他的集合逻辑"><a href="#唯一化以及其他的集合逻辑" class="headerlink" title="唯一化以及其他的集合逻辑"></a>唯一化以及其他的集合逻辑</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">names = np.array([<span class="string">'Bob'</span>, <span class="string">'Joe'</span>, <span class="string">'Will'</span>, <span class="string">'Bob'</span>, <span class="string">'Will'</span>, <span class="string">'Joe'</span>, <span class="string">'Joe'</span>])</div><div class="line">np.unique(names)</div><div class="line">ints = np.array([<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>])</div><div class="line">np.unique(ints)</div></pre></td></tr></table></figure><pre><code>array([&#39;Bob&#39;, &#39;Joe&#39;, &#39;Will&#39;], 
-      dtype=&#39;&lt;U4&#39;)
+</code></pre><h3 id="唯一化以及其他的集合逻辑"><a href="#唯一化以及其他的集合逻辑" class="headerlink" title="唯一化以及其他的集合逻辑"></a>唯一化以及其他的集合逻辑</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">names = np.array([<span class="string">'Bob'</span>, <span class="string">'Joe'</span>, <span class="string">'Will'</span>, <span class="string">'Bob'</span>, <span class="string">'Will'</span>, <span class="string">'Joe'</span>, <span class="string">'Joe'</span>])</div><div class="line">np.unique(names)</div><div class="line">ints = np.array([<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>])</div><div class="line">np.unique(ints)</div></pre></td></tr></table></figure><pre><code>array([&apos;Bob&apos;, &apos;Joe&apos;, &apos;Will&apos;], 
+      dtype=&apos;&lt;U4&apos;)
 
 
 
@@ -936,7 +936,7 @@ array([-2.9433, -2.87  , -2.6518, -2.5489, -2.5465, -2.5264, -2.4542,
 
 
 array([1, 2, 3, 4])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sorted(set(names))</div></pre></td></tr></table></figure><pre><code>[&#39;Bob&#39;, &#39;Joe&#39;, &#39;Will&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sorted(set(names))</div></pre></td></tr></table></figure><pre><code>[&apos;Bob&apos;, &apos;Joe&apos;, &apos;Will&apos;]
 </code></pre><p>in1d感觉挺有用</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">values = np.array([<span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>])</div><div class="line">np.in1d(values, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>])</div></pre></td></tr></table></figure><pre><code>array([ True, False, False,  True,  True, False,  True], dtype=bool)
 </code></pre><h2 id="用于数组的文件输入输出"><a href="#用于数组的文件输入输出" class="headerlink" title="用于数组的文件输入输出"></a>用于数组的文件输入输出</h2><h3 id="将数组以二进制的形式保存到磁盘"><a href="#将数组以二进制的形式保存到磁盘" class="headerlink" title="将数组以二进制的形式保存到磁盘"></a>将数组以二进制的形式保存到磁盘</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arr = np.arange(<span class="number">10</span>)</div><div class="line">np.save(<span class="string">'some_array'</span>, arr)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">np.load(<span class="string">'some_array.npy'</span>)</div></pre></td></tr></table></figure><pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 </code></pre><p>压缩存储，并且可以存储多个</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">np.savez(<span class="string">'array_archive.npz'</span>, a=arr[:<span class="number">4</span>], b=arr)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arch = np.load(<span class="string">'array_archive.npz'</span>)</div><div class="line">arch[<span class="string">'a'</span>]</div><div class="line">arch[<span class="string">'b'</span>]</div></pre></td></tr></table></figure><pre><code>array([0, 1, 2, 3])

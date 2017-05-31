@@ -59,17 +59,17 @@ b
       data1     data2 key1 key2
 2 -0.519439  0.281746    b  one
 3 -0.555730  0.769023    b  two
-</code></pre><p>同样进行迭代才能显示结果</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (k1, k2), group <span class="keyword">in</span> df.groupby([<span class="string">'key1'</span>, <span class="string">'key2'</span>]):</div><div class="line">    print((k1, k2))</div><div class="line">    print(group)</div></pre></td></tr></table></figure><pre><code>(&#39;a&#39;, &#39;one&#39;)
+</code></pre><p>同样进行迭代才能显示结果</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (k1, k2), group <span class="keyword">in</span> df.groupby([<span class="string">'key1'</span>, <span class="string">'key2'</span>]):</div><div class="line">    print((k1, k2))</div><div class="line">    print(group)</div></pre></td></tr></table></figure><pre><code>(&apos;a&apos;, &apos;one&apos;)
       data1     data2 key1 key2
 0 -0.204708  1.393406    a  one
 4  1.965781  1.246435    a  one
-(&#39;a&#39;, &#39;two&#39;)
+(&apos;a&apos;, &apos;two&apos;)
       data1     data2 key1 key2
 1  0.478943  0.092908    a  two
-(&#39;b&#39;, &#39;one&#39;)
+(&apos;b&apos;, &apos;one&apos;)
       data1     data2 key1 key2
 2 -0.519439  0.281746    b  one
-(&#39;b&#39;, &#39;two&#39;)
+(&apos;b&apos;, &apos;two&apos;)
      data1     data2 key1 key2
 3 -0.55573  0.769023    b  two
 </code></pre><p>将分组结果转化成一个字典（要先转化为一个列表）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pieces = dict(list(df.groupby(<span class="string">'key1'</span>)))</div><div class="line">pieces[<span class="string">'b'</span>]</div></pre></td></tr></table></figure><pre><code>      data1     data2 key1 key2
@@ -80,12 +80,12 @@ data2    float64
 key1      object
 key2      object
 dtype: object
-</code></pre><p>对列进行分组…按照数据类型来？！</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped = df.groupby(df.dtypes, axis=<span class="number">1</span>)</div><div class="line">dict(list(grouped))</div></pre></td></tr></table></figure><pre><code>{dtype(&#39;float64&#39;):       data1     data2
+</code></pre><p>对列进行分组…按照数据类型来？！</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped = df.groupby(df.dtypes, axis=<span class="number">1</span>)</div><div class="line">dict(list(grouped))</div></pre></td></tr></table></figure><pre><code>{dtype(&apos;float64&apos;):       data1     data2
  0 -0.204708  1.393406
  1  0.478943  0.092908
  2 -0.519439  0.281746
  3 -0.555730  0.769023
- 4  1.965781  1.246435, dtype(&#39;O&#39;):   key1 key2
+ 4  1.965781  1.246435, dtype(&apos;O&apos;):   key1 key2
  0    a  one
  1    a  two
  2    b  one
@@ -555,7 +555,7 @@ dtype: int64
 a    0.811643
 b   -0.122262
 dtype: float64
-</code></pre><p><code>stock</code>数据集</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">close_px = pd.read_csv(<span class="string">'ch09/stock_px.csv'</span>, parse_dates=<span class="keyword">True</span>, index_col=<span class="number">0</span>)</div><div class="line">close_px.info()</div></pre></td></tr></table></figure><pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</code></pre><p><code>stock</code>数据集</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">close_px = pd.read_csv(<span class="string">'ch09/stock_px.csv'</span>, parse_dates=<span class="keyword">True</span>, index_col=<span class="number">0</span>)</div><div class="line">close_px.info()</div></pre></td></tr></table></figure><pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
 DatetimeIndex: 2214 entries, 2003-01-02 to 2011-10-14
 Data columns (total 4 columns):
 AAPL    2214 non-null float64
@@ -681,7 +681,7 @@ Dinner Fri     3    9   12
 Lunch  Fri     1    6    7
        Thur   44   17   61
 All          151   93  244
-</code></pre><h2 id="Example-2012-联邦选举委员会数据库"><a href="#Example-2012-联邦选举委员会数据库" class="headerlink" title="Example: 2012 联邦选举委员会数据库"></a>Example: 2012 联邦选举委员会数据库</h2><p>这个数据库包括赞助人的姓名，职业、雇主、地址以及出资额等信息</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec = pd.read_csv(<span class="string">'ch09/P00000001-ALL.csv'</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.info()</div></pre></td></tr></table></figure><pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</code></pre><h2 id="Example-2012-联邦选举委员会数据库"><a href="#Example-2012-联邦选举委员会数据库" class="headerlink" title="Example: 2012 联邦选举委员会数据库"></a>Example: 2012 联邦选举委员会数据库</h2><p>这个数据库包括赞助人的姓名，职业、雇主、地址以及出资额等信息</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec = pd.read_csv(<span class="string">'ch09/P00000001-ALL.csv'</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.info()</div></pre></td></tr></table></figure><pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
 RangeIndex: 1001731 entries, 0 to 1001730
 Data columns (total 16 columns):
 cmte_id              1001731 non-null object
@@ -719,12 +719,12 @@ memo_text                                 NaN
 form_tp                                 SA17A
 file_num                               772372
 Name: 123456, dtype: object
-</code></pre><p>输出全部候选人名单</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">unique_cands = fec.cand_nm.unique()</div><div class="line">unique_cands</div></pre></td></tr></table></figure><pre><code>array([&#39;Bachmann, Michelle&#39;, &#39;Romney, Mitt&#39;, &#39;Obama, Barack&#39;,
-       &quot;Roemer, Charles E. &#39;Buddy&#39; III&quot;, &#39;Pawlenty, Timothy&#39;,
-       &#39;Johnson, Gary Earl&#39;, &#39;Paul, Ron&#39;, &#39;Santorum, Rick&#39;, &#39;Cain, Herman&#39;,
-       &#39;Gingrich, Newt&#39;, &#39;McCotter, Thaddeus G&#39;, &#39;Huntsman, Jon&#39;,
-       &#39;Perry, Rick&#39;], dtype=object)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unique_cands[<span class="number">2</span>]</div></pre></td></tr></table></figure><pre><code>&#39;Obama, Barack&#39;
+</code></pre><p>输出全部候选人名单</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">unique_cands = fec.cand_nm.unique()</div><div class="line">unique_cands</div></pre></td></tr></table></figure><pre><code>array([&apos;Bachmann, Michelle&apos;, &apos;Romney, Mitt&apos;, &apos;Obama, Barack&apos;,
+       &quot;Roemer, Charles E. &apos;Buddy&apos; III&quot;, &apos;Pawlenty, Timothy&apos;,
+       &apos;Johnson, Gary Earl&apos;, &apos;Paul, Ron&apos;, &apos;Santorum, Rick&apos;, &apos;Cain, Herman&apos;,
+       &apos;Gingrich, Newt&apos;, &apos;McCotter, Thaddeus G&apos;, &apos;Huntsman, Jon&apos;,
+       &apos;Perry, Rick&apos;], dtype=object)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unique_cands[<span class="number">2</span>]</div></pre></td></tr></table></figure><pre><code>&apos;Obama, Barack&apos;
 </code></pre><p>政党映射</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">parties = &#123;<span class="string">'Bachmann, Michelle'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Cain, Herman'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Gingrich, Newt'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Huntsman, Jon'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Johnson, Gary Earl'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'McCotter, Thaddeus G'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Obama, Barack'</span>: <span class="string">'Democrat'</span>,</div><div class="line">           <span class="string">'Paul, Ron'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Pawlenty, Timothy'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Perry, Rick'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">"Roemer, Charles E. 'Buddy' III"</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Romney, Mitt'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Santorum, Rick'</span>: <span class="string">'Republican'</span>&#125;</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.cand_nm[<span class="number">123456</span>:<span class="number">123461</span>]</div></pre></td></tr></table></figure><pre><code>123456    Obama, Barack
 123457    Obama, Barack
 123458    Obama, Barack

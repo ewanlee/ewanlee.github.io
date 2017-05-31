@@ -453,7 +453,7 @@ array([[ 0,  0,  0],
 The slowest run took 16.51 times longer than the fastest. This could mean that an intermediate result is being cached.
 100000 loops, best of 3: 3.65 µs per loop
 </code></pre><h2 id="结构化和记录式数组"><a href="#结构化和记录式数组" class="headerlink" title="结构化和记录式数组"></a>结构化和记录式数组</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dtype = [(<span class="string">'x'</span>, np.float64), (<span class="string">'y'</span>, np.int32)]</div><div class="line">sarr = np.array([(<span class="number">1.5</span>, <span class="number">6</span>), (np.pi, <span class="number">-2</span>)], dtype=dtype)</div><div class="line">sarr</div></pre></td></tr></table></figure><pre><code>array([(1.5, 6), (3.141592653589793, -2)], 
-      dtype=[(&#39;x&#39;, &#39;&lt;f8&#39;), (&#39;y&#39;, &#39;&lt;i4&#39;)])
+      dtype=[(&apos;x&apos;, &apos;&lt;f8&apos;), (&apos;y&apos;, &apos;&lt;i4&apos;)])
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sarr[<span class="number">0</span>]</div><div class="line">sarr[<span class="number">0</span>][<span class="string">'y'</span>]</div></pre></td></tr></table></figure><pre><code>(1.5, 6)
 
 
@@ -464,14 +464,14 @@ The slowest run took 16.51 times longer than the fastest. This could mean that a
 6
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sarr[<span class="string">'x'</span>]</div></pre></td></tr></table></figure><pre><code>array([ 1.5   ,  3.1416])
 </code></pre><h3 id="嵌套dtype和多维字段"><a href="#嵌套dtype和多维字段" class="headerlink" title="嵌套dtype和多维字段"></a>嵌套<code>dtype</code>和多维字段</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dtype = [(<span class="string">'x'</span>, np.int64, <span class="number">3</span>), (<span class="string">'y'</span>, np.int32)]</div><div class="line">arr = np.zeros(<span class="number">4</span>, dtype=dtype)</div><div class="line">arr</div></pre></td></tr></table></figure><pre><code>array([([0, 0, 0], 0), ([0, 0, 0], 0), ([0, 0, 0], 0), ([0, 0, 0], 0)], 
-      dtype=[(&#39;x&#39;, &#39;&lt;i8&#39;, (3,)), (&#39;y&#39;, &#39;&lt;i4&#39;)])
+      dtype=[(&apos;x&apos;, &apos;&lt;i8&apos;, (3,)), (&apos;y&apos;, &apos;&lt;i4&apos;)])
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr[<span class="number">0</span>][<span class="string">'x'</span>]</div></pre></td></tr></table></figure><pre><code>array([0, 0, 0], dtype=int64)
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr[<span class="string">'x'</span>]</div></pre></td></tr></table></figure><pre><code>array([[0, 0, 0],
        [0, 0, 0],
        [0, 0, 0],
        [0, 0, 0]], dtype=int64)
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dtype = [(<span class="string">'x'</span>, [(<span class="string">'a'</span>, <span class="string">'f8'</span>), (<span class="string">'b'</span>, <span class="string">'f4'</span>)]), (<span class="string">'y'</span>, np.int32)]</div><div class="line">data = np.array([((<span class="number">1</span>, <span class="number">2</span>), <span class="number">5</span>), ((<span class="number">3</span>, <span class="number">4</span>), <span class="number">6</span>)], dtype=dtype)</div><div class="line">data[<span class="string">'x'</span>]</div><div class="line">data[<span class="string">'y'</span>]</div><div class="line">data[<span class="string">'x'</span>][<span class="string">'a'</span>]</div></pre></td></tr></table></figure><pre><code>array([(1.0, 2.0), (3.0, 4.0)], 
-      dtype=[(&#39;a&#39;, &#39;&lt;f8&#39;), (&#39;b&#39;, &#39;&lt;f4&#39;)])
+      dtype=[(&apos;a&apos;, &apos;&lt;f8&apos;), (&apos;b&apos;, &apos;&lt;f4&apos;)])
 
 
 
@@ -563,8 +563,8 @@ array([[ 0.    ,  1.    ,  2.    ,  3.    ,  5.    ],
 
 
 
-array([&#39;1:first&#39;, &#39;1:second&#39;, &#39;1:third&#39;, &#39;2:first&#39;, &#39;2:second&#39;], 
-      dtype=&#39;&lt;U8&#39;)
+array([&apos;1:first&apos;, &apos;1:second&apos;, &apos;1:third&apos;, &apos;2:first&apos;, &apos;2:second&apos;], 
+      dtype=&apos;&lt;U8&apos;)
 </code></pre><h3 id="numpy-searchsorted-在有序数组中查找元素"><a href="#numpy-searchsorted-在有序数组中查找元素" class="headerlink" title="numpy.searchsorted: 在有序数组中查找元素"></a>numpy.searchsorted: 在有序数组中查找元素</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arr = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">12</span>, <span class="number">15</span>])</div><div class="line">arr.searchsorted(<span class="number">9</span>)</div></pre></td></tr></table></figure><pre><code>3
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr.searchsorted([<span class="number">0</span>, <span class="number">8</span>, <span class="number">11</span>, <span class="number">16</span>])</div></pre></td></tr></table></figure><pre><code>array([0, 3, 3, 5], dtype=int64)
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arr = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])</div><div class="line">arr.searchsorted([<span class="number">0</span>, <span class="number">1</span>])</div><div class="line">arr.searchsorted([<span class="number">0</span>, <span class="number">1</span>], side=<span class="string">'right'</span>)</div></pre></td></tr></table></figure><pre><code>array([0, 3], dtype=int64)
@@ -660,7 +660,7 @@ matrix([[ 1195.468]])
        [ 0.    ,  0.    ,  0.    , ...,  0.    ,  0.    ,  0.    ],
        [ 0.    ,  0.    ,  0.    , ...,  0.    ,  0.    ,  0.    ],
        [ 0.    ,  0.    ,  0.    , ...,  0.    ,  0.    ,  0.    ]])
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">%xdel mmap</div><div class="line">!<span class="keyword">del</span> mymmap</div></pre></td></tr></table></figure><pre><code>NameError: name &#39;mmap&#39; is not defined
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">%xdel mmap</div><div class="line">!<span class="keyword">del</span> mymmap</div></pre></td></tr></table></figure><pre><code>NameError: name &apos;mmap&apos; is not defined
 C:\Users\Ewan\Downloads\pydata-book-master\mymmap
 
 
@@ -692,12 +692,12 @@ The process cannot access the file because it is being used by another process.
 True
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">%timeit arr_c.sum(<span class="number">1</span>)</div><div class="line">%timeit arr_f.sum(<span class="number">1</span>)</div></pre></td></tr></table></figure><pre><code>1000 loops, best of 3: 848 µs per loop
 1000 loops, best of 3: 582 µs per loop
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr_f.copy(<span class="string">'C'</span>).flags</div></pre></td></tr></table></figure><pre><code>  C_CONTIGUOUS : True
-  F_CONTIGUOUS : False
-  OWNDATA : True
-  WRITEABLE : True
-  ALIGNED : True
-  UPDATEIFCOPY : False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr_f.copy(<span class="string">'C'</span>).flags</div></pre></td></tr></table></figure><pre><code>C_CONTIGUOUS : True
+F_CONTIGUOUS : False
+OWNDATA : True
+WRITEABLE : True
+ALIGNED : True
+UPDATEIFCOPY : False
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arr_c[:<span class="number">50</span>].flags.contiguous</div><div class="line">arr_c[:, :<span class="number">50</span>].flags</div></pre></td></tr></table></figure><pre><code>True
 
 

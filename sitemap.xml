@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/31/Dynamic-Programming/</loc>
+    
+    <lastmod>2017-05-31T02:21:27.625Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/29/The-GridWorld-problem/</loc>
     
     <lastmod>2017-05-29T06:14:07.620Z</lastmod>

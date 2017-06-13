@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/27/k-Armed-Bandit-Problem/</loc>
+    
+    <lastmod>2017-06-13T06:00:32.852Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/26/Tic-tac-toe/</loc>
     
     <lastmod>2017-06-13T04:36:15.263Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/2017/05/29/The-GridWorld-problem/</loc>
     
     <lastmod>2017-05-29T06:14:07.620Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/05/27/k-Armed-Bandit-Problem/</loc>
-    
-    <lastmod>2017-05-27T04:58:47.200Z</lastmod>
     
   </url>
   

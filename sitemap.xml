@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/26/Tic-tac-toe/</loc>
+    
+    <lastmod>2017-06-13T04:36:15.263Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/02/Monte-Carlo-Methods-Reinforcement-Learning/</loc>
     
     <lastmod>2017-06-02T06:11:31.491Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/2017/05/27/k-Armed-Bandit-Problem/</loc>
     
     <lastmod>2017-05-27T04:58:47.200Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/05/26/Tic-tac-toe/</loc>
-    
-    <lastmod>2017-05-26T04:17:10.000Z</lastmod>
     
   </url>
   

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/14/Learning-to-act-by-predicting-the-future/</loc>
+    
+    <lastmod>2017-06-15T09:41:12.096Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/27/k-Armed-Bandit-Problem/</loc>
     
     <lastmod>2017-06-13T06:00:32.852Z</lastmod>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/05/On-policy-Prediction-with-Approximation/</loc>
+    
+    <lastmod>2017-07-06T04:39:37.362Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/04/n-step-TD/</loc>
+    
+    <lastmod>2017-07-04T05:56:21.317Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/02/Temporal-Difference-Learning/</loc>
     
     <lastmod>2017-07-04T02:36:15.327Z</lastmod>

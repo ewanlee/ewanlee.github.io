@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/07/Using-Keras-and-Deep-Q-Network-to-Play-FlappyBird-Repost/</loc>
+    
+    <lastmod>2017-07-06T20:21:41.756Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/07/Demystifying-Deep-Reinforcement-Learning/</loc>
     
     <lastmod>2017-07-06T17:45:40.451Z</lastmod>

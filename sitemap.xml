@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
+    
+    <lastmod>2017-07-06T20:38:22.944Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/07/Using-Keras-and-Deep-Q-Network-to-Play-FlappyBird-Repost/</loc>
     
     <lastmod>2017-07-06T20:34:48.861Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://yoursite.com/2017/07/02/Temporal-Difference-Learning/</loc>
     
     <lastmod>2017-07-04T02:36:15.327Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
-    
-    <lastmod>2017-06-30T13:16:39.391Z</lastmod>
     
   </url>
   

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/07/Demystifying-Deep-Reinforcement-Learning/</loc>
+    
+    <lastmod>2017-07-06T17:38:59.883Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/06/On-policy-Control-with-Approximation/</loc>
     
     <lastmod>2017-07-06T17:06:06.685Z</lastmod>

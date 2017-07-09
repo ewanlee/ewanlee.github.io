@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
+    <loc>http://yoursite.com/2017/07/09/Using-Tensorflow-and-Deep-Q-Network-Double-DQN-to-Play-Breakout/</loc>
     
-    <lastmod>2017-07-08T10:19:00.911Z</lastmod>
+    <lastmod>2017-07-09T04:31:40.979Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/07/08/Summary-of-the-papers/</loc>
     
-    <lastmod>2017-07-08T10:11:16.734Z</lastmod>
+    <lastmod>2017-07-08T15:44:27.185Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
+    
+    <lastmod>2017-07-08T10:19:00.911Z</lastmod>
     
   </url>
   

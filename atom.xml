@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-09T04:38:52.104Z</updated>
+  <updated>2017-07-12T04:14:28.232Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Policy Gradient Methods</title>
+    <link href="http://yoursite.com/2017/07/10/Policy-Gradient-Methods/"/>
+    <id>http://yoursite.com/2017/07/10/Policy-Gradient-Methods/</id>
+    <published>2017-07-10T09:23:16.000Z</published>
+    <updated>2017-07-12T04:14:28.232Z</updated>
+    
+    <content type="html"><![CDATA[<p>Until now almost all the methods have learned the values of actions and then selected actions based on their estimated action values; their policies would not even exist without the action-value estimates. In this post we consider methods that instead learn a <em>parameterized policy</em> that can select actions without consulting a value function. A value function may still be used to <em>learn</em> the policy parameter, but is not required for action selection. We use the notation $\boldsymbol{\theta} \in \mathbb{R}^d$ for the policy’s parameter vector. Thus we write $\pi(a|s, \boldsymbol{\theta}) = \text{Pr}(A_t=a | S_t=s, \boldsymbol{\theta}_t=\boldsymbol{\theta})$ for the probability that action $a$ is taken at time $t$ given that the agent is in state $s$ at time $t$ with parameter $\boldsymbol{\theta}$. If a method uses a learned value function as well, then the value function’s weight vector is denoted $\mathbf{w} \in \mathbb{R}^m$, as in $\hat{v}(s, \mathbf{w})$.</p><p>In this chapter we consider methods for learning the policy parameter based on the gradient of some performance measure $J(\boldsymbol{\theta})$ with respect to the policy parameter. These methods seek to maximize performance, so their updates approximate gradient ascent in $J$ :<br>$$<br>\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t + \alpha \widehat{\nabla J(\boldsymbol{\theta}_t)}.<br>$$<br>All methods that follow this general schema we call <strong>policy gradient methods</strong>, whether or not they also learn an approximate value function. Methods that learn approximations to both policy and value functions are often called actor–critic methods, where ‘actor’ is a reference to the learned policy, and ‘critic’ refers to the learned value function, usually a state-value function.</p><h3 id="Policy-Approximation"><a href="#Policy-Approximation" class="headerlink" title="Policy Approximation"></a>Policy Approximation</h3><p>The most preferred actions in each state are given the highest probability of being selected, for example, according to an exponential softmax distribution:<br>$$<br>\pi(a|s, \boldsymbol{\theta}) = \frac{\exp(h(s, a, \boldsymbol{\theta}))}{\sum_b \exp(h(s, b, \boldsymbol{\theta}))}.<br>$$<br>For example, they might be computed by a deep neural network, where $\boldsymbol{\theta}$ is the vector of all the connection weights of the network. Or the preferences could simply be linear in features,<br>$$<br>h(s, a, \boldsymbol{\theta}) = \boldsymbol{\theta}^{\top} \mathbf{x}(s, a).<br>$$</p><h3 id="The-Policy-Gradient-Theorem"><a href="#The-Policy-Gradient-Theorem" class="headerlink" title="The Policy Gradient Theorem"></a>The Policy Gradient Theorem</h3><p>We deﬁne the performance measure as the value of the start state of the episode. We can simplify the notation without losing any meaningful generality by assuming that every episode starts in some particular (non-random) state s0. Then, in the episodic case we deﬁne performance as<br>$$<br>J(\boldsymbol{\theta}) \doteq v_{\pi_{\boldsymbol{\theta}}}(s_0),<br>$$<br>where $ v_{\pi_{\boldsymbol{\theta}}}$ is the true value function for $\pi_{\boldsymbol{\theta}}$, the policy determined by $\boldsymbol{\theta}$.</p><p>The policy gradient theorem is that<br>$$<br>\nabla J(\boldsymbol{\theta}) = \sum_s \mu_{\pi}(s) \sum_a q_{\pi}(s, a) \nabla_{\boldsymbol{\theta}} \pi(a | s, \boldsymbol{\theta}),<br>$$<br>where $\mu_{\pi}(s)$ we mentioned in <a href="https://ewanlee.github.io/2017/07/05/On-policy-Prediction-with-Approximation/" target="_blank" rel="external">earlier</a>.</p><h3 id="REINFORCE-Monte-Carlo-Policy-Gradient"><a href="#REINFORCE-Monte-Carlo-Policy-Gradient" class="headerlink" title="REINFORCE: Monte Carlo Policy Gradient"></a>REINFORCE: Monte Carlo Policy Gradient</h3><p>$$<br>\begin{align}<br>\nabla J(\boldsymbol{\theta}) &amp;= \sum_s \mu_{\pi}(s) \sum_a q_{\pi}(s, a) \nabla_{\boldsymbol{\theta}} \pi(a | s, \boldsymbol{\theta}) \\<br>&amp;= \mathbb{E}_{\pi} \Bigg[ \gamma^t \sum_a q_{\pi}(S_t, a) \nabla_{\boldsymbol{\theta}} \pi(a | S_t, \boldsymbol{\theta}) \Bigg] \\<br>&amp;= \mathbb{E}_{\pi} \Bigg[ \gamma^t \sum_a \pi(a|S_t, \boldsymbol{\theta}) q_{\pi}(S_t, a) \frac{\nabla_{\boldsymbol{\theta}} \pi(a|S_t, \boldsymbol{\theta})}{\pi(a|S_t, \boldsymbol{\theta})} \Bigg] \\<br>&amp;= \mathbb{E}_{\pi} \Bigg[ \gamma^t q_{\pi}(S_t, A_t) \frac{\nabla_{\boldsymbol{\theta}} \pi(A_t|S_t, \boldsymbol{\theta})}{\pi(A_t|S_t, \boldsymbol{\theta})} \Bigg] \;\;\; \text{(replacing a by the sample } A_t \sim \pi \;) \\<br>&amp;= \mathbb{E}_{\pi} \Bigg[ \gamma^t G_t \frac{\nabla_{\boldsymbol{\theta}} \pi(A_t|S_t, \boldsymbol{\theta})}{\pi(A_t|S_t, \boldsymbol{\theta})} \Bigg] \;\;\; \;\;\; \;\;\; \;\;\; \;\; (\text{because } \mathbb{E}_{\pi}[G_t|S_t,A_t]=q_{\pi}(S_t,A_t)).<br>\end{align}<br>$$</p><p>So we get<br>$$<br>\boldsymbol{\theta}_{t+1} \doteq \boldsymbol{\theta}_{t} + \alpha \gamma^t G_t \frac{\nabla_{\boldsymbol{\theta}} \pi(a|S_t, \boldsymbol{\theta})}{\pi(a|S_t, \boldsymbol{\theta})}.<br>$$<br>This is shown explicitly in the boxed pseudocode below.</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/rl/pgm/reinforce.png" alt="reinforce"></p><p>Notice that $\nabla \log x = \frac{\nabla x}{x}$.</p><h3 id="REINFORCE-with-Baseline"><a href="#REINFORCE-with-Baseline" class="headerlink" title="REINFORCE with Baseline"></a>REINFORCE with Baseline</h3><p>The policy gradient theorem can be generalized to include a comparison of the action value to an arbitrary <strong>baseline</strong> $b(s)$:</p><p>$$<br>\nabla J(\boldsymbol{\theta}) = \sum_s \mu_{\pi}(s) \sum_a \big(q_{\pi}(s, a) - b(s)\big) \nabla_{\boldsymbol{\theta}} \pi(a | s, \boldsymbol{\theta}).<br>$$<br>The baseline can be any function, even a random variable, as long as it does not vary with $a$; the equation remains true, because the subtracted quantity is zero:<br>$$<br>\sum_a b(s) \nabla_{\boldsymbol{\theta}} \pi(a|s, \boldsymbol{\theta}) = b(s) \nabla_{\boldsymbol{\theta}} \sum_a \pi(a|s, \boldsymbol{\theta}) = b(s) \nabla_{\boldsymbol{\theta}} 1 = 0 \;\;\;\; \forall s \in \mathcal{S}.<br>$$<br>The update rule that we end up with is a new version of REINFORCE that includes a general baseline:<br>$$<br>\boldsymbol{\theta}_{t+1} \doteq \boldsymbol{\theta}_{t} + \alpha \gamma^t \big(G_t-b(S_t) \big) \frac{\nabla_{\boldsymbol{\theta}} \pi(a|S_t, \boldsymbol{\theta})}{\pi(a|S_t, \boldsymbol{\theta})}.<br>$$<br>One natural choice for the baseline is an estimate of the state value, $\hat{v}(S_t, \mathbf{w})$, where<br>$\mathbf{w} \in \mathbb{R}^m$ is a weight vector learned by one of the methods presented in previous posts. A complete pseudocode algorithm for REINFROCE with baseline is given in the box (use Monte Carlo method for learning the policy parameter and state-value weights).</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/rl/pgm/reinforce_baseline.png" alt="reinforce_baseline"></p><h3 id="Actor-Critic-Methods"><a href="#Actor-Critic-Methods" class="headerlink" title="Actor-Critic Methods"></a>Actor-Critic Methods</h3><p>Although the REINFORCE-with-baseline method learns both a policy and a state-value function, we do not consider it to be an actor-critic method because its state-value function is used only as a baseline, not as a critic. That is, it is not used for bootstrapping (updating a state from the estimated values of subsequent states), but only as a baseline for the state being updated. In<br>order to gain these advantages in the case of policy gradient methods we use actor-critic methods with a true bootstrapping critic.</p><p>One-step actor-critic methods replace the full return of REINFORCE with the one-step return (and use a learned state-value function as the baseline) as follow:<br>$$<br>\begin{align}<br>\boldsymbol{\theta}_{t+1} &amp;\doteq \boldsymbol{\theta}_{t} + \alpha \gamma^t \Big( G_{t:t+1} - \hat{v}(S_t, \mathbf{w})\Big) \frac{\nabla_{\boldsymbol{\theta}} \pi(A_t|S_t, \boldsymbol{\theta})}{\pi(A_t|S_t, \boldsymbol{\theta})} \\<br>&amp;= \boldsymbol{\theta}_{t} + \alpha \gamma^t \Big( R_{t+1} + \gamma \hat{v}(S_{t+1}, \mathbf{w}) - \hat{v}(S_t, \mathbf{w})\Big) \frac{\nabla_{\boldsymbol{\theta}} \pi(A_t|S_t, \boldsymbol{\theta})}{\pi(A_t|S_t, \boldsymbol{\theta})} \\<br>&amp;= \boldsymbol{\theta}_{t} + \alpha \gamma^t \delta_t \frac{\nabla_{\boldsymbol{\theta}} \pi(A_t|S_t, \boldsymbol{\theta})}{\pi(A_t|S_t, \boldsymbol{\theta})}.<br>\end{align}<br>$$<br>The natural state-value-function learning method to pair with this is semi-gradient TD(0). Pseudocode for the complete algorithm is given in the box below. Note that it is now a fully online, incremental algorithm, with states, actions, and rewards processed as they occur and then never revisited.</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/rl/pgm/one-step-ac.png" alt="one-step-ac"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Until now almost all the methods have learned the values of actions and then selected actions based on their estimated action values; the
+    
+    </summary>
+    
+    
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Using Tensorflow and Deep Q-Network/Double DQN to Play Breakout</title>
@@ -450,28 +472,6 @@
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Question Answering: A Very Brief Introduction</title>
-    <link href="http://yoursite.com/2017/05/13/Question-Answering-A-Very-Brief-Introduction/"/>
-    <id>http://yoursite.com/2017/05/13/Question-Answering-A-Very-Brief-Introduction/</id>
-    <published>2017-05-13T05:07:06.000Z</published>
-    <updated>2017-05-13T07:18:22.688Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><p>Find answers to (natual language) questions by machine</p></li><li><p>Types of questions</p><ul><li>Factoid</li><li>Definition</li><li>Yes-No</li><li>Opinion</li><li>Comparison</li></ul></li><li><p>Multiple Intelligences in Modern in QA Systems</p><ul><li><p>Knowledge-QA</p><p>结构化的，基于知识库，其实就是一个图，结点是实体，边是语义关系。关键是能够提取中问题中的实体以及实体之间的语义关系</p></li><li><p>Document-QA</p><p>非结构化的</p></li><li><p>Social-QA</p><p>类似Quora, Zhihu, Stackoverflow等</p></li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;&lt;li&gt;&lt;p&gt;Find answers to (natual language) questions by machine&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Types of questions&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Factoid&lt;/li&gt;&lt;li&gt;Definition&lt;/l
-    
-    </summary>
-    
-    
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
-      <category term="QA" scheme="http://yoursite.com/tags/QA/"/>
     
   </entry>
   

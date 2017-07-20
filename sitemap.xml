@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/20/sklearn-based-feature-engineering/</loc>
+    
+    <lastmod>2017-07-20T04:19:56.011Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/18/WGAN-GP/</loc>
     
     <lastmod>2017-07-18T13:49:35.700Z</lastmod>

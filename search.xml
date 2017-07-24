@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Machine Learning Models Implemented By Tensorflow]]></title>
+      <url>%2F2017%2F07%2F24%2FMachine-Learning-Models-Implemented-By-Tensorflow%2F</url>
+      <content type="text"><![CDATA[Project: https://github.com/ewanlee/finch/tree/masterThere are these algorithms in the tensorflow-models:Linear regressionLogistic regressionSVMAutoencoder (MLP based and CNN based)NMFGANConditional GANDCGANCNNRNN (for classification and for regression)Highway network (MLP based)]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[sklearn-based feature engineering]]></title>
       <url>%2F2017%2F07%2F20%2Fsklearn-based-feature-engineering%2F</url>
       <content type="text"><![CDATA[feature engineeringpipeline]]></content>

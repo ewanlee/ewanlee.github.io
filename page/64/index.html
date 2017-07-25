@@ -1,4 +1,885 @@
-<!doctype html><html class="theme-next mist use-motion" lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="Hexo, NexT"><link rel="alternate" href="/atom.xml" title="Abracadabra" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="Ewan&apos;s IT Blog"><meta property="og:type" content="website"><meta property="og:title" content="Abracadabra"><meta property="og:url" content="http://yoursite.com/page/64/index.html"><meta property="og:site_name" content="Abracadabra"><meta property="og:description" content="Ewan&apos;s IT Blog"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Abracadabra"><meta name="twitter:description" content="Ewan&apos;s IT Blog"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"post"},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"Author"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/page/64/"><title>Abracadabra</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="en"><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?dc405a79ad500922134d14cdf288f646";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div class="container one-collumn sidebar-position-left page-home"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Abracadabra</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">Do it yourself</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>Categories</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>About</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>Archives</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>Tags</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>Sitemap</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>Search</a></li></ul><div class="site-search"><div class="popup"><span class="search-icon fa fa-search"></span> <input type="text" id="local-search-input"><div id="local-search-result"></div><span class="popup-btn-close">close</span></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><section id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/06/cs231n-Lecture4-note/"><span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Ewan Li"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.jpg"></span><span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Abracadabra"><span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><img style="display:none" itemprop="url image" alt="Abracadabra" src=""></span></span><header class="post-header"><h1 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/03/06/cs231n-Lecture4-note/" itemprop="url">cs231n Lecture4 note</a></h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">Posted on</span> <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-06T18:58:31+08:00">2017-03-06 </time></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/03/06/cs231n-Lecture4-note/#comments" itemprop="discussionUrl"><span class="post-comments-count hc-comment-count" data-xid="2017/03/06/cs231n-Lecture4-note/" itemprop="commentsCount"></span> </a></span><span id="/2017/03/06/cs231n-Lecture4-note/" class="leancloud_visitors" data-flag-title="cs231n Lecture4 note"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">Visitors </span><span class="leancloud-visitors-count"></span></span></div></header><div class="post-body" itemprop="articleBody"><h1 id="BackProp"><a href="#BackProp" class="headerlink" title="BackProp"></a>BackProp</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>Motivation</strong>. In this section we will develop expertise with an intuitive understanding of <strong>backpropagation</strong>, which is a way of computing gradients of expressions through recursive application of <strong>chain rule</strong>. Understanding of this process and its subtleties is critical for you to understand, and effectively develop, design and debug Neural Networks.</p><p><strong>Problem statement</strong>. The core problem studied in this section is as follows: We are given some function $f(x)$ where $x$ is a vector of inputs and we are interested in computing the gradient of $f$ at $x$ (i.e. $\Delta f(x)$ ).</p><h2 id="Modularity-Sigmoid-example"><a href="#Modularity-Sigmoid-example" class="headerlink" title="Modularity: Sigmoid example"></a>Modularity: Sigmoid example</h2><p>$$<br>f(w,x) = \frac{1}{1+e^{-(w_0x_0 + w_1x_1 + w_2)}}<br>$$</p><p>The function is made up of multiple gates. In addition to the ones described already above (add, mul, max), there are four more:</p><p>$$<br>f(x) = \frac{1}{x}<br>\hspace{1in} \rightarrow \hspace{1in}<br>\frac{df}{dx} = -1/x^2<br>\\\\<br>f_c(x) = c + x<br>\hspace{1in} \rightarrow \hspace{1in}<br>\frac{df}{dx} = 1<br>\\\\<br>f(x) = e^x<br>\hspace{1in} \rightarrow \hspace{1in}<br>\frac{df}{dx} = e^x<br>\\\\<br>f_a(x) = ax<br>\hspace{1in} \rightarrow \hspace{1in}<br>\frac{df}{dx} = a<br>$$<br>The full circuit then looks as follows:</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-note/04/circuit.png" alt="circuit"></p><p>In the example above, we see a long chain of function applications that operates on the result of the dot product between <strong>w,x</strong>. The function that these operations implement is called the <em>sigmoid function</em> $\sigma (x)$. It turns out that the derivative of the sigmoid function with respect to its input simplifies if you perform the derivation (after a fun tricky part where we add and subtract a 1 in the numerator):<br>$$<br>\sigma(x) = \frac{1}{1+e^{-x}} \\\\<br>\rightarrow \hspace{0.3in} \frac{d\sigma(x)}{dx} = \frac{e^{-x}}{(1+e^{-x})^2} = \left( \frac{1 + e^{-x} - 1}{1 + e^{-x}} \right) \left( \frac{1}{1+e^{-x}} \right)<br>= \left( 1 - \sigma(x) \right) \sigma(x)<br>$$<br>As we see, the gradient turns out to simplify and becomes surprisingly simple. For example, the sigmoid expression receives the input 1.0 and computes the output 0.73 during the forward pass. The derivation above shows that the <em>local</em> gradient would simply be (1 - 0.73) * 0.73 ~= 0.2, as the circuit computed before (see the image above), except this way it would be done with a single, simple and efficient expression (and with less numerical issues). Therefore, in any real practical application it would be very useful to group these operations into a single gate. Lets see the backprop for this neuron in code:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">w = [<span class="number">2</span>,<span class="number">-3</span>,<span class="number">-3</span>] <span class="comment"># assume some random weights and data</span></div><div class="line">x = [<span class="number">-1</span>, <span class="number">-2</span>]</div><div class="line"></div><div class="line"><span class="comment"># forward pass</span></div><div class="line">dot = w[<span class="number">0</span>]*x[<span class="number">0</span>] + w[<span class="number">1</span>]*x[<span class="number">1</span>] + w[<span class="number">2</span>]</div><div class="line">f = <span class="number">1.0</span> / (<span class="number">1</span> + math.exp(-dot)) <span class="comment"># sigmoid function</span></div><div class="line"></div><div class="line"><span class="comment"># backward pass through the neuron (backpropagation)</span></div><div class="line">ddot = (<span class="number">1</span> - f) * f <span class="comment"># gradient on dot variable, using the sigmoid gradient derivation</span></div><div class="line">dx = [w[<span class="number">0</span>] * ddot, w[<span class="number">1</span>] * ddot] <span class="comment"># backprop into x</span></div><div class="line">dw = [x[<span class="number">0</span>] * ddot, x[<span class="number">1</span>] * ddot, <span class="number">1.0</span> * ddot] <span class="comment"># backprop into w</span></div><div class="line"><span class="comment"># we're done! we have the gradients on the inputs to the circuit</span></div></pre></td></tr></table></figure><p><strong>Implementation protip: staged backpropagation</strong>. As shown in the code above, in practice it is always helpful to break down the forward pass into stages that are easily backpropped through. For example here we created an intermediate variable <code>dot</code> which holds the output of the dot product between <code>w</code> and <code>x</code>. During backward pass we then successively compute (in reverse order) the corresponding variables (e.g. <code>ddot</code>, and ultimately <code>dw, dx</code>) that hold the gradients of those variables.</p><h2 id="Backprop-in-practice-Staged-computation"><a href="#Backprop-in-practice-Staged-computation" class="headerlink" title="Backprop in practice: Staged computation"></a>Backprop in practice: Staged computation</h2><p>Suppose that we have a function of the form:<br>$$<br>f(x,y) = \frac{x + \sigma(y)}{\sigma(x) + (x+y)^2}<br>$$<br>Here is how we would structure the forward pass of such expression:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">3</span> <span class="comment"># example values</span></div><div class="line">y = <span class="number">-4</span></div><div class="line"></div><div class="line"><span class="comment"># forward pass</span></div><div class="line">sigy = <span class="number">1.0</span> / (<span class="number">1</span> + math.exp(-y)) <span class="comment"># sigmoid in numerator   #(1)</span></div><div class="line">num = x + sigy <span class="comment"># numerator                               #(2)</span></div><div class="line">sigx = <span class="number">1.0</span> / (<span class="number">1</span> + math.exp(-x)) <span class="comment"># sigmoid in denominator #(3)</span></div><div class="line">xpy = x + y                                              <span class="comment">#(4)</span></div><div class="line">xpysqr = xpy**<span class="number">2</span>                                          <span class="comment">#(5)</span></div><div class="line">den = sigx + xpysqr <span class="comment"># denominator                        #(6)</span></div><div class="line">invden = <span class="number">1.0</span> / den                                       <span class="comment">#(7)</span></div><div class="line">f = num * invden <span class="comment"># done!                                 #(8)</span></div></pre></td></tr></table></figure><p>For each row, we also highlight which part of the forward pass it refers to:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># backprop f = num * invden</span></div><div class="line">dnum = invden <span class="comment"># gradient on numerator                             #(8)</span></div><div class="line">dinvden = num                                                     <span class="comment">#(8)</span></div><div class="line"><span class="comment"># backprop invden = 1.0 / den </span></div><div class="line">dden = (<span class="number">-1.0</span> / (den**<span class="number">2</span>)) * dinvden                                <span class="comment">#(7)</span></div><div class="line"><span class="comment"># backprop den = sigx + xpysqr</span></div><div class="line">dsigx = (<span class="number">1</span>) * dden                                                <span class="comment">#(6)</span></div><div class="line">dxpysqr = (<span class="number">1</span>) * dden                                              <span class="comment">#(6)</span></div><div class="line"><span class="comment"># backprop xpysqr = xpy**2</span></div><div class="line">dxpy = (<span class="number">2</span> * xpy) * dxpysqr                                        <span class="comment">#(5)</span></div><div class="line"><span class="comment"># backprop xpy = x + y</span></div><div class="line">dx = (<span class="number">1</span>) * dxpy                                                   <span class="comment">#(4)</span></div><div class="line">dy = (<span class="number">1</span>) * dxpy                                                   <span class="comment">#(4)</span></div><div class="line"><span class="comment"># backprop sigx = 1.0 / (1 + math.exp(-x))</span></div><div class="line">dx += ((<span class="number">1</span> - sigx) * sigx) * dsigx <span class="comment"># Notice += !! See notes below  #(3)</span></div><div class="line"><span class="comment"># backprop num = x + sigy</span></div><div class="line">dx += (<span class="number">1</span>) * dnum                                                  <span class="comment">#(2)</span></div><div class="line">dsigy = (<span class="number">1</span>) * dnum                                                <span class="comment">#(2)</span></div><div class="line"><span class="comment"># backprop sigy = 1.0 / (1 + math.exp(-y))</span></div><div class="line">dy += ((<span class="number">1</span> - sigy) * sigy) * dsigy                                 <span class="comment">#(1)</span></div><div class="line"><span class="comment"># done! phew</span></div></pre></td></tr></table></figure><p>Notice a few things:</p><p><strong>Cache forward pass variables</strong>. To compute the backward pass it is very helpful to have some of the variables that were used in the forward pass. In practice you want to structure your code so that you cache these variables, and so that they are available during backpropagation. If this is too difficult, it is possible (but wasteful) to recompute them.</p><p><strong>Gradients add up at forks</strong>. The forward expression involves the variables <strong>x,y</strong> multiple times, so when we perform backpropagation we must be careful to use <code>+=</code> instead of <code>=</code> to accumulate the gradient on these variables (otherwise we would overwrite it). This follows the <em>multivariable chain rule</em> in Calculus, which states that if a variable branches out to different parts of the circuit, then the gradients that flow back to it will add.</p><h2 id="Patterns-in-backward-flow"><a href="#Patterns-in-backward-flow" class="headerlink" title="Patterns in backward flow"></a>Patterns in backward flow</h2><p>It is interesting to note that in many cases the backward-flowing gradient can be interpreted on an intuitive level. For example, the three most commonly used gates in neural networks (<em>add,mul,max</em>), all have very simple interpretations in terms of how they act during backpropagation. Consider this example circuit:</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-note/04/pattern.png" alt="pattern"></p><p>Looking at the diagram above as an example, we can see that:</p><p>The <strong>add gate</strong> always takes the gradient on its output and distributes it equally to all of its inputs, regardless of what their values were during the forward pass. This follows from the fact that the local gradient for the add operation is simply +1.0, so the gradients on all inputs will exactly equal the gradients on the output because it will be multiplied by x1.0 (and remain unchanged). In the example circuit above, note that the + gate routed the gradient of 2.00 to both of its inputs, equally and unchanged.</p><p>The <strong>max gate</strong> routes the gradient. Unlike the add gate which distributed the gradient unchanged to all its inputs, the max gate distributes the gradient (unchanged) to exactly one of its inputs (the input that had the highest value during the forward pass). This is because the local gradient for a max gate is 1.0 for the highest value, and 0.0 for all other values. In the example circuit above, the max operation routed the gradient of 2.00 to the <strong>z</strong> variable, which had a higher value than <strong>w</strong>, and the gradient on <strong>w</strong> remains zero.</p><p>The <strong>multiply gate</strong> is a little less easy to interpret. Its local gradients are the input values (except switched), and this is multiplied by the gradient on its output during the chain rule. In the example above, the gradient on <strong>x</strong> is -8.00, which is -4.00 x 2.00.</p><p><em>Unintuitive effects and their consequences</em>. Notice that if one of the inputs to the multiply gate is very small and the other is very big, then the multiply gate will do something slightly unintuitive: it will assign a relatively huge gradient to the small input and a tiny gradient to the large input. Note that in linear classifiers where the weights are dot producted $w^T x_i$ (multiplied) with the inputs, this implies that the scale of the data has an effect on the magnitude of the gradient for the weights. For example, if you multiplied all input data examples xixi by 1000 during preprocessing, then the gradient on the weights will be 1000 times larger, and you’d have to lower the learning rate by that factor to compensate. This is why preprocessing matters a lot, sometimes in subtle ways! And having intuitive understanding for how the gradients flow can help you debug some of these cases.</p><h2 id="Extras"><a href="#Extras" class="headerlink" title="Extras"></a>Extras</h2><p>Some extra materials provided in <a href="https://github.com/ewanlee/ewanlee.github.io/blob/master/2017/03/06/cs231n-Lecture4-note/sources/lecun-98b.pdf" target="_blank" rel="external">here</a> and <a href="https://github.com/ewanlee/ewanlee.github.io/blob/master/2017/03/06/cs231n-Lecture4-note/sources/vecDerivs.pdf" target="_blank" rel="external">here</a>.</p><p>Optional: [<a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">1</a>, <a href="http://neuralnetworksanddeeplearning.com/chap2.html" target="_blank" rel="external">2</a>, <a href="https://www.youtube.com/watch?v=q0pm3BrIUFo" target="_blank" rel="external">3</a>]</p><h1 id="Neural-Network-1"><a href="#Neural-Network-1" class="headerlink" title="Neural Network#1"></a>Neural Network#1</h1><h2 id="Quick-intro"><a href="#Quick-intro" class="headerlink" title="Quick intro"></a>Quick intro</h2><p>It is possible to introduce neural networks without appealing to brain analogies. In the section on linear classification we computed scores for different visual categories given the image using the formula $s=Wx$, where $W$ was a matrix and $x$ was an input column vector containing all pixel data of the image. In the case of CIFAR-10, $x$ is a [3072x1] column vector, and $W$ is a [10x3072] matrix, so that the output scores is a vector of 10 class scores.</p><p>An example neural network would instead compute $s=W_2 \max(0, W_1x)$. Here, $W_1$ could be, for example, a [100x3072] matrix transforming the image into a 100-dimensional intermediate vector. The function $\max(0,−)$is a non-linearity that is applied elementwise. There are several choices we could make for the non-linearity (which we’ll study below), but this one is a common choice and simply thresholds all activations that are below zero to zero. Finally, the matrix $W_2$ would then be of size [10x100], so that we again get 10 numbers out that we interpret as the class scores. Notice that the non-linearity is critical computationally - if we left it out, the two matrices could be collapsed to a single matrix, and therefore the predicted class scores would again be a linear function of the input. The non-linearity is where we get the <em>wiggle</em>. The parameters $W_2, W_1$ are learned with stochastic gradient descent, and their gradients are derived with chain rule (and computed with backpropagation).</p><p>A three-layer neural network could analogously look like $s = W_3 \max(0, W_2 \max(0, W_1 x))$, where all of $W_3, W_2, W_1$ are parameters to be learned. The sizes of the intermediate hidden vectors are hyperparameters of the network and we’ll see how we can set them later. Lets now look into how we can interpret these computations from the neuron/network perspective.</p><h2 id="Modeling-one-neuron"><a href="#Modeling-one-neuron" class="headerlink" title="Modeling one neuron"></a>Modeling one neuron</h2><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/neuron.png" alt="neuron"></p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/neuron_model.jpeg" alt="neuron_model"></p><p>An example code for forward-propagating a single neuron might look as follows:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Neuron</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="comment"># ... </span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(inputs)</span>:</span></div><div class="line">    <span class="string">""" assume inputs and weights are 1-D numpy arrays and bias is a number """</span></div><div class="line">    cell_body_sum = np.sum(inputs * self.weights) + self.bias</div><div class="line">    firing_rate = <span class="number">1.0</span> / (<span class="number">1.0</span> + math.exp(-cell_body_sum)) <span class="comment"># sigmoid activation function</span></div><div class="line">    <span class="keyword">return</span> firing_rate</div></pre></td></tr></table></figure><h2 id="Single-neuron-as-a-linear-classifier"><a href="#Single-neuron-as-a-linear-classifier" class="headerlink" title="Single neuron as a linear classifier"></a>Single neuron as a linear classifier</h2><p>The mathematical form of the model Neuron’s forward computation might look familiar to you. As we saw with linear classifiers, a neuron has the capacity to “like” (activation near one) or “dislike” (activation near zero) certain linear regions of its input space. Hence, with an appropriate loss function on the neuron’s output, we can turn a single neuron into a linear classifier:</p><p><strong>Binary Softmax classifier</strong>. For example, we can interpret $\sigma(\sum_iw_ix_i + b)$ to be the probability of one of the classes $P(y_i = 1 \mid x_i; w)$. The probability of the other class would be $P(y_i = 0 \mid x_i; w) = 1 - P(y_i = 1 \mid x_i; w)$, since they must sum to one. With this interpretation, we can formulate the cross-entropy loss as we have seen in the Linear Classification section, and optimizing it would lead to a binary Softmax classifier (also known as <em>logistic regression</em>). Since the sigmoid function is restricted to be between 0-1, the predictions of this classifier are based on whether the output of the neuron is greater than 0.5.</p><p><strong>Binary SVM classifier</strong>. Alternatively, we could attach a max-margin hinge loss to the output of the neuron and train it to become a binary Support Vector Machine.</p><p><strong>Regularization interpretation</strong>. The regularization loss in both SVM/Softmax cases could in this biological view be interpreted as <em>gradual forgetting</em>, since it would have the effect of driving all synaptic weights ww towards zero after every parameter update.</p><blockquote><p>A single neuron can be used to implement a binary classifier (e.g. binary Softmax or binary SVM classifiers)</p></blockquote><h2 id="Commonly-used-activation-functions"><a href="#Commonly-used-activation-functions" class="headerlink" title="Commonly used activation functions"></a>Commonly used activation functions</h2><p>Every activation function (or <em>non-linearity</em>) takes a single number and performs a certain fixed mathematical operation on it. There are several activation functions you may encounter in practice:</p><p><strong>Sigmoid.</strong> The sigmoid non-linearity has the mathematical form $\sigma(x) = 1 / (1 + e^{-x})$ and is shown in the image. As alluded to in the previous section, it takes a real-valued number and “squashes” it into range between 0 and 1. In particular, large negative numbers become 0 and large positive numbers become 1. The sigmoid function has seen frequent use historically since it has a nice interpretation as the firing rate of a neuron: from not firing at all (0) to fully-saturated firing at an assumed maximum frequency (1). In practice, the sigmoid non-linearity has recently fallen out of favor and it is rarely ever used. It has two major drawbacks:</p><ul><li><p><em>Sigmoids saturate and kill gradients</em>. A very undesirable property of the sigmoid neuron is that when the neuron’s activation saturates at either tail of 0 or 1, the gradient at these regions is almost zero. Recall that during backpropagation, this (local) gradient will be multiplied to the gradient of this gate’s output for the whole objective. Therefore, if the local gradient is very small, it will effectively “kill” the gradient and almost no signal will flow through the neuron to its weights and recursively to its data. Additionally, one must pay extra caution when initializing the weights of sigmoid neurons to prevent saturation. For example, if the initial weights are too large then most neurons would become saturated and the network will barely learn.</p></li><li><p><em>Sigmoid outputs are not zero-centered</em>. This is undesirable since neurons in later layers of processing in a Neural Network (more on this soon) would be receiving data that is not zero-centered. This has implications on the dynamics during gradient descent, because if the data coming into a neuron is always positive (e.g. $x &gt; 0$ elementwise in $f = w^Tx + b$), then the gradient on the weights ww will during backpropagation become either all be positive, or all negative (depending on the gradient of the whole expression $f$). This could introduce undesirable zig-zagging dynamics in the gradient updates for the weights. However, notice that once these gradients are added up across a batch of data the final update for the weights can have variable signs, somewhat mitigating this issue. Therefore, this is an inconvenience but it has less severe consequences compared to the saturated activation problem above.</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/sigmoid.jpeg" alt="sigmoid"></p><p>​</p></li></ul><p><strong>Tanh.</strong> The tanh non-linearity is shown on the image. It squashes a real-valued number to the range [-1, 1]. Like the sigmoid neuron, its activations saturate, but unlike the sigmoid neuron its output is zero-centered. Therefore, in practice the <em>tanh non-linearity is always preferred to the sigmoid nonlinearity.</em> Also note that the tanh neuron is simply a scaled sigmoid neuron, in particular the following holds: $\tanh(x) = 2 \sigma(2x) -1$.</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/tanh.jpeg" alt="tanh"></p><p><strong>ReLU.</strong> The Rectified Linear Unit has become very popular in the last few years. It computes the function $f(x) = \max(0, x)$. In other words, the activation is simply thresholded at zero (see image). There are several pros and cons to using the ReLUs:</p><ul><li><p>(+) It was found to greatly accelerate (e.g. a factor of 6 in <a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf" target="_blank" rel="external">Krizhevsky et al.</a>) the convergence of stochastic gradient descent compared to the sigmoid/tanh functions. It is argued that this is due to its linear, non-saturating form.</p></li><li><p>(+) Compared to tanh/sigmoid neurons that involve expensive operations (exponentials, etc.), the ReLU can be implemented by simply thresholding a matrix of activations at zero.</p></li><li><p>(-) Unfortunately, ReLU units can be fragile during training and can “die”. For example, a large gradient flowing through a ReLU neuron could cause the weights to update in such a way that the neuron will never activate on any datapoint again. If this happens, then the gradient flowing through the unit will forever be zero from that point on. That is, the ReLU units can irreversibly die during training since they can get knocked off the data manifold. For example, you may find that as much as 40% of your network can be “dead” (i.e. neurons that never activate across the entire training dataset) if the learning rate is set too high. With a proper setting of the learning rate this is less frequently an issue.</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/relu.jpeg" alt="relu"></p></li></ul><p><strong>Leaky ReLU.</strong> Leaky ReLUs are one attempt to fix the “dying ReLU” problem. Instead of the function being zero when x &lt; 0, a leaky ReLU will instead have a small negative slope (of 0.01, or so). That is, the function computes $f(x) = \mathbb{1}(x &lt; 0) (\alpha x) + \mathbb{1}(x&gt;=0) (x)$ where $\alpha$ is a small constant. Some people report success with this form of activation function, but the results are not always consistent. The slope in the negative region can also be made into a parameter of each neuron, as seen in PReLU neurons, introduced in <a href="http://arxiv.org/abs/1502.01852" target="_blank" rel="external">Delving Deep into Rectifiers</a>, by Kaiming He et al., 2015. However, the consistency of the benefit across tasks is presently unclear.</p><p><strong>Maxout</strong>. Other types of units have been proposed that do not have the functional form $f(w^Tx + b)$ where a non-linearity is applied on the dot product between the weights and the data. One relatively popular choice is the Maxout neuron (introduced recently by <a href="http://www-etud.iro.umontreal.ca/~goodfeli/maxout.html" target="_blank" rel="external">Goodfellow et al.</a>) that generalizes the ReLU and its leaky version. The Maxout neuron computes the function $\max(w_1^Tx+b_1, w_2^Tx + b_2)$. Notice that both ReLU and Leaky ReLU are a special case of this form (for example, for ReLU we have $w_1, b_1 = 0$). The Maxout neuron therefore enjoys all the benefits of a ReLU unit (linear regime of operation, no saturation) and does not have its drawbacks (dying ReLU). However, unlike the ReLU neurons it doubles the number of parameters for every single neuron, leading to a high total number of parameters.</p><p>This concludes our discussion of the most common types of neurons and their activation functions. As a last comment, it is very rare to mix and match different types of neurons in the same network, even though there is no fundamental problem with doing so.</p><p><strong>TLDR</strong>: “<em>What neuron type should I use?</em>” Use the ReLU non-linearity, be careful with your learning rates and possibly monitor the fraction of “dead” units in a network. If this concerns you, give Leaky ReLU or Maxout a try. Never use sigmoid. Try tanh, but expect it to work worse than ReLU/Maxout.</p><h2 id="Neural-Network-architectures"><a href="#Neural-Network-architectures" class="headerlink" title="Neural Network architectures"></a>Neural Network architectures</h2><h3 id="Layer-wise-organization"><a href="#Layer-wise-organization" class="headerlink" title="Layer-wise organization"></a>Layer-wise organization</h3><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/neural_net.jpeg" alt="neuron_net"></p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/neural_net2.jpeg" alt="neural_net2"></p><p><strong>Sizing neural networks</strong>. The two metrics that people commonly use to measure the size of neural networks are the number of neurons, or more commonly the number of parameters. Working with the two example networks in the above picture:</p><ul><li>The first network (left) has 4 + 2 = 6 neurons (not counting the inputs), [3 x 4] + [4 x 2] = 20 weights and 4 + 2 = 6 biases, for a total of 26 learnable parameters.</li><li>The second network (right) has 4 + 4 + 1 = 9 neurons, [3 x 4] + [4 x 4] + [4 x 1] = 12 + 16 + 4 = 32 weights and 4 + 4 + 1 = 9 biases, for a total of 41 learnable parameters.</li></ul><p>To give you some context, modern Convolutional Networks contain on orders of 100 million parameters and are usually made up of approximately 10-20 layers (hence <em>deep learning</em>). However, as we will see the number of <em>effective</em> connections is significantly greater due to parameter sharing. More on this in the Convolutional Neural Networks module.</p><h3 id="Example-feed-forward-computation"><a href="#Example-feed-forward-computation" class="headerlink" title="Example feed-forward computation"></a>Example feed-forward computation</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># forward-pass of a 3-layer neural network:</span></div><div class="line">f = <span class="keyword">lambda</span> x: <span class="number">1.0</span>/(<span class="number">1.0</span> + np.exp(-x)) <span class="comment"># activation function (use sigmoid)</span></div><div class="line">x = np.random.randn(<span class="number">3</span>, <span class="number">1</span>) <span class="comment"># random input vector of three numbers (3x1)</span></div><div class="line">h1 = f(np.dot(W1, x) + b1) <span class="comment"># calculate first hidden layer activations (4x1)</span></div><div class="line">h2 = f(np.dot(W2, h1) + b2) <span class="comment"># calculate second hidden layer activations (4x1)</span></div><div class="line">out = np.dot(W3, h2) + b3 <span class="comment"># output neuron (1x1)</span></div></pre></td></tr></table></figure><blockquote><p>The forward pass of a fully-connected layer corresponds to one matrix multiplication followed by a bias offset and an activation function.</p></blockquote><h3 id="Representational-power"><a href="#Representational-power" class="headerlink" title="Representational power"></a>Representational power</h3><p>One way to look at Neural Networks with fully-connected layers is that they define a family of functions that are parameterized by the weights of the network. A natural question that arises is: What is the representational power of this family of functions? In particular, are there functions that cannot be modeled with a Neural Network?</p><p>It turns out that Neural Networks with at least one hidden layer are <em>universal approximators</em>. That is, it can be shown (e.g. see <a href="http://www.dartmouth.edu/~gvc/Cybenko_MCSS.pdf" target="_blank" rel="external"><em>Approximation by Superpositions of Sigmoidal Function</em></a> from 1989 (pdf), or this <a href="http://neuralnetworksanddeeplearning.com/chap4.html" target="_blank" rel="external">intuitive explanation</a> from Michael Nielsen) that given any continuous function $f(x)$ and some $\epsilon &gt; 0$, there exists a Neural Network $g(x)$ with one hidden layer (with a reasonable choice of non-linearity, e.g. sigmoid) such that $\forall x, \mid f(x) - g(x) \mid &lt; \epsilon$. In other words, the neural network can approximate any continuous function.</p><p>If one hidden layer suffices to approximate any function, why use more layers and go deeper? The answer is that the fact that a two-layer Neural Network is a universal approximator is, while mathematically cute, a relatively weak and useless statement in practice. In one dimension, the “sum of indicator bumps” function $g(x) = \sum_i c_i \mathbb{1}(a_i &lt; x &lt; b_i)$ where $a, b, c$ are parameter vectors is also a universal approximator, but noone would suggest that we use this functional form in Machine Learning. Neural Networks work well in practice because they compactly express nice, smooth functions that fit well with the statistical properties of data we encounter in practice, and are also easy to learn using our optimization algorithms (e.g. gradient descent). Similarly, the fact that deeper networks (with multiple hidden layers) can work better than a single-hidden-layer networks is an empirical observation, despite the fact that their representational power is equal.</p><p>As an aside, in practice it is often the case that 3-layer neural networks will outperform 2-layer nets, but going even deeper (4,5,6-layer) rarely helps much more. This is in stark contrast to Convolutional Networks, where depth has been found to be an extremely important component for a good recognition system (e.g. on order of 10 learnable layers). One argument for this observation is that images contain hierarchical structure (e.g. faces are made up of eyes, which are made up of edges, etc.), so several layers of processing make intuitive sense for this data domain.</p><p>The full story is, of course, much more involved and a topic of much recent research. If you are interested in these topics we recommend for further reading:</p><ul><li><a href="http://www.deeplearningbook.org/" target="_blank" rel="external">Deep Learning</a> book in press by Bengio, Goodfellow, Courville, in practicular <a href="http://www.deeplearningbook.org/contents/mlp.html" target="_blank" rel="external">Chapter 6.4</a>.</li><li><a href="http://arxiv.org/abs/1312.6184" target="_blank" rel="external">Do Deep Nets Really Need to be Deep?</a></li><li><a href="http://arxiv.org/abs/1412.6550" target="_blank" rel="external">FitNets: Hints for Thin Deep Nets</a></li></ul><h3 id="Setting-number-of-layers-and-their-sizes"><a href="#Setting-number-of-layers-and-their-sizes" class="headerlink" title="Setting number of layers and their sizes"></a>Setting number of layers and their sizes</h3><p>We increase the size and number of layers in a Neural Network, the <strong>capacity</strong> of the network increases:</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/layer_sizes.jpeg" alt="layer_sizes"></p><p>In practice, it is always better to use these methods to control overfitting instead of the number of neurons.</p><p>The subtle reason behind this is that smaller networks are harder to train with local methods such as Gradient Descent: It’s clear that their loss functions have relatively few local minima, but it turns out that many of these minima are easier to converge to, and that they are bad (i.e. with high loss). Conversely, bigger neural networks contain significantly more local minima, but these minima turn out to be much better in terms of their actual loss. Since Neural Networks are non-convex, it is hard to study these properties mathematically, but some attempts to understand these objective functions have been made, e.g. in a recent paper <a href="http://arxiv.org/abs/1412.0233" target="_blank" rel="external">The Loss Surfaces of Multilayer Networks</a>. In practice, what you find is that if you train a small network the final loss can display a good amount of variance - in some cases you get lucky and converge to a good place but in some cases you get trapped in one of the bad minima. On the other hand, if you train a large network you’ll start to find many different solutions, but the variance in the final achieved loss will be much smaller. In other words, all solutions are about equally as good, and rely less on the luck of random initialization.</p><p>To reiterate, the regularization strength is the preferred way to control the overfitting of a neural network. We can look at the results achieved by three different settings:</p><p><img src="http://o7ie0tcjk.bkt.clouddn.com/cs231n/lecture-notes/04/reg_strengths.jpeg" alt="reg_strengths"></p><p>You can play with these examples in this <a href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html" target="_blank" rel="external">ConvNetsJS demo</a>.</p><p>The takeaway is that you should not be using smaller networks because you are afraid of overfitting. Instead, you should use as big of a neural network as your computational budget allows, and use other regularization techniques to control overfitting.</p><h2 id="Additional-References"><a href="#Additional-References" class="headerlink" title="Additional References"></a>Additional References</h2><ul><li><a href="http://www.deeplearning.net/tutorial/mlp.html" target="_blank" rel="external">deeplearning.net tutorial</a> with Theano</li><li><a href="http://cs.stanford.edu/people/karpathy/convnetjs/" target="_blank" rel="external">ConvNetJS</a> demos for intuitions</li><li><a href="http://neuralnetworksanddeeplearning.com/chap1.html" target="_blank" rel="external">Michael Nielsen’s</a> tutorials</li></ul></div><div></div><div></div><footer class="post-footer"><div class="post-eof"></div></footer></article></section><nav class="pagination"><a class="extend prev" rel="prev" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/84/">84</a><a class="extend next" rel="next" href="/page/65/"><i class="fa fa-angle-right"></i></a></nav></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ewan Li"><p class="site-author-name" itemprop="name">Ewan Li</p><p class="site-description motion-element" itemprop="description">Ewan's IT Blog</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">84</span> <span class="site-state-item-name">posts</span></a></div><div class="site-state-item site-state-tags"><a href="/tags"><span class="site-state-item-count">48</span> <span class="site-state-item-name">tags</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/ewanlee" target="_blank" title="Github"><i class="fa fa-fw fa-globe"></i> Github </a></span><span class="links-of-author-item"><a href="http://weibo.com/3946248928/profile?topnav=1&wvr=6" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i> Weibo</a></span></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2017</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Ewan Li</span></div><div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div><div class="theme-info">Theme - <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div><div class="busuanzi-count"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span> <span class="site-pv"><i class="fa fa-eye">本站总访问量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">_hcwp=window._hcwp||[],_hcwp.push({widget:"Bloggerstream",widget_id:89825,selector:".hc-comment-count",label:"{%COUNT%}"}),function(){if(!("HC_LOAD_INIT"in window)){HC_LOAD_INIT=!0;var t=(navigator.language||navigator.systemLanguage||navigator.userLanguage||"en").substr(0,2).toLowerCase(),e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src=("https:"==document.location.protocol?"https":"http")+"://w.hypercomments.com/widget/hc/89825/"+t+"/widget.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n.nextSibling)}}()</script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="popoverlay">').css("overflow","hidden"),$(".popup").toggle()}var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path,searchFunc=function(e,t,a){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),c=document.getElementById(t),n=document.getElementById(a);c.addEventListener("input",function(){var e=0,t='<ul class="search-result-list">',a=this.value.trim().toLowerCase().split(/[\s\-]+/);n.innerHTML="",this.value.trim().length>1&&r.forEach(function(r){var c=!1,n=r.title.trim().toLowerCase(),s=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),o=decodeURIComponent(r.url),i=-1,l=-1,p=-1;if(""!=n&&a.forEach(function(e,t){i=n.indexOf(e),l=s.indexOf(e),(i>=0||l>=0)&&(c=!0,0==t&&(p=l))}),c){e+=1,t+="<li><a href='"+o+"' class='search-result-title'>"+n+"</a>";var h=r.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var u=p-20,d=p+80;u<0&&(u=0),0==u&&(d=50),d>h.length&&(d=h.length);var f=h.substring(u,d);a.forEach(function(e){var t=new RegExp(e,"gi");f=f.replace(t,'<b class="search-keyword">'+e+"</b>")}),t+='<p class="search-result">'+f+"...</p>"}t+="</li>"}}),t+="</ul>",0==e&&(t='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==a&&(t='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),n.innerHTML=t}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".popoverlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+<!doctype html><html class="theme-next mist use-motion" lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="Hexo, NexT"><link rel="alternate" href="/atom.xml" title="Abracadabra" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="Ewan&apos;s IT Blog"><meta property="og:type" content="website"><meta property="og:title" content="Abracadabra"><meta property="og:url" content="http://yoursite.com/page/64/index.html"><meta property="og:site_name" content="Abracadabra"><meta property="og:description" content="Ewan&apos;s IT Blog"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Abracadabra"><meta name="twitter:description" content="Ewan&apos;s IT Blog"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"post"},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"Author"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/page/64/"><title>Abracadabra</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="en"><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?dc405a79ad500922134d14cdf288f646";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div class="container one-collumn sidebar-position-left page-home"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Abracadabra</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">Do it yourself</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>Categories</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>About</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>Archives</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>Tags</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>Sitemap</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>Search</a></li></ul><div class="site-search"><div class="popup"><span class="search-icon fa fa-search"></span> <input type="text" id="local-search-input"><div id="local-search-result"></div><span class="popup-btn-close">close</span></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><section id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/python-data-analysis-learning-note-09/"><span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Ewan Li"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.jpg"></span><span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Abracadabra"><span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject"><img style="display:none" itemprop="url image" alt="Abracadabra" src=""></span></span><header class="post-header"><h1 class="post-title" itemprop="name headline"><a class="post-title-link" href="/2017/03/07/python-data-analysis-learning-note-09/" itemprop="url">python data analysis learning note 09</a></h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">Posted on</span> <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T15:37:24+08:00">2017-03-07 </time></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2017/03/07/python-data-analysis-learning-note-09/#comments" itemprop="discussionUrl"><span class="post-comments-count hc-comment-count" data-xid="2017/03/07/python-data-analysis-learning-note-09/" itemprop="commentsCount"></span> </a></span><span id="/2017/03/07/python-data-analysis-learning-note-09/" class="leancloud_visitors" data-flag-title="python data analysis learning note 09"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">Visitors </span><span class="leancloud-visitors-count"></span></span></div></header><div class="post-body" itemprop="articleBody"><h1 id="数据聚合与分组运算"><a href="#数据聚合与分组运算" class="headerlink" title="数据聚合与分组运算"></a>数据聚合与分组运算</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> division</div><div class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> randn</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">np.random.seed(<span class="number">12345</span>)</div><div class="line">plt.rc(<span class="string">'figure'</span>, figsize=(<span class="number">10</span>, <span class="number">6</span>))</div><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">np.set_printoptions(precision=<span class="number">4</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pd.options.display.notebook_repr_html = <span class="keyword">False</span></div><div class="line"><span class="keyword">from</span> IPython.core.interactiveshell <span class="keyword">import</span> InteractiveShell</div><div class="line">InteractiveShell.ast_node_interactivity = <span class="string">"all"</span></div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div></pre></td></tr></table></figure><h2 id="GroupBy-机制"><a href="#GroupBy-机制" class="headerlink" title="GroupBy 机制"></a>GroupBy 机制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df = DataFrame(&#123;<span class="string">'key1'</span> : [<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>],</div><div class="line">                <span class="string">'key2'</span> : [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>],</div><div class="line">                <span class="string">'data1'</span> : np.random.randn(<span class="number">5</span>),</div><div class="line">                <span class="string">'data2'</span> : np.random.randn(<span class="number">5</span>)&#125;)</div><div class="line">df</div></pre></td></tr></table></figure><pre><code>      data1     data2 key1 key2
+0 -0.204708  1.393406    a  one
+1  0.478943  0.092908    a  two
+2 -0.519439  0.281746    b  one
+3 -0.555730  0.769023    b  two
+4  1.965781  1.246435    a  one
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped = df[<span class="string">'data1'</span>].groupby(df[<span class="string">'key1'</span>])</div><div class="line">grouped</div></pre></td></tr></table></figure><pre><code>&lt;pandas.core.groupby.SeriesGroupBy object at 0x0000000008BAFA90&gt;
+</code></pre><p>变量<code>groupby</code>是一个<code>GroupBy</code>对象。它实际还没有进行任何计算，只有进行计算之后才能显示结果</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grouped.mean()</div></pre></td></tr></table></figure><pre><code>key1
+a    0.746672
+b   -0.537585
+Name: data1, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">means = df[<span class="string">'data1'</span>].groupby([df[<span class="string">'key1'</span>], df[<span class="string">'key2'</span>]]).mean()</div><div class="line">means</div></pre></td></tr></table></figure><pre><code>key1  key2
+a     one     0.880536
+      two     0.478943
+b     one    -0.519439
+      two    -0.555730
+Name: data1, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">means.unstack()</div></pre></td></tr></table></figure><pre><code>key2       one       two
+key1                    
+a     0.880536  0.478943
+b    -0.519439 -0.555730
+</code></pre><p>只要长度相同即可</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">states = np.array([<span class="string">'Ohio'</span>, <span class="string">'California'</span>, <span class="string">'California'</span>, <span class="string">'Ohio'</span>, <span class="string">'Ohio'</span>])</div><div class="line">years = np.array([<span class="number">2005</span>, <span class="number">2005</span>, <span class="number">2006</span>, <span class="number">2005</span>, <span class="number">2006</span>])</div><div class="line">df[<span class="string">'data1'</span>].groupby([states, years]).mean()</div></pre></td></tr></table></figure><pre><code>California  2005    0.478943
+            2006   -0.519439
+Ohio        2005   -0.380219
+            2006    1.965781
+Name: data1, dtype: float64
+</code></pre><p>只要数值型数据才会出现在结果中</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.groupby(<span class="string">'key1'</span>).mean()</div></pre></td></tr></table></figure><pre><code>         data1     data2
+key1                    
+a     0.746672  0.910916
+b    -0.537585  0.525384
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.groupby([<span class="string">'key1'</span>, <span class="string">'key2'</span>]).mean()</div></pre></td></tr></table></figure><pre><code>              data1     data2
+key1 key2                    
+a    one   0.880536  1.319920
+     two   0.478943  0.092908
+b    one  -0.519439  0.281746
+     two  -0.555730  0.769023
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.groupby([<span class="string">'key1'</span>, <span class="string">'key2'</span>]).size()</div></pre></td></tr></table></figure><pre><code>key1  key2
+a     one     2
+      two     1
+b     one     1
+      two     1
+dtype: int64
+</code></pre><h3 id="对分组进行迭代"><a href="#对分组进行迭代" class="headerlink" title="对分组进行迭代"></a>对分组进行迭代</h3><p>显示分组数据（要通过这种迭代的方式才能显示）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.groupby(<span class="string">'key1'</span>)</div></pre></td></tr></table></figure><pre><code>&lt;pandas.core.groupby.DataFrameGroupBy object at 0x0000000034BC8CF8&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">df</div><div class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> df.groupby(<span class="string">'key1'</span>):</div><div class="line">    print(name)</div><div class="line">    print(group)</div></pre></td></tr></table></figure><pre><code>      data1     data2 key1 key2
+0 -0.204708  1.393406    a  one
+1  0.478943  0.092908    a  two
+2 -0.519439  0.281746    b  one
+3 -0.555730  0.769023    b  two
+4  1.965781  1.246435    a  one
+
+
+
+a
+      data1     data2 key1 key2
+0 -0.204708  1.393406    a  one
+1  0.478943  0.092908    a  two
+4  1.965781  1.246435    a  one
+b
+      data1     data2 key1 key2
+2 -0.519439  0.281746    b  one
+3 -0.555730  0.769023    b  two
+</code></pre><p>同样进行迭代才能显示结果</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (k1, k2), group <span class="keyword">in</span> df.groupby([<span class="string">'key1'</span>, <span class="string">'key2'</span>]):</div><div class="line">    print((k1, k2))</div><div class="line">    print(group)</div></pre></td></tr></table></figure><pre><code>(&apos;a&apos;, &apos;one&apos;)
+      data1     data2 key1 key2
+0 -0.204708  1.393406    a  one
+4  1.965781  1.246435    a  one
+(&apos;a&apos;, &apos;two&apos;)
+      data1     data2 key1 key2
+1  0.478943  0.092908    a  two
+(&apos;b&apos;, &apos;one&apos;)
+      data1     data2 key1 key2
+2 -0.519439  0.281746    b  one
+(&apos;b&apos;, &apos;two&apos;)
+     data1     data2 key1 key2
+3 -0.55573  0.769023    b  two
+</code></pre><p>将分组结果转化成一个字典（要先转化为一个列表）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pieces = dict(list(df.groupby(<span class="string">'key1'</span>)))</div><div class="line">pieces[<span class="string">'b'</span>]</div></pre></td></tr></table></figure><pre><code>      data1     data2 key1 key2
+2 -0.519439  0.281746    b  one
+3 -0.555730  0.769023    b  two
+</code></pre><p>显示每一项的数据类型</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.dtypes</div></pre></td></tr></table></figure><pre><code>data1    float64
+data2    float64
+key1      object
+key2      object
+dtype: object
+</code></pre><p>对列进行分组…按照数据类型来？！</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped = df.groupby(df.dtypes, axis=<span class="number">1</span>)</div><div class="line">dict(list(grouped))</div></pre></td></tr></table></figure><pre><code>{dtype(&apos;float64&apos;):       data1     data2
+ 0 -0.204708  1.393406
+ 1  0.478943  0.092908
+ 2 -0.519439  0.281746
+ 3 -0.555730  0.769023
+ 4  1.965781  1.246435, dtype(&apos;O&apos;):   key1 key2
+ 0    a  one
+ 1    a  two
+ 2    b  one
+ 3    b  two
+ 4    a  one}
+</code></pre><h3 id="选择一列或一组列"><a href="#选择一列或一组列" class="headerlink" title="选择一列或一组列"></a>选择一列或一组列</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df.groupby(<span class="string">'key1'</span>)[<span class="string">'data1'</span>]</div><div class="line">df.groupby(<span class="string">'key1'</span>)[[<span class="string">'data2'</span>]]</div></pre></td></tr></table></figure><pre><code>&lt;pandas.core.groupby.SeriesGroupBy object at 0x0000000034BDC2E8&gt;
+
+
+
+
+
+
+&lt;pandas.core.groupby.DataFrameGroupBy object at 0x0000000015EDF2B0&gt;
+</code></pre><p>上述代码是以下代码的语法糖</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df[<span class="string">'data1'</span>].groupby(df[<span class="string">'key1'</span>])</div><div class="line">df[[<span class="string">'data2'</span>]].groupby(df[<span class="string">'key1'</span>])</div></pre></td></tr></table></figure><pre><code>&lt;pandas.core.groupby.SeriesGroupBy object at 0x0000000034BDC8D0&gt;
+
+
+
+
+
+
+&lt;pandas.core.groupby.DataFrameGroupBy object at 0x0000000034BDC898&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.groupby([<span class="string">'key1'</span>, <span class="string">'key2'</span>])[[<span class="string">'data2'</span>]].mean()</div></pre></td></tr></table></figure><pre><code>              data2
+key1 key2          
+a    one   1.319920
+     two   0.092908
+b    one   0.281746
+     two   0.769023
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s_grouped = df.groupby([<span class="string">'key1'</span>, <span class="string">'key2'</span>])[<span class="string">'data2'</span>]</div><div class="line">s_grouped</div></pre></td></tr></table></figure><pre><code>&lt;pandas.core.groupby.SeriesGroupBy object at 0x0000000034BDC6A0&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s_grouped.mean()</div></pre></td></tr></table></figure><pre><code>key1  key2
+a     one     1.319920
+      two     0.092908
+b     one     0.281746
+      two     0.769023
+Name: data2, dtype: float64
+</code></pre><h3 id="通过字典或Series进行分组"><a href="#通过字典或Series进行分组" class="headerlink" title="通过字典或Series进行分组"></a>通过字典或Series进行分组</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">people = DataFrame(np.random.randn(<span class="number">5</span>, <span class="number">5</span>),</div><div class="line">                   columns=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>],</div><div class="line">                   index=[<span class="string">'Joe'</span>, <span class="string">'Steve'</span>, <span class="string">'Wes'</span>, <span class="string">'Jim'</span>, <span class="string">'Travis'</span>])</div><div class="line">people.ix[<span class="number">2</span>:<span class="number">3</span>, [<span class="string">'b'</span>, <span class="string">'c'</span>]] = np.nan <span class="comment"># Add a few NA values</span></div><div class="line">people</div></pre></td></tr></table></figure><pre><code>               a         b         c         d         e
+Joe     1.007189 -1.296221  0.274992  0.228913  1.352917
+Steve   0.886429 -2.001637 -0.371843  1.669025 -0.438570
+Wes    -0.539741       NaN       NaN -1.021228 -0.577087
+Jim     0.124121  0.302614  0.523772  0.000940  1.343810
+Travis -0.713544 -0.831154 -2.370232 -1.860761 -0.860757
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mapping = &#123;<span class="string">'a'</span>: <span class="string">'red'</span>, <span class="string">'b'</span>: <span class="string">'red'</span>, <span class="string">'c'</span>: <span class="string">'blue'</span>,</div><div class="line">           <span class="string">'d'</span>: <span class="string">'blue'</span>, <span class="string">'e'</span>: <span class="string">'red'</span>, <span class="string">'f'</span> : <span class="string">'orange'</span>&#125;</div></pre></td></tr></table></figure><p>会跳过NA值</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">by_column = people.groupby(mapping, axis=<span class="number">1</span>)</div><div class="line">by_column.sum()</div></pre></td></tr></table></figure><pre><code>            blue       red
+Joe     0.503905  1.063885
+Steve   1.297183 -1.553778
+Wes    -1.021228 -1.116829
+Jim     0.524712  1.770545
+Travis -4.230992 -2.405455
+</code></pre><p>上述功能同样可以通过Series实现</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">map_series = Series(mapping)</div><div class="line">map_series</div></pre></td></tr></table></figure><pre><code>a       red
+b       red
+c      blue
+d      blue
+e       red
+f    orange
+dtype: object
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">people.groupby(map_series, axis=<span class="number">1</span>).count()</div></pre></td></tr></table></figure><pre><code>        blue  red
+Joe        2    3
+Steve      2    3
+Wes        1    2
+Jim        2    3
+Travis     2    3
+</code></pre><h3 id="通过函数进行分组"><a href="#通过函数进行分组" class="headerlink" title="通过函数进行分组"></a>通过函数进行分组</h3><p>根据人名长度进行分组</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">people.groupby(len).sum()</div></pre></td></tr></table></figure><pre><code>          a         b         c         d         e
+3  0.591569 -0.993608  0.798764 -0.791374  2.119639
+5  0.886429 -2.001637 -0.371843  1.669025 -0.438570
+6 -0.713544 -0.831154 -2.370232 -1.860761 -0.860757
+</code></pre><p>再加一个分组度量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">key_list = [<span class="string">'one'</span>, <span class="string">'one'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'two'</span>]</div><div class="line">people.groupby([len, key_list]).min()</div></pre></td></tr></table></figure><pre><code>              a         b         c         d         e
+3 one -0.539741 -1.296221  0.274992 -1.021228 -0.577087
+  two  0.124121  0.302614  0.523772  0.000940  1.343810
+5 one  0.886429 -2.001637 -0.371843  1.669025 -0.438570
+6 two -0.713544 -0.831154 -2.370232 -1.860761 -0.860757
+</code></pre><h3 id="根据索引级别分组"><a href="#根据索引级别分组" class="headerlink" title="根据索引级别分组"></a>根据索引级别分组</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">columns = pd.MultiIndex.from_arrays([[<span class="string">'US'</span>, <span class="string">'US'</span>, <span class="string">'US'</span>, <span class="string">'JP'</span>, <span class="string">'JP'</span>],</div><div class="line">                                    [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]], names=[<span class="string">'cty'</span>, <span class="string">'tenor'</span>])</div><div class="line">hier_df = DataFrame(np.random.randn(<span class="number">4</span>, <span class="number">5</span>), columns=columns)</div><div class="line">hier_df</div></pre></td></tr></table></figure><pre><code>cty          US                            JP          
+tenor         1         3         5         1         3
+0      0.560145 -1.265934  0.119827 -1.063512  0.332883
+1     -2.359419 -0.199543 -1.541996 -0.970736 -1.307030
+2      0.286350  0.377984 -0.753887  0.331286  1.349742
+3      0.069877  0.246674 -0.011862  1.004812  1.327195
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hier_df.groupby(level=<span class="string">'cty'</span>, axis=<span class="number">1</span>).count()</div></pre></td></tr></table></figure><pre><code>cty  JP  US
+0     2   3
+1     2   3
+2     2   3
+3     2   3
+</code></pre><h2 id="数据聚合"><a href="#数据聚合" class="headerlink" title="数据聚合"></a>数据聚合</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df</div></pre></td></tr></table></figure><pre><code>      data1     data2 key1 key2
+0 -0.204708  1.393406    a  one
+1  0.478943  0.092908    a  two
+2 -0.519439  0.281746    b  one
+3 -0.555730  0.769023    b  two
+4  1.965781  1.246435    a  one
+</code></pre><p>对分组后的数据进行相应操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped = df.groupby(<span class="string">'key1'</span>)</div><div class="line">grouped[<span class="string">'data1'</span>].quantile(<span class="number">0.9</span>)</div></pre></td></tr></table></figure><pre><code>key1
+a    1.668413
+b   -0.523068
+Name: data1, dtype: float64
+</code></pre><p>通过函数进行聚合操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">peak_to_peak</span><span class="params">(arr)</span>:</span></div><div class="line">    <span class="keyword">return</span> arr.max() - arr.min()</div><div class="line">grouped.agg(peak_to_peak)</div></pre></td></tr></table></figure><pre><code>         data1     data2
+key1                    
+a     2.170488  1.300498
+b     0.036292  0.487276
+</code></pre><p>列出分组后数据的一些常用属性</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grouped.describe()</div></pre></td></tr></table></figure><pre><code>               data1     data2
+key1                          
+a    count  3.000000  3.000000
+     mean   0.746672  0.910916
+     std    1.109736  0.712217
+     min   -0.204708  0.092908
+     25%    0.137118  0.669671
+     50%    0.478943  1.246435
+     75%    1.222362  1.319920
+     max    1.965781  1.393406
+b    count  2.000000  2.000000
+     mean  -0.537585  0.525384
+     std    0.025662  0.344556
+     min   -0.555730  0.281746
+     25%   -0.546657  0.403565
+     50%   -0.537585  0.525384
+     75%   -0.528512  0.647203
+     max   -0.519439  0.769023
+</code></pre><p>导入一个数据集用于接下来更加高级的聚合操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tips = pd.read_csv(<span class="string">'ch08/tips.csv'</span>)</div><div class="line"><span class="comment"># Add tip percentage of total bill</span></div><div class="line">tips[<span class="string">'tip_pct'</span>] = tips[<span class="string">'tip'</span>] / tips[<span class="string">'total_bill'</span>]</div><div class="line">tips[:<span class="number">6</span>]</div></pre></td></tr></table></figure><pre><code>   total_bill   tip     sex smoker  day    time  size_   tip_pct
+0       16.99  1.01  Female     No  Sun  Dinner      2  0.059447
+1       10.34  1.66    Male     No  Sun  Dinner      3  0.160542
+2       21.01  3.50    Male     No  Sun  Dinner      3  0.166587
+3       23.68  3.31    Male     No  Sun  Dinner      2  0.139780
+4       24.59  3.61  Female     No  Sun  Dinner      4  0.146808
+5       25.29  4.71    Male     No  Sun  Dinner      4  0.186240
+</code></pre><h3 id="面向列的多函数应用"><a href="#面向列的多函数应用" class="headerlink" title="面向列的多函数应用"></a>面向列的多函数应用</h3><p>根据性别以及是否吸烟进行分类</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grouped = tips.groupby([<span class="string">'sex'</span>, <span class="string">'smoker'</span>])</div></pre></td></tr></table></figure><p>算出不同类型的顾客所给的小费占总花费的比例的平均值</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped_pct = grouped[<span class="string">'tip_pct'</span>]</div><div class="line">grouped_pct.agg(<span class="string">'mean'</span>)</div></pre></td></tr></table></figure><pre><code>sex     smoker
+Female  No        0.156921
+        Yes       0.182150
+Male    No        0.160669
+        Yes       0.152771
+Name: tip_pct, dtype: float64
+</code></pre><p>同时算出比例的均值、标准差以及范围大小</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grouped_pct.agg([<span class="string">'mean'</span>, <span class="string">'std'</span>, peak_to_peak])</div></pre></td></tr></table></figure><pre><code>                   mean       std  peak_to_peak
+sex    smoker                                  
+Female No      0.156921  0.036421      0.195876
+       Yes     0.182150  0.071595      0.360233
+Male   No      0.160669  0.041849      0.220186
+       Yes     0.152771  0.090588      0.674707
+</code></pre><p>起一个别名</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grouped_pct.agg([(<span class="string">'foo'</span>, <span class="string">'mean'</span>), (<span class="string">'bar'</span>, np.std)])</div></pre></td></tr></table></figure><pre><code>                    foo       bar
+sex    smoker                    
+Female No      0.156921  0.036421
+       Yes     0.182150  0.071595
+Male   No      0.160669  0.041849
+       Yes     0.152771  0.090588
+</code></pre><p>对分组后的数据的两个属性分别做三个不同的操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">functions = [<span class="string">'count'</span>, <span class="string">'mean'</span>, <span class="string">'max'</span>]</div><div class="line">result = grouped[<span class="string">'tip_pct'</span>, <span class="string">'total_bill'</span>].agg(functions)</div><div class="line">result</div></pre></td></tr></table></figure><pre><code>              tip_pct                     total_bill                  
+                count      mean       max      count       mean    max
+sex    smoker                                                         
+Female No          54  0.156921  0.252672         54  18.105185  35.83
+       Yes         33  0.182150  0.416667         33  17.977879  44.30
+Male   No          97  0.160669  0.291990         97  19.791237  48.33
+       Yes         60  0.152771  0.710345         60  22.284500  50.81
+</code></pre><p>提取出上述两个属性中的一个</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result[<span class="string">'tip_pct'</span>]</div></pre></td></tr></table></figure><pre><code>               count      mean       max
+sex    smoker                           
+Female No         54  0.156921  0.252672
+       Yes        33  0.182150  0.416667
+Male   No         97  0.160669  0.291990
+       Yes        60  0.152771  0.710345
+</code></pre><p>对多个属性进行多个操作的同时进行起别名的操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ftuples = [(<span class="string">'Durchschnitt'</span>, <span class="string">'mean'</span>), (<span class="string">'Abweichung'</span>, np.var)]</div><div class="line">grouped[<span class="string">'tip_pct'</span>, <span class="string">'total_bill'</span>].agg(ftuples)</div></pre></td></tr></table></figure><pre><code>                   tip_pct              total_bill           
+              Durchschnitt Abweichung Durchschnitt Abweichung
+sex    smoker                                                
+Female No         0.156921   0.001327    18.105185  53.092422
+       Yes        0.182150   0.005126    17.977879  84.451517
+Male   No         0.160669   0.001751    19.791237  76.152961
+       Yes        0.152771   0.008206    22.284500  98.244673
+</code></pre><p>对不同的列进行不同的操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grouped.agg(&#123;<span class="string">'tip'</span> : np.max, <span class="string">'size_'</span> : <span class="string">'sum'</span>&#125;)</div></pre></td></tr></table></figure><pre><code>               size_   tip
+sex    smoker             
+Female No        140   5.2
+       Yes        74   6.5
+Male   No        263   9.0
+       Yes       150  10.0
+</code></pre><p>对不同的列进行数量不同类型不同的操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped.agg(&#123;<span class="string">'tip_pct'</span> : [<span class="string">'min'</span>, <span class="string">'max'</span>, <span class="string">'mean'</span>, <span class="string">'std'</span>],</div><div class="line">             <span class="string">'size_'</span> : <span class="string">'sum'</span>&#125;)</div></pre></td></tr></table></figure><pre><code>                tip_pct                               size_
+                    min       max      mean       std   sum
+sex    smoker                                              
+Female No      0.056797  0.252672  0.156921  0.036421   140
+       Yes     0.056433  0.416667  0.182150  0.071595    74
+Male   No      0.071804  0.291990  0.160669  0.041849   263
+       Yes     0.035638  0.710345  0.152771  0.090588   150
+</code></pre><h3 id="以无索引的形式返回聚合数据"><a href="#以无索引的形式返回聚合数据" class="headerlink" title="以无索引的形式返回聚合数据"></a>以无索引的形式返回聚合数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips.groupby([<span class="string">'sex'</span>, <span class="string">'smoker'</span>], as_index=<span class="keyword">False</span>).mean()</div></pre></td></tr></table></figure><pre><code>      sex smoker  total_bill       tip     size_   tip_pct
+0  Female     No   18.105185  2.773519  2.592593  0.156921
+1  Female    Yes   17.977879  2.931515  2.242424  0.182150
+2    Male     No   19.791237  3.113402  2.711340  0.160669
+3    Male    Yes   22.284500  3.051167  2.500000  0.152771
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips.groupby([<span class="string">'sex'</span>, <span class="string">'smoker'</span>], as_index=<span class="keyword">True</span>).mean()</div></pre></td></tr></table></figure><pre><code>               total_bill       tip     size_   tip_pct
+sex    smoker                                          
+Female No       18.105185  2.773519  2.592593  0.156921
+       Yes      17.977879  2.931515  2.242424  0.182150
+Male   No       19.791237  3.113402  2.711340  0.160669
+       Yes      22.284500  3.051167  2.500000  0.152771
+</code></pre><h2 id="分组级运算和转换"><a href="#分组级运算和转换" class="headerlink" title="分组级运算和转换"></a>分组级运算和转换</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df</div></pre></td></tr></table></figure><pre><code>      data1     data2 key1 key2
+0 -0.204708  1.393406    a  one
+1  0.478943  0.092908    a  two
+2 -0.519439  0.281746    b  one
+3 -0.555730  0.769023    b  two
+4  1.965781  1.246435    a  one
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">k1_means = df.groupby(<span class="string">'key1'</span>).mean().add_prefix(<span class="string">'mean_'</span>)</div><div class="line">k1_means</div></pre></td></tr></table></figure><pre><code>      mean_data1  mean_data2
+key1                        
+a       0.746672    0.910916
+b      -0.537585    0.525384
+</code></pre><p>保留原索引</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.merge(df, k1_means, left_on=<span class="string">'key1'</span>, right_index=<span class="keyword">True</span>)</div></pre></td></tr></table></figure><pre><code>      data1     data2 key1 key2  mean_data1  mean_data2
+0 -0.204708  1.393406    a  one    0.746672    0.910916
+1  0.478943  0.092908    a  two    0.746672    0.910916
+4  1.965781  1.246435    a  one    0.746672    0.910916
+2 -0.519439  0.281746    b  one   -0.537585    0.525384
+3 -0.555730  0.769023    b  two   -0.537585    0.525384
+</code></pre><p>另一个例子，以更简洁的方式实现上述功能</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">people</div></pre></td></tr></table></figure><pre><code>               a         b         c         d         e
+Joe     1.007189 -1.296221  0.274992  0.228913  1.352917
+Steve   0.886429 -2.001637 -0.371843  1.669025 -0.438570
+Wes    -0.539741       NaN       NaN -1.021228 -0.577087
+Jim     0.124121  0.302614  0.523772  0.000940  1.343810
+Travis -0.713544 -0.831154 -2.370232 -1.860761 -0.860757
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">key = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>]</div><div class="line">people.groupby(key).mean()</div></pre></td></tr></table></figure><pre><code>            a         b         c         d         e
+one -0.082032 -1.063687 -1.047620 -0.884358 -0.028309
+two  0.505275 -0.849512  0.075965  0.834983  0.452620
+</code></pre><p>将聚合后的结果放回原来数据中合适的位置（标量进行广播）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">people.groupby(key).transform(np.mean)</div></pre></td></tr></table></figure><pre><code>               a         b         c         d         e
+Joe    -0.082032 -1.063687 -1.047620 -0.884358 -0.028309
+Steve   0.505275 -0.849512  0.075965  0.834983  0.452620
+Wes    -0.082032 -1.063687 -1.047620 -0.884358 -0.028309
+Jim     0.505275 -0.849512  0.075965  0.834983  0.452620
+Travis -0.082032 -1.063687 -1.047620 -0.884358 -0.028309
+</code></pre><p>同时减去均值</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">demean</span><span class="params">(arr)</span>:</span></div><div class="line">    <span class="keyword">return</span> arr - arr.mean()</div><div class="line">demeaned = people.groupby(key).transform(demean)</div><div class="line">demeaned</div></pre></td></tr></table></figure><pre><code>               a         b         c         d         e
+Joe     1.089221 -0.232534  1.322612  1.113271  1.381226
+Steve   0.381154 -1.152125 -0.447807  0.834043 -0.891190
+Wes    -0.457709       NaN       NaN -0.136869 -0.548778
+Jim    -0.381154  1.152125  0.447807 -0.834043  0.891190
+Travis -0.631512  0.232534 -1.322612 -0.976402 -0.832448
+</code></pre><p>检验一下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">demeaned.groupby(key).mean()</div></pre></td></tr></table></figure><pre><code>                a             b    c             d    e
+one  0.000000e+00 -1.110223e-16  0.0  7.401487e-17  0.0
+two -2.775558e-17  0.000000e+00  0.0  0.000000e+00  0.0
+</code></pre><h3 id="Apply-一般性的-“拆分-应用-合并”"><a href="#Apply-一般性的-“拆分-应用-合并”" class="headerlink" title="Apply: 一般性的 “拆分-应用-合并”"></a>Apply: 一般性的 “拆分-应用-合并”</h3><p>小费数据，根据某一个属性从大到小进行排序</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(df, n=<span class="number">5</span>, column=<span class="string">'tip_pct'</span>)</span>:</span></div><div class="line">    <span class="keyword">return</span> df.sort_values(by=column)[-n:]</div><div class="line">top(tips, n=<span class="number">6</span>)</div></pre></td></tr></table></figure><pre><code>     total_bill   tip     sex smoker  day    time  size_   tip_pct
+109       14.31  4.00  Female    Yes  Sat  Dinner      2  0.279525
+183       23.17  6.50    Male    Yes  Sun  Dinner      4  0.280535
+232       11.61  3.39    Male     No  Sat  Dinner      2  0.291990
+67         3.07  1.00  Female    Yes  Sat  Dinner      1  0.325733
+178        9.60  4.00  Female    Yes  Sun  Dinner      2  0.416667
+172        7.25  5.15    Male    Yes  Sun  Dinner      2  0.710345
+</code></pre><p>在分组后的数据集上进行上述排序操作，说明分组后的每一组都是一个DataFrame对象</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips.groupby(<span class="string">'smoker'</span>).apply(top)</div></pre></td></tr></table></figure><pre><code>            total_bill   tip     sex smoker   day    time  size_   tip_pct
+smoker                                                                    
+No     88        24.71  5.85    Male     No  Thur   Lunch      2  0.236746
+       185       20.69  5.00    Male     No   Sun  Dinner      5  0.241663
+       51        10.29  2.60  Female     No   Sun  Dinner      2  0.252672
+       149        7.51  2.00    Male     No  Thur   Lunch      2  0.266312
+       232       11.61  3.39    Male     No   Sat  Dinner      2  0.291990
+Yes    109       14.31  4.00  Female    Yes   Sat  Dinner      2  0.279525
+       183       23.17  6.50    Male    Yes   Sun  Dinner      4  0.280535
+       67         3.07  1.00  Female    Yes   Sat  Dinner      1  0.325733
+       178        9.60  4.00  Female    Yes   Sun  Dinner      2  0.416667
+       172        7.25  5.15    Male    Yes   Sun  Dinner      2  0.710345
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips.groupby([<span class="string">'smoker'</span>, <span class="string">'day'</span>]).apply(top, n=<span class="number">1</span>, column=<span class="string">'total_bill'</span>)</div></pre></td></tr></table></figure><pre><code>                 total_bill    tip     sex smoker   day    time  size_  \
+smoker day                                                               
+No     Fri  94        22.75   3.25  Female     No   Fri  Dinner      2   
+       Sat  212       48.33   9.00    Male     No   Sat  Dinner      4   
+       Sun  156       48.17   5.00    Male     No   Sun  Dinner      6   
+       Thur 142       41.19   5.00    Male     No  Thur   Lunch      5   
+Yes    Fri  95        40.17   4.73    Male    Yes   Fri  Dinner      4   
+       Sat  170       50.81  10.00    Male    Yes   Sat  Dinner      3   
+       Sun  182       45.35   3.50    Male    Yes   Sun  Dinner      3   
+       Thur 197       43.11   5.00  Female    Yes  Thur   Lunch      4   
+
+                  tip_pct  
+smoker day                 
+No     Fri  94   0.142857  
+       Sat  212  0.186220  
+       Sun  156  0.103799  
+       Thur 142  0.121389  
+Yes    Fri  95   0.117750  
+       Sat  170  0.196812  
+       Sun  182  0.077178  
+       Thur 197  0.115982  
+</code></pre><p>获取分组后数据某一列的统计数据</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">result = tips.groupby(<span class="string">'smoker'</span>)[<span class="string">'tip_pct'</span>].describe()</div><div class="line">result</div></pre></td></tr></table></figure><pre><code>smoker       
+No      count    151.000000
+        mean       0.159328
+        std        0.039910
+        min        0.056797
+        25%        0.136906
+        50%        0.155625
+        75%        0.185014
+        max        0.291990
+Yes     count     93.000000
+        mean       0.163196
+        std        0.085119
+        min        0.035638
+        25%        0.106771
+        50%        0.153846
+        75%        0.195059
+        max        0.710345
+Name: tip_pct, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result.unstack(<span class="string">'smoker'</span>)</div></pre></td></tr></table></figure><pre><code>smoker          No        Yes
+count   151.000000  93.000000
+mean      0.159328   0.163196
+std       0.039910   0.085119
+min       0.056797   0.035638
+25%       0.136906   0.106771
+50%       0.155625   0.153846
+75%       0.185014   0.195059
+max       0.291990   0.710345
+</code></pre><p>grouped 根据性别以及是否吸烟进行分组</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f = <span class="keyword">lambda</span> x: x.describe()</div><div class="line">grouped.apply(f)</div></pre></td></tr></table></figure><pre><code>                     total_bill        tip      size_    tip_pct
+sex    smoker                                                   
+Female No     count   54.000000  54.000000  54.000000  54.000000
+              mean    18.105185   2.773519   2.592593   0.156921
+              std      7.286455   1.128425   1.073146   0.036421
+              min      7.250000   1.000000   1.000000   0.056797
+              25%     12.650000   2.000000   2.000000   0.139708
+              50%     16.690000   2.680000   2.000000   0.149691
+              75%     20.862500   3.437500   3.000000   0.181630
+              max     35.830000   5.200000   6.000000   0.252672
+       Yes    count   33.000000  33.000000  33.000000  33.000000
+              mean    17.977879   2.931515   2.242424   0.182150
+              std      9.189751   1.219916   0.613917   0.071595
+              min      3.070000   1.000000   1.000000   0.056433
+              25%     12.760000   2.000000   2.000000   0.152439
+              50%     16.270000   2.880000   2.000000   0.173913
+              75%     22.120000   3.500000   2.000000   0.198216
+              max     44.300000   6.500000   4.000000   0.416667
+Male   No     count   97.000000  97.000000  97.000000  97.000000
+              mean    19.791237   3.113402   2.711340   0.160669
+              std      8.726566   1.489559   0.989094   0.041849
+              min      7.510000   1.250000   2.000000   0.071804
+              25%     13.810000   2.000000   2.000000   0.131810
+              50%     18.240000   2.740000   2.000000   0.157604
+              75%     22.820000   3.710000   3.000000   0.186220
+              max     48.330000   9.000000   6.000000   0.291990
+       Yes    count   60.000000  60.000000  60.000000  60.000000
+              mean    22.284500   3.051167   2.500000   0.152771
+              std      9.911845   1.500120   0.892530   0.090588
+              min      7.250000   1.000000   1.000000   0.035638
+              25%     15.272500   2.000000   2.000000   0.101845
+              50%     20.390000   3.000000   2.000000   0.141015
+              75%     28.572500   3.820000   3.000000   0.191697
+              max     50.810000  10.000000   5.000000   0.710345
+</code></pre><h4 id="禁止分组键"><a href="#禁止分组键" class="headerlink" title="禁止分组键"></a>禁止分组键</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips.groupby(<span class="string">'smoker'</span>, group_keys=<span class="keyword">True</span>).apply(top)</div></pre></td></tr></table></figure><pre><code>            total_bill   tip     sex smoker   day    time  size_   tip_pct
+smoker                                                                    
+No     88        24.71  5.85    Male     No  Thur   Lunch      2  0.236746
+       185       20.69  5.00    Male     No   Sun  Dinner      5  0.241663
+       51        10.29  2.60  Female     No   Sun  Dinner      2  0.252672
+       149        7.51  2.00    Male     No  Thur   Lunch      2  0.266312
+       232       11.61  3.39    Male     No   Sat  Dinner      2  0.291990
+Yes    109       14.31  4.00  Female    Yes   Sat  Dinner      2  0.279525
+       183       23.17  6.50    Male    Yes   Sun  Dinner      4  0.280535
+       67         3.07  1.00  Female    Yes   Sat  Dinner      1  0.325733
+       178        9.60  4.00  Female    Yes   Sun  Dinner      2  0.416667
+       172        7.25  5.15    Male    Yes   Sun  Dinner      2  0.710345
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips.groupby(<span class="string">'smoker'</span>, group_keys=<span class="keyword">False</span>).apply(top)</div></pre></td></tr></table></figure><pre><code>     total_bill   tip     sex smoker   day    time  size_   tip_pct
+88        24.71  5.85    Male     No  Thur   Lunch      2  0.236746
+185       20.69  5.00    Male     No   Sun  Dinner      5  0.241663
+51        10.29  2.60  Female     No   Sun  Dinner      2  0.252672
+149        7.51  2.00    Male     No  Thur   Lunch      2  0.266312
+232       11.61  3.39    Male     No   Sat  Dinner      2  0.291990
+109       14.31  4.00  Female    Yes   Sat  Dinner      2  0.279525
+183       23.17  6.50    Male    Yes   Sun  Dinner      4  0.280535
+67         3.07  1.00  Female    Yes   Sat  Dinner      1  0.325733
+178        9.60  4.00  Female    Yes   Sun  Dinner      2  0.416667
+172        7.25  5.15    Male    Yes   Sun  Dinner      2  0.710345
+</code></pre><h3 id="分位数与桶分析"><a href="#分位数与桶分析" class="headerlink" title="分位数与桶分析"></a>分位数与桶分析</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">frame = DataFrame(&#123;<span class="string">'data1'</span>: np.random.randn(<span class="number">1000</span>),</div><div class="line">                   <span class="string">'data2'</span>: np.random.randn(<span class="number">1000</span>)&#125;)</div><div class="line">factor = pd.cut(frame.data1, <span class="number">4</span>)</div><div class="line">factor[:<span class="number">10</span>]</div></pre></td></tr></table></figure><pre><code>0     (-1.23, 0.489]
+1    (-2.956, -1.23]
+2     (-1.23, 0.489]
+3     (0.489, 2.208]
+4     (-1.23, 0.489]
+5     (0.489, 2.208]
+6     (-1.23, 0.489]
+7     (-1.23, 0.489]
+8     (0.489, 2.208]
+9     (0.489, 2.208]
+Name: data1, dtype: category
+Categories (4, object): [(-2.956, -1.23] &lt; (-1.23, 0.489] &lt; (0.489, 2.208] &lt; (2.208, 3.928]]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_stats</span><span class="params">(group)</span>:</span></div><div class="line">    <span class="keyword">return</span> &#123;<span class="string">'min'</span>: group.min(), <span class="string">'max'</span>: group.max(),</div><div class="line">            <span class="string">'count'</span>: group.count(), <span class="string">'mean'</span>: group.mean()&#125;</div><div class="line"></div><div class="line">grouped = frame.data2.groupby(factor)</div><div class="line">grouped.apply(get_stats).unstack()</div><div class="line"></div><div class="line"><span class="comment">#ADAPT the output is not sorted in the book while this is the case now (swap first two lines)</span></div></pre></td></tr></table></figure><pre><code>                 count       max      mean       min
+data1                                               
+(-2.956, -1.23]   95.0  1.670835 -0.039521 -3.399312
+(-1.23, 0.489]   598.0  3.260383 -0.002051 -2.989741
+(0.489, 2.208]   297.0  2.954439  0.081822 -3.745356
+(2.208, 3.928]    10.0  1.765640  0.024750 -1.929776
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Return quantile numbers</span></div><div class="line">grouping = pd.qcut(frame.data1, <span class="number">10</span>, labels=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">grouped = frame.data2.groupby(grouping)</div><div class="line">grouped.apply(get_stats).unstack()</div></pre></td></tr></table></figure><pre><code>       count       max      mean       min
+data1                                     
+0      100.0  1.670835 -0.049902 -3.399312
+1      100.0  2.628441  0.030989 -1.950098
+2      100.0  2.527939 -0.067179 -2.925113
+3      100.0  3.260383  0.065713 -2.315555
+4      100.0  2.074345 -0.111653 -2.047939
+5      100.0  2.184810  0.052130 -2.989741
+6      100.0  2.458842 -0.021489 -2.223506
+7      100.0  2.954439 -0.026459 -3.056990
+8      100.0  2.735527  0.103406 -3.745356
+9      100.0  2.377020  0.220122 -2.064111
+</code></pre><h3 id="Example-用特定分组的值填充缺失值"><a href="#Example-用特定分组的值填充缺失值" class="headerlink" title="Example: 用特定分组的值填充缺失值"></a>Example: 用特定分组的值填充缺失值</h3><p>填一些缺失值进去</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s = Series(np.random.randn(<span class="number">6</span>))</div><div class="line">s[::<span class="number">2</span>] = np.nan</div><div class="line">s</div></pre></td></tr></table></figure><pre><code>0         NaN
+1   -0.125921
+2         NaN
+3   -0.884475
+4         NaN
+5    0.227290
+dtype: float64
+</code></pre><p>用均值填充缺失值</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s.fillna(s.mean())</div></pre></td></tr></table></figure><pre><code>0   -0.261035
+1   -0.125921
+2   -0.261035
+3   -0.884475
+4   -0.261035
+5    0.227290
+dtype: float64
+</code></pre><p>同样，填一些缺失值</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">states = [<span class="string">'Ohio'</span>, <span class="string">'New York'</span>, <span class="string">'Vermont'</span>, <span class="string">'Florida'</span>,</div><div class="line">          <span class="string">'Oregon'</span>, <span class="string">'Nevada'</span>, <span class="string">'California'</span>, <span class="string">'Idaho'</span>]</div><div class="line">group_key = [<span class="string">'East'</span>] * <span class="number">4</span> + [<span class="string">'West'</span>] * <span class="number">4</span></div><div class="line">data = Series(np.random.randn(<span class="number">8</span>), index=states)</div><div class="line">data[[<span class="string">'Vermont'</span>, <span class="string">'Nevada'</span>, <span class="string">'Idaho'</span>]] = np.nan</div><div class="line">data</div></pre></td></tr></table></figure><pre><code>Ohio          0.922264
+New York     -2.153545
+Vermont            NaN
+Florida      -0.375842
+Oregon        0.329939
+Nevada             NaN
+California    1.105913
+Idaho              NaN
+dtype: float64
+</code></pre><p>计算分组均值</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data.groupby(group_key).mean()</div></pre></td></tr></table></figure><pre><code>East   -0.535707
+West    0.717926
+dtype: float64
+</code></pre><p>这里的<code>g</code>指代调用<code>apply</code>的主体，也就是<code>data.groupby(group_key)</code>分组后的结果</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fill_mean = <span class="keyword">lambda</span> g: g.fillna(g.mean())</div><div class="line">data.groupby(group_key).apply(fill_mean)</div></pre></td></tr></table></figure><pre><code>Ohio          0.922264
+New York     -2.153545
+Vermont      -0.535707
+Florida      -0.375842
+Oregon        0.329939
+Nevada        0.717926
+California    1.105913
+Idaho         0.717926
+dtype: float64
+</code></pre><p>由于<code>groupby</code>操作后得到的结果类似于一个字典，字典<code>key</code>是组名，<code>value</code>是一个<code>DataFrame Object</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fill_values = &#123;<span class="string">'East'</span>: <span class="number">0.5</span>, <span class="string">'West'</span>: <span class="number">-1</span>&#125;</div><div class="line">fill_func = <span class="keyword">lambda</span> g: g.fillna(fill_values[g.name])</div><div class="line"></div><div class="line">data.groupby(group_key).apply(fill_func)</div></pre></td></tr></table></figure><pre><code>Ohio          0.922264
+New York     -2.153545
+Vermont       0.500000
+Florida      -0.375842
+Oregon        0.329939
+Nevada       -1.000000
+California    1.105913
+Idaho        -1.000000
+dtype: float64
+</code></pre><h3 id="Example-随机采样和排列"><a href="#Example-随机采样和排列" class="headerlink" title="Example: 随机采样和排列"></a>Example: 随机采样和排列</h3><p>构造扑克牌</p><p>红桃<code>Hearts</code>, 黑桃<code>Spades</code>, 梅花<code>Clubs</code>, 方片<code>Diamonds</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Hearts, Spades, Clubs, Diamonds</span></div><div class="line">suits = [<span class="string">'H'</span>, <span class="string">'S'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>]</div><div class="line">card_val = (list(range(<span class="number">1</span>, <span class="number">11</span>)) + [<span class="number">10</span>] * <span class="number">3</span>) * <span class="number">4</span></div><div class="line">base_names = [<span class="string">'A'</span>] + range(<span class="number">2</span>, <span class="number">11</span>) + [<span class="string">'J'</span>, <span class="string">'K'</span>, <span class="string">'Q'</span>]</div><div class="line">cards = []</div><div class="line"><span class="keyword">for</span> suit <span class="keyword">in</span> [<span class="string">'H'</span>, <span class="string">'S'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>]:</div><div class="line">    cards.extend(str(num) + suit <span class="keyword">for</span> num <span class="keyword">in</span> base_names)</div><div class="line"></div><div class="line">deck = Series(card_val, index=cards)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deck[:<span class="number">13</span>]</div></pre></td></tr></table></figure><pre><code>AH      1
+2H      2
+3H      3
+4H      4
+5H      5
+6H      6
+7H      7
+8H      8
+9H      9
+10H    10
+JH     10
+KH     10
+QH     10
+dtype: int64
+</code></pre><p>随机抽牌</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw</span><span class="params">(deck, n=<span class="number">5</span>)</span>:</span></div><div class="line">    <span class="keyword">return</span> deck.take(np.random.permutation(len(deck))[:n])</div><div class="line">draw(deck)</div></pre></td></tr></table></figure><pre><code>AD     1
+8C     8
+5H     5
+KC    10
+2C     2
+dtype: int64
+</code></pre><p>分类抽牌</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">get_suit = <span class="keyword">lambda</span> card: card[<span class="number">-1</span>] <span class="comment"># last letter is suit</span></div><div class="line">deck.groupby(get_suit).apply(draw, n=<span class="number">2</span>)</div></pre></td></tr></table></figure><pre><code>C  2C     2
+   3C     3
+D  KD    10
+   8D     8
+H  KH    10
+   3H     3
+S  2S     2
+   4S     4
+dtype: int64
+</code></pre><p>去掉分组键</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># alternatively</span></div><div class="line">deck.groupby(get_suit, group_keys=<span class="keyword">False</span>).apply(draw, n=<span class="number">2</span>)</div></pre></td></tr></table></figure><pre><code>KC    10
+JC    10
+AD     1
+5D     5
+5H     5
+6H     6
+7S     7
+KS    10
+dtype: int64
+</code></pre><h3 id="Example-分组加权平均数和相关系数"><a href="#Example-分组加权平均数和相关系数" class="headerlink" title="Example: 分组加权平均数和相关系数"></a>Example: 分组加权平均数和相关系数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">df = DataFrame(&#123;<span class="string">'category'</span>: [<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>],</div><div class="line">                <span class="string">'data'</span>: np.random.randn(<span class="number">8</span>),</div><div class="line">                <span class="string">'weights'</span>: np.random.rand(<span class="number">8</span>)&#125;)</div><div class="line">df</div></pre></td></tr></table></figure><pre><code>  category      data   weights
+0        a  1.561587  0.957515
+1        a  1.219984  0.347267
+2        a -0.482239  0.581362
+3        a  0.315667  0.217091
+4        b -0.047852  0.894406
+5        b -0.454145  0.918564
+6        b -0.556774  0.277825
+7        b  0.253321  0.955905
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">grouped = df.groupby(<span class="string">'category'</span>)</div><div class="line">get_wavg = <span class="keyword">lambda</span> g: np.average(g[<span class="string">'data'</span>], weights=g[<span class="string">'weights'</span>])</div><div class="line">grouped.apply(get_wavg)</div></pre></td></tr></table></figure><pre><code>category
+a    0.811643
+b   -0.122262
+dtype: float64
+</code></pre><p><code>stock</code>数据集</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">close_px = pd.read_csv(<span class="string">'ch09/stock_px.csv'</span>, parse_dates=<span class="keyword">True</span>, index_col=<span class="number">0</span>)</div><div class="line">close_px.info()</div></pre></td></tr></table></figure><pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+DatetimeIndex: 2214 entries, 2003-01-02 to 2011-10-14
+Data columns (total 4 columns):
+AAPL    2214 non-null float64
+MSFT    2214 non-null float64
+XOM     2214 non-null float64
+SPX     2214 non-null float64
+dtypes: float64(4)
+memory usage: 86.5 KB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">close_px[<span class="number">-4</span>:]</div></pre></td></tr></table></figure><pre><code>              AAPL   MSFT    XOM      SPX
+2011-10-11  400.29  27.00  76.27  1195.54
+2011-10-12  402.19  26.96  77.16  1207.25
+2011-10-13  408.43  27.18  76.37  1203.66
+2011-10-14  422.00  27.27  78.11  1224.58
+</code></pre><p>计算相关系数</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">rets = close_px.pct_change().dropna()</div><div class="line">spx_corr = <span class="keyword">lambda</span> x: x.corrwith(x[<span class="string">'SPX'</span>])</div><div class="line">by_year = rets.groupby(<span class="keyword">lambda</span> x: x.year)</div><div class="line">by_year.apply(spx_corr)</div></pre></td></tr></table></figure><pre><code>          AAPL      MSFT       XOM  SPX
+2003  0.541124  0.745174  0.661265  1.0
+2004  0.374283  0.588531  0.557742  1.0
+2005  0.467540  0.562374  0.631010  1.0
+2006  0.428267  0.406126  0.518514  1.0
+2007  0.508118  0.658770  0.786264  1.0
+2008  0.681434  0.804626  0.828303  1.0
+2009  0.707103  0.654902  0.797921  1.0
+2010  0.710105  0.730118  0.839057  1.0
+2011  0.691931  0.800996  0.859975  1.0
+</code></pre><p><code>lambda</code>看来有很大用处</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Annual correlation of Apple with Microsoft</span></div><div class="line">by_year.apply(<span class="keyword">lambda</span> g: g[<span class="string">'AAPL'</span>].corr(g[<span class="string">'MSFT'</span>]))</div></pre></td></tr></table></figure><pre><code>2003    0.480868
+2004    0.259024
+2005    0.300093
+2006    0.161735
+2007    0.417738
+2008    0.611901
+2009    0.432738
+2010    0.571946
+2011    0.581987
+dtype: float64
+</code></pre><h3 id="Example-分组级线型回归"><a href="#Example-分组级线型回归" class="headerlink" title="Example: 分组级线型回归"></a>Example: 分组级线型回归</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">regress</span><span class="params">(data, yvar, xvars)</span>:</span></div><div class="line">    Y = data[yvar]</div><div class="line">    X = data[xvars]</div><div class="line">    X[<span class="string">'intercept'</span>] = <span class="number">1.</span></div><div class="line">    result = sm.OLS(Y, X).fit()</div><div class="line">    <span class="keyword">return</span> result.params</div></pre></td></tr></table></figure><p>这样传参</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">by_year.apply(regress, <span class="string">'AAPL'</span>, [<span class="string">'SPX'</span>])</div></pre></td></tr></table></figure><pre><code>           SPX  intercept
+2003  1.195406   0.000710
+2004  1.363463   0.004201
+2005  1.766415   0.003246
+2006  1.645496   0.000080
+2007  1.198761   0.003438
+2008  0.968016  -0.001110
+2009  0.879103   0.002954
+2010  1.052608   0.001261
+2011  0.806605   0.001514
+</code></pre><h2 id="透视表和交叉表"><a href="#透视表和交叉表" class="headerlink" title="透视表和交叉表"></a>透视表和交叉表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips[:<span class="number">10</span>]</div></pre></td></tr></table></figure><pre><code>   total_bill   tip     sex smoker  day    time  size_   tip_pct
+0       16.99  1.01  Female     No  Sun  Dinner      2  0.059447
+1       10.34  1.66    Male     No  Sun  Dinner      3  0.160542
+2       21.01  3.50    Male     No  Sun  Dinner      3  0.166587
+3       23.68  3.31    Male     No  Sun  Dinner      2  0.139780
+4       24.59  3.61  Female     No  Sun  Dinner      4  0.146808
+5       25.29  4.71    Male     No  Sun  Dinner      4  0.186240
+6        8.77  2.00    Male     No  Sun  Dinner      2  0.228050
+7       26.88  3.12    Male     No  Sun  Dinner      4  0.116071
+8       15.04  1.96    Male     No  Sun  Dinner      2  0.130319
+9       14.78  3.23    Male     No  Sun  Dinner      2  0.218539
+</code></pre><p><code>pivot_table</code>默认情况相当于分组后进行<code>mean()</code>操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tips.pivot_table(index=[<span class="string">'sex'</span>, <span class="string">'smoker'</span>])</div></pre></td></tr></table></figure><pre><code>                  size_       tip   tip_pct  total_bill
+sex    smoker                                          
+Female No      2.592593  2.773519  0.156921   18.105185
+       Yes     2.242424  2.931515  0.182150   17.977879
+Male   No      2.711340  3.113402  0.160669   19.791237
+       Yes     2.500000  3.051167  0.152771   22.284500
+</code></pre><p>指定分组度量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tips.pivot_table([<span class="string">'tip_pct'</span>, <span class="string">'size_'</span>], index=[<span class="string">'sex'</span>, <span class="string">'day'</span>],</div><div class="line">                 columns=<span class="string">'smoker'</span>)</div></pre></td></tr></table></figure><pre><code>              tip_pct               size_          
+smoker             No       Yes        No       Yes
+sex    day                                         
+Female Fri   0.165296  0.209129  2.500000  2.000000
+       Sat   0.147993  0.163817  2.307692  2.200000
+       Sun   0.165710  0.237075  3.071429  2.500000
+       Thur  0.155971  0.163073  2.480000  2.428571
+Male   Fri   0.138005  0.144730  2.000000  2.125000
+       Sat   0.162132  0.139067  2.656250  2.629630
+       Sun   0.158291  0.173964  2.883721  2.600000
+       Thur  0.165706  0.164417  2.500000  2.300000
+</code></pre><p>增加ALL列</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tips.pivot_table([<span class="string">'tip_pct'</span>, <span class="string">'size_'</span>], index=[<span class="string">'sex'</span>, <span class="string">'day'</span>],</div><div class="line">                 columns=<span class="string">'smoker'</span>, margins=<span class="keyword">True</span>)</div></pre></td></tr></table></figure><pre><code>              tip_pct                         size_                    
+smoker             No       Yes       All        No       Yes       All
+sex    day                                                             
+Female Fri   0.165296  0.209129  0.199388  2.500000  2.000000  2.111111
+       Sat   0.147993  0.163817  0.156470  2.307692  2.200000  2.250000
+       Sun   0.165710  0.237075  0.181569  3.071429  2.500000  2.944444
+       Thur  0.155971  0.163073  0.157525  2.480000  2.428571  2.468750
+Male   Fri   0.138005  0.144730  0.143385  2.000000  2.125000  2.100000
+       Sat   0.162132  0.139067  0.151577  2.656250  2.629630  2.644068
+       Sun   0.158291  0.173964  0.162344  2.883721  2.600000  2.810345
+       Thur  0.165706  0.164417  0.165276  2.500000  2.300000  2.433333
+All          0.159328  0.163196  0.160803  2.668874  2.408602  2.569672
+</code></pre><p>更换一个分组度量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tips.pivot_table(<span class="string">'tip_pct'</span>, index=[<span class="string">'sex'</span>, <span class="string">'smoker'</span>], columns=<span class="string">'day'</span>,</div><div class="line">                 aggfunc=len, margins=<span class="keyword">True</span>)</div></pre></td></tr></table></figure><pre><code>day             Fri   Sat   Sun  Thur    All
+sex    smoker                               
+Female No       2.0  13.0  14.0  25.0   54.0
+       Yes      7.0  15.0   4.0   7.0   33.0
+Male   No       2.0  32.0  43.0  20.0   97.0
+       Yes      8.0  27.0  15.0  10.0   60.0
+All            19.0  87.0  76.0  62.0  244.0
+</code></pre><p>分组计数并填充（可能存在空组合）</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tips.pivot_table(<span class="string">'size_'</span>, index=[<span class="string">'time'</span>, <span class="string">'sex'</span>, <span class="string">'smoker'</span>],</div><div class="line">                 columns=<span class="string">'day'</span>, aggfunc=<span class="string">'sum'</span>, fill_value=<span class="number">0</span>)</div></pre></td></tr></table></figure><pre><code>day                   Fri  Sat  Sun  Thur
+time   sex    smoker                     
+Dinner Female No        2   30   43     2
+              Yes       8   33   10     0
+       Male   No        4   85  124     0
+              Yes      12   71   39     0
+Lunch  Female No        3    0    0    60
+              Yes       6    0    0    17
+       Male   No        0    0    0    50
+              Yes       5    0    0    23
+</code></pre><h3 id="交叉表-crosstab"><a href="#交叉表-crosstab" class="headerlink" title="交叉表: crosstab"></a>交叉表: crosstab</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> StringIO <span class="keyword">import</span> StringIO</div><div class="line">data = <span class="string">"""\</span></div><div class="line">Sample    Gender    Handedness</div><div class="line">1    Female    Right-handed</div><div class="line">2    Male    Left-handed</div><div class="line">3    Female    Right-handed</div><div class="line">4    Male    Right-handed</div><div class="line">5    Male    Left-handed</div><div class="line">6    Male    Right-handed</div><div class="line">7    Female    Right-handed</div><div class="line">8    Female    Left-handed</div><div class="line">9    Male    Right-handed</div><div class="line">10    Female    Right-handed"""</div><div class="line">data = pd.read_table(StringIO(data), sep=<span class="string">'\s+'</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data</div></pre></td></tr></table></figure><pre><code>   Sample  Gender    Handedness
+0       1  Female  Right-handed
+1       2    Male   Left-handed
+2       3  Female  Right-handed
+3       4    Male  Right-handed
+4       5    Male   Left-handed
+5       6    Male  Right-handed
+6       7  Female  Right-handed
+7       8  Female   Left-handed
+8       9    Male  Right-handed
+9      10  Female  Right-handed
+</code></pre><p>交叉表就是在…计数…</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.crosstab(data.Gender, data.Handedness, margins=<span class="keyword">True</span>)</div></pre></td></tr></table></figure><pre><code>Handedness  Left-handed  Right-handed  All
+Gender                                    
+Female                1             4    5
+Male                  2             3    5
+All                   3             7   10
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.crosstab([tips.time, tips.day], tips.smoker, margins=<span class="keyword">True</span>)</div></pre></td></tr></table></figure><pre><code>smoker        No  Yes  All
+time   day                
+Dinner Fri     3    9   12
+       Sat    45   42   87
+       Sun    57   19   76
+       Thur    1    0    1
+Lunch  Fri     1    6    7
+       Thur   44   17   61
+All          151   93  244
+</code></pre><h2 id="Example-2012-联邦选举委员会数据库"><a href="#Example-2012-联邦选举委员会数据库" class="headerlink" title="Example: 2012 联邦选举委员会数据库"></a>Example: 2012 联邦选举委员会数据库</h2><p>这个数据库包括赞助人的姓名，职业、雇主、地址以及出资额等信息</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec = pd.read_csv(<span class="string">'ch09/P00000001-ALL.csv'</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.info()</div></pre></td></tr></table></figure><pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+RangeIndex: 1001731 entries, 0 to 1001730
+Data columns (total 16 columns):
+cmte_id              1001731 non-null object
+cand_id              1001731 non-null object
+cand_nm              1001731 non-null object
+contbr_nm            1001731 non-null object
+contbr_city          1001712 non-null object
+contbr_st            1001727 non-null object
+contbr_zip           1001620 non-null object
+contbr_employer      988002 non-null object
+contbr_occupation    993301 non-null object
+contb_receipt_amt    1001731 non-null float64
+contb_receipt_dt     1001731 non-null object
+receipt_desc         14166 non-null object
+memo_cd              92482 non-null object
+memo_text            97770 non-null object
+form_tp              1001731 non-null object
+file_num             1001731 non-null int64
+dtypes: float64(1), int64(1), object(14)
+memory usage: 122.3+ MB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.ix[<span class="number">123456</span>]</div></pre></td></tr></table></figure><pre><code>cmte_id                             C00431445
+cand_id                             P80003338
+cand_nm                         Obama, Barack
+contbr_nm                         ELLMAN, IRA
+contbr_city                             TEMPE
+contbr_st                                  AZ
+contbr_zip                          852816719
+contbr_employer      ARIZONA STATE UNIVERSITY
+contbr_occupation                   PROFESSOR
+contb_receipt_amt                          50
+contb_receipt_dt                    01-DEC-11
+receipt_desc                              NaN
+memo_cd                                   NaN
+memo_text                                 NaN
+form_tp                                 SA17A
+file_num                               772372
+Name: 123456, dtype: object
+</code></pre><p>输出全部候选人名单</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">unique_cands = fec.cand_nm.unique()</div><div class="line">unique_cands</div></pre></td></tr></table></figure><pre><code>array([&apos;Bachmann, Michelle&apos;, &apos;Romney, Mitt&apos;, &apos;Obama, Barack&apos;,
+       &quot;Roemer, Charles E. &apos;Buddy&apos; III&quot;, &apos;Pawlenty, Timothy&apos;,
+       &apos;Johnson, Gary Earl&apos;, &apos;Paul, Ron&apos;, &apos;Santorum, Rick&apos;, &apos;Cain, Herman&apos;,
+       &apos;Gingrich, Newt&apos;, &apos;McCotter, Thaddeus G&apos;, &apos;Huntsman, Jon&apos;,
+       &apos;Perry, Rick&apos;], dtype=object)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unique_cands[<span class="number">2</span>]</div></pre></td></tr></table></figure><pre><code>&apos;Obama, Barack&apos;
+</code></pre><p>政党映射</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">parties = &#123;<span class="string">'Bachmann, Michelle'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Cain, Herman'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Gingrich, Newt'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Huntsman, Jon'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Johnson, Gary Earl'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'McCotter, Thaddeus G'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Obama, Barack'</span>: <span class="string">'Democrat'</span>,</div><div class="line">           <span class="string">'Paul, Ron'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Pawlenty, Timothy'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Perry, Rick'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">"Roemer, Charles E. 'Buddy' III"</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Romney, Mitt'</span>: <span class="string">'Republican'</span>,</div><div class="line">           <span class="string">'Santorum, Rick'</span>: <span class="string">'Republican'</span>&#125;</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.cand_nm[<span class="number">123456</span>:<span class="number">123461</span>]</div></pre></td></tr></table></figure><pre><code>123456    Obama, Barack
+123457    Obama, Barack
+123458    Obama, Barack
+123459    Obama, Barack
+123460    Obama, Barack
+Name: cand_nm, dtype: object
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.cand_nm[<span class="number">123456</span>:<span class="number">123461</span>].map(parties)</div></pre></td></tr></table></figure><pre><code>123456    Democrat
+123457    Democrat
+123458    Democrat
+123459    Democrat
+123460    Democrat
+Name: cand_nm, dtype: object
+</code></pre><p>根据以上创建的映射，在原数据集中添加一列<code>party</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Add it as a column</span></div><div class="line">fec[<span class="string">'party'</span>] = fec.cand_nm.map(parties)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec[<span class="string">'party'</span>].value_counts()</div></pre></td></tr></table></figure><pre><code>Democrat      593746
+Republican    407985
+Name: party, dtype: int64
+</code></pre><p>看看出资额是正是负</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(fec.contb_receipt_amt &gt; <span class="number">0</span>).value_counts()</div></pre></td></tr></table></figure><pre><code>True     991475
+False     10256
+Name: contb_receipt_amt, dtype: int64
+</code></pre><p>调整出资额为正</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec = fec[fec.contb_receipt_amt &gt; <span class="number">0</span>]</div></pre></td></tr></table></figure><p>筛选候选人</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec_mrbo = fec[fec.cand_nm.isin([<span class="string">'Obama, Barack'</span>, <span class="string">'Romney, Mitt'</span>])]</div></pre></td></tr></table></figure><h3 id="根据职业和雇主统计赞助信息"><a href="#根据职业和雇主统计赞助信息" class="headerlink" title="根据职业和雇主统计赞助信息"></a>根据职业和雇主统计赞助信息</h3><p>统计职业信息</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fec.contbr_occupation.value_counts()[:<span class="number">10</span>]</div></pre></td></tr></table></figure><pre><code>RETIRED                                   233990
+INFORMATION REQUESTED                      35107
+ATTORNEY                                   34286
+HOMEMAKER                                  29931
+PHYSICIAN                                  23432
+INFORMATION REQUESTED PER BEST EFFORTS     21138
+ENGINEER                                   14334
+TEACHER                                    13990
+CONSULTANT                                 13273
+PROFESSOR                                  12555
+Name: contbr_occupation, dtype: int64
+</code></pre><p>筛选出一些不符合规格的信息映射到正常信息</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">occ_mapping = &#123;</div><div class="line">   <span class="string">'INFORMATION REQUESTED PER BEST EFFORTS'</span> : <span class="string">'NOT PROVIDED'</span>,</div><div class="line">   <span class="string">'INFORMATION REQUESTED'</span> : <span class="string">'NOT PROVIDED'</span>,</div><div class="line">   <span class="string">'INFORMATION REQUESTED (BEST EFFORTS)'</span> : <span class="string">'NOT PROVIDED'</span>,</div><div class="line">   <span class="string">'C.E.O.'</span>: <span class="string">'CEO'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># If no mapping provided, return x</span></div><div class="line">f = <span class="keyword">lambda</span> x: occ_mapping.get(x, x)</div><div class="line">fec.contbr_occupation = fec.contbr_occupation.map(f)</div></pre></td></tr></table></figure><p>以上巧妙运用了get方法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">emp_mapping = &#123;</div><div class="line">   <span class="string">'INFORMATION REQUESTED PER BEST EFFORTS'</span> : <span class="string">'NOT PROVIDED'</span>,</div><div class="line">   <span class="string">'INFORMATION REQUESTED'</span> : <span class="string">'NOT PROVIDED'</span>,</div><div class="line">   <span class="string">'SELF'</span> : <span class="string">'SELF-EMPLOYED'</span>,</div><div class="line">   <span class="string">'SELF EMPLOYED'</span> : <span class="string">'SELF-EMPLOYED'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># If no mapping provided, return x</span></div><div class="line">f = <span class="keyword">lambda</span> x: emp_mapping.get(x, x)</div><div class="line">fec.contbr_employer = fec.contbr_employer.map(f)</div></pre></td></tr></table></figure><p>根据职业以及候选人政党分组，统计出资额总和</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">by_occupation = fec.pivot_table(<span class="string">'contb_receipt_amt'</span>,</div><div class="line">                                index=<span class="string">'contbr_occupation'</span>,</div><div class="line">                                columns=<span class="string">'party'</span>, aggfunc=<span class="string">'sum'</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">over_2mm = by_occupation[by_occupation.sum(<span class="number">1</span>) &gt; <span class="number">2000000</span>]</div><div class="line">over_2mm</div></pre></td></tr></table></figure><pre><code>party                 Democrat    Republican
+contbr_occupation                           
+ATTORNEY           11141982.97  7.477194e+06
+CEO                 2074974.79  4.211041e+06
+CONSULTANT          2459912.71  2.544725e+06
+ENGINEER             951525.55  1.818374e+06
+EXECUTIVE           1355161.05  4.138850e+06
+HOMEMAKER           4248875.80  1.363428e+07
+INVESTOR             884133.00  2.431769e+06
+LAWYER              3160478.87  3.912243e+05
+MANAGER              762883.22  1.444532e+06
+NOT PROVIDED        4866973.96  2.056547e+07
+OWNER               1001567.36  2.408287e+06
+PHYSICIAN           3735124.94  3.594320e+06
+PRESIDENT           1878509.95  4.720924e+06
+PROFESSOR           2165071.08  2.967027e+05
+REAL ESTATE          528902.09  1.625902e+06
+RETIRED            25305116.38  2.356124e+07
+SELF-EMPLOYED        672393.40  1.640253e+06
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">over_2mm.plot(kind=<span class="string">'barh'</span>)</div></pre></td></tr></table></figure><pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x340fb4e0&gt;
+</code></pre><p><img src="http://o7ie0tcjk.bkt.clouddn.com/pydata/ch09/output_202_1.png" alt="png"></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_top_amounts</span><span class="params">(group, key, n=<span class="number">5</span>)</span>:</span></div><div class="line">    totals = group.groupby(key)[<span class="string">'contb_receipt_amt'</span>].sum()</div><div class="line"></div><div class="line">    <span class="comment"># Order totals by key in descending order</span></div><div class="line">    <span class="keyword">return</span> totals.sort_values()[-n:]</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped = fec_mrbo.groupby(<span class="string">'cand_nm'</span>)</div><div class="line">grouped.apply(get_top_amounts, <span class="string">'contbr_occupation'</span>, n=<span class="number">7</span>)</div></pre></td></tr></table></figure><pre><code>cand_nm        contbr_occupation                     
+Obama, Barack  CONSULTANT                                 2459912.71
+               LAWYER                                     3160478.87
+               PHYSICIAN                                  3735124.94
+               HOMEMAKER                                  4248875.80
+               INFORMATION REQUESTED                      4866973.96
+               ATTORNEY                                  11141982.97
+               RETIRED                                   25305116.38
+Romney, Mitt   C.E.O.                                     1968386.11
+               EXECUTIVE                                  2300947.03
+               PRESIDENT                                  2491244.89
+               ATTORNEY                                   5364718.82
+               HOMEMAKER                                  8147446.22
+               INFORMATION REQUESTED PER BEST EFFORTS    11396894.84
+               RETIRED                                   11508473.59
+Name: contb_receipt_amt, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grouped.apply(get_top_amounts, <span class="string">'contbr_employer'</span>, n=<span class="number">10</span>)</div></pre></td></tr></table></figure><pre><code>cand_nm        contbr_employer                       
+Obama, Barack  MICROSOFT                                   215585.36
+               VOLUNTEER                                   257104.00
+               STUDENT                                     318831.45
+               SELF EMPLOYED                               469290.00
+               SELF                                       1076531.20
+               HOMEMAKER                                  2605408.54
+               INFORMATION REQUESTED                      5053480.37
+               NOT EMPLOYED                               8586308.70
+               SELF-EMPLOYED                             17080985.96
+               RETIRED                                   22694358.85
+Romney, Mitt   H.I.G. CAPITAL                              139500.00
+               BARCLAYS CAPITAL                            162750.00
+               GOLDMAN SACH &amp; CO.                          238250.00
+               MORGAN STANLEY                              267266.00
+               CREDIT SUISSE                               281150.00
+               STUDENT                                     496490.94
+               SELF-EMPLOYED                              7409860.98
+               HOMEMAKER                                  8147196.22
+               RETIRED                                   11506225.71
+               INFORMATION REQUESTED PER BEST EFFORTS    12059527.24
+Name: contb_receipt_amt, dtype: float64
+</code></pre><h3 id="根据出资额分组"><a href="#根据出资额分组" class="headerlink" title="根据出资额分组"></a>根据出资额分组</h3><p>不出意外果然要用到桶</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bins = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>, <span class="number">10000</span>, <span class="number">100000</span>, <span class="number">1000000</span>, <span class="number">10000000</span>])</div><div class="line">labels = pd.cut(fec_mrbo.contb_receipt_amt, bins)</div><div class="line">labels[:<span class="number">10</span>]</div></pre></td></tr></table></figure><pre><code>411      (10, 100]
+412    (100, 1000]
+413    (100, 1000]
+414      (10, 100]
+415      (10, 100]
+416      (10, 100]
+417    (100, 1000]
+418      (10, 100]
+419    (100, 1000]
+420      (10, 100]
+Name: contb_receipt_amt, dtype: category
+Categories (8, object): [(0, 1] &lt; (1, 10] &lt; (10, 100] &lt; (100, 1000] &lt; (1000, 10000] &lt; (10000, 100000] &lt; (100000, 1000000] &lt; (1000000, 10000000]]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">grouped = fec_mrbo.groupby([<span class="string">'cand_nm'</span>, labels])</div><div class="line">grouped.size().unstack(<span class="number">0</span>)</div></pre></td></tr></table></figure><pre><code>cand_nm              Obama, Barack  Romney, Mitt
+contb_receipt_amt                               
+(0, 1]                       493.0          77.0
+(1, 10]                    40070.0        3681.0
+(10, 100]                 372280.0       31853.0
+(100, 1000]               153991.0       43357.0
+(1000, 10000]              22284.0       26186.0
+(10000, 100000]                2.0           1.0
+(100000, 1000000]              3.0           NaN
+(1000000, 10000000]            4.0           NaN
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bucket_sums = grouped.contb_receipt_amt.sum().unstack(<span class="number">0</span>)</div><div class="line">bucket_sums</div></pre></td></tr></table></figure><pre><code>cand_nm              Obama, Barack  Romney, Mitt
+contb_receipt_amt                               
+(0, 1]                      318.24         77.00
+(1, 10]                  337267.62      29819.66
+(10, 100]              20288981.41    1987783.76
+(100, 1000]            54798531.46   22363381.69
+(1000, 10000]          51753705.67   63942145.42
+(10000, 100000]           59100.00      12700.00
+(100000, 1000000]       1490683.08           NaN
+(1000000, 10000000]     7148839.76           NaN
+</code></pre><p>计算比例</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">normed_sums = bucket_sums.div(bucket_sums.sum(axis=<span class="number">1</span>), axis=<span class="number">0</span>)</div><div class="line">normed_sums</div></pre></td></tr></table></figure><pre><code>cand_nm              Obama, Barack  Romney, Mitt
+contb_receipt_amt                               
+(0, 1]                    0.805182      0.194818
+(1, 10]                   0.918767      0.081233
+(10, 100]                 0.910769      0.089231
+(100, 1000]               0.710176      0.289824
+(1000, 10000]             0.447326      0.552674
+(10000, 100000]           0.823120      0.176880
+(100000, 1000000]         1.000000           NaN
+(1000000, 10000000]       1.000000           NaN
+</code></pre><p>画个图看看</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">normed_sums[:<span class="number">-2</span>].plot(kind=<span class="string">'barh'</span>, stacked=<span class="keyword">True</span>)</div></pre></td></tr></table></figure><pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x14c4db00&gt;
+</code></pre><p><img src="http://o7ie0tcjk.bkt.clouddn.com/pydata/ch09/output_214_1.png" alt="png"></p><h3 id="根据州统计赞助信息"><a href="#根据州统计赞助信息" class="headerlink" title="根据州统计赞助信息"></a>根据州统计赞助信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">grouped = fec_mrbo.groupby([<span class="string">'cand_nm'</span>, <span class="string">'contbr_st'</span>])</div><div class="line">totals = grouped.contb_receipt_amt.sum().unstack(<span class="number">0</span>).fillna(<span class="number">0</span>)</div><div class="line">totals = totals[totals.sum(<span class="number">1</span>) &gt; <span class="number">100000</span>]</div><div class="line">totals[:<span class="number">10</span>]</div></pre></td></tr></table></figure><pre><code>cand_nm    Obama, Barack  Romney, Mitt
+contbr_st                             
+AK             281840.15      86204.24
+AL             543123.48     527303.51
+AR             359247.28     105556.00
+AZ            1506476.98    1888436.23
+CA           23824984.24   11237636.60
+CO            2132429.49    1506714.12
+CT            2068291.26    3499475.45
+DC            4373538.80    1025137.50
+DE             336669.14      82712.00
+FL            7318178.58    8338458.81
+</code></pre><p><code>Mitt is so...poorly...</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">percent = totals.div(totals.sum(<span class="number">1</span>), axis=<span class="number">0</span>)</div><div class="line">percent[:<span class="number">10</span>]</div></pre></td></tr></table></figure><pre><code>cand_nm    Obama, Barack  Romney, Mitt
+contbr_st                             
+AK              0.765778      0.234222
+AL              0.507390      0.492610
+AR              0.772902      0.227098
+AZ              0.443745      0.556255
+CA              0.679498      0.320502
+CO              0.585970      0.414030
+CT              0.371476      0.628524
+DC              0.810113      0.189887
+DE              0.802776      0.197224
+FL              0.467417      0.532583
+</code></pre></div><div></div><div></div><footer class="post-footer"><div class="post-eof"></div></footer></article></section><nav class="pagination"><a class="extend prev" rel="prev" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/85/">85</a><a class="extend next" rel="next" href="/page/65/"><i class="fa fa-angle-right"></i></a></nav></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Ewan Li"><p class="site-author-name" itemprop="name">Ewan Li</p><p class="site-description motion-element" itemprop="description">Ewan's IT Blog</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">85</span> <span class="site-state-item-name">posts</span></a></div><div class="site-state-item site-state-tags"><a href="/tags"><span class="site-state-item-count">48</span> <span class="site-state-item-name">tags</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/ewanlee" target="_blank" title="Github"><i class="fa fa-fw fa-globe"></i> Github </a></span><span class="links-of-author-item"><a href="http://weibo.com/3946248928/profile?topnav=1&wvr=6" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i> Weibo</a></span></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2017</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Ewan Li</span></div><div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div><div class="theme-info">Theme - <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div><div class="busuanzi-count"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span> <span class="site-pv"><i class="fa fa-eye">本站总访问量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">_hcwp=window._hcwp||[],_hcwp.push({widget:"Bloggerstream",widget_id:89825,selector:".hc-comment-count",label:"{%COUNT%}"}),function(){if(!("HC_LOAD_INIT"in window)){HC_LOAD_INIT=!0;var t=(navigator.language||navigator.systemLanguage||navigator.userLanguage||"en").substr(0,2).toLowerCase(),e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src=("https:"==document.location.protocol?"https":"http")+"://w.hypercomments.com/widget/hc/89825/"+t+"/widget.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n.nextSibling)}}()</script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="popoverlay">').css("overflow","hidden"),$(".popup").toggle()}var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path,searchFunc=function(e,t,a){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),c=document.getElementById(t),n=document.getElementById(a);c.addEventListener("input",function(){var e=0,t='<ul class="search-result-list">',a=this.value.trim().toLowerCase().split(/[\s\-]+/);n.innerHTML="",this.value.trim().length>1&&r.forEach(function(r){var c=!1,n=r.title.trim().toLowerCase(),s=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),o=decodeURIComponent(r.url),i=-1,l=-1,p=-1;if(""!=n&&a.forEach(function(e,t){i=n.indexOf(e),l=s.indexOf(e),(i>=0||l>=0)&&(c=!0,0==t&&(p=l))}),c){e+=1,t+="<li><a href='"+o+"' class='search-result-title'>"+n+"</a>";var h=r.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var u=p-20,d=p+80;u<0&&(u=0),0==u&&(d=50),d>h.length&&(d=h.length);var f=h.substring(u,d);a.forEach(function(e){var t=new RegExp(e,"gi");f=f.replace(t,'<b class="search-keyword">'+e+"</b>")}),t+='<p class="search-result">'+f+"...</p>"}t+="</li>"}}),t+="</ul>",0==e&&(t='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==a&&(t='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),n.innerHTML=t}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".popoverlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
         tex2jax: {
           inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
           processEscapes: true,

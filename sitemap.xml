@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/24/PyTorch-Totorial-fork-from-official-website/</loc>
+    
+    <lastmod>2017-07-25T02:09:05.948Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/24/Machine-Learning-Models-Implemented-By-Tensorflow/</loc>
     
     <lastmod>2017-07-24T09:55:57.021Z</lastmod>

@@ -121,9 +121,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -143,11 +143,11 @@
     </summary>
     
     
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -189,11 +189,11 @@
     </summary>
     
     
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -217,11 +217,11 @@
     </summary>
     
     
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -243,9 +243,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -265,9 +265,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -287,9 +287,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="TD" scheme="http://yoursite.com/tags/TD/"/>
     
@@ -311,9 +311,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="TD" scheme="http://yoursite.com/tags/TD/"/>
     
@@ -324,9 +324,9 @@
     <link href="http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/"/>
     <id>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</id>
     <published>2017-06-30T13:07:44.000Z</published>
-    <updated>2017-07-12T04:54:24.816Z</updated>
+    <updated>2017-07-28T05:16:35.403Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h1><ul><li>Sutton’s book has new <a href="https://github.com/ewanlee/RL-Resources/blob/master/book/bookdraft2017june.pdf" target="_blank" rel="external">update</a> (draft, version 2017) !</li><li><a href="https://github.com/ewanlee/RL-Resources/blob/master/book/RLAlgsInMDPs.pdf" target="_blank" rel="external">Algorithms for Reinforcement Learning (Morgan)</a></li></ul><h1 id="Papers"><a href="#Papers" class="headerlink" title="Papers"></a>Papers</h1><ul><li><a href="https://arxiv.org/pdf/1509.06461.pdf" target="_blank" rel="external">Deep Reinforcement Learning with Double Q-learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Deep-Reinforcement-Learning-with-Double-Q-learning" target="_blank" rel="external">Summary</a></li><li><a href="https://ewanlee.github.io/2017/07/09/Using-Tensorflow-and-Deep-Q-Network-Double-DQN-to-Play-Breakout/" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://arxiv.org/abs/1511.05952" target="_blank" rel="external">Prioritized Experience Replay</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Prioritized-Experience-Replay" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">Dueling Network Architectures for Deep Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li></ul></li></ul><h1 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Using-Keras-and-Deep-Q-Network-to-Play-FlappyBird-Repost/" target="_blank" rel="external">Using Keras and Deep Q-Network to Play FlappyBird</a></li></ul><h1 id="Blogs"><a href="#Blogs" class="headerlink" title="Blogs"></a>Blogs</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Demystifying-Deep-Reinforcement-Learning/" target="_blank" rel="external">Demystifying Deep Reinforcement Learning</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h1><ul><li>Sutton’s book has new <a href="https://github.com/ewanlee/RL-Resources/blob/master/book/bookdraft2017june.pdf" target="_blank" rel="external">update</a> (draft, version 2017) !</li><li><a href="https://github.com/ewanlee/RL-Resources/blob/master/book/RLAlgsInMDPs.pdf" target="_blank" rel="external">Algorithms for Reinforcement Learning (Morgan)</a></li></ul><h1 id="Papers"><a href="#Papers" class="headerlink" title="Papers"></a>Papers</h1><ul><li><a href="https://arxiv.org/pdf/1509.06461.pdf" target="_blank" rel="external">Deep Reinforcement Learning with Double Q-learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Deep-Reinforcement-Learning-with-Double-Q-learning" target="_blank" rel="external">Summary</a></li><li><a href="https://ewanlee.github.io/2017/07/09/Using-Tensorflow-and-Deep-Q-Network-Double-DQN-to-Play-Breakout/" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://arxiv.org/abs/1511.05952" target="_blank" rel="external">Prioritized Experience Replay</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Prioritized-Experience-Replay" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">Dueling Network Architectures for Deep Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li><li><a href="https://github.com/rlcode/reinforcement-learning/blob/master/3-atari/1-breakout/breakout_dueling_ddqn.py" target="_blank" rel="external">Project</a></li></ul></li></ul><h1 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Using-Keras-and-Deep-Q-Network-to-Play-FlappyBird-Repost/" target="_blank" rel="external">Using Keras and Deep Q-Network to Play FlappyBird</a></li></ul><h1 id="Blogs"><a href="#Blogs" class="headerlink" title="Blogs"></a>Blogs</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Demystifying-Deep-Reinforcement-Learning/" target="_blank" rel="external">Demystifying Deep Reinforcement Learning</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -335,9 +335,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -357,9 +357,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -407,9 +407,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
@@ -429,9 +429,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -451,9 +451,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -473,9 +473,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   

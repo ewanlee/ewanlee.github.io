@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
+    
+    <lastmod>2017-07-28T05:16:35.403Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/24/PyTorch-Totorial-fork-from-official-website/</loc>
     
     <lastmod>2017-07-25T02:09:05.948Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/2017/07/18/WGAN-GP/</loc>
     
     <lastmod>2017-07-18T13:49:35.700Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
-    
-    <lastmod>2017-07-12T04:54:24.816Z</lastmod>
     
   </url>
   

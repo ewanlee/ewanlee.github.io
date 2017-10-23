@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/10/23/Union-Find/</loc>
+    
+    <lastmod>2017-10-23T05:41:42.451Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
     
-    <lastmod>2017-07-31T13:10:05.378Z</lastmod>
+    <lastmod>2017-07-31T13:12:08.239Z</lastmod>
     
   </url>
   

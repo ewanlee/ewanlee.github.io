@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
+    
+    <lastmod>2017-11-04T07:53:17.878Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/Summary-of-the-papers/</loc>
+    
+    <lastmod>2017-11-04T07:53:15.593Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/10/30/Prioritized-Experience-Replay/</loc>
     
     <lastmod>2017-10-30T06:25:34.813Z</lastmod>
@@ -19,20 +33,6 @@
     <loc>http://yoursite.com/2017/10/26/Ubuntu-Server-16-04-Install-Gnome-and-remote-connect-from-Windows-VNCViewer/</loc>
     
     <lastmod>2017-10-30T06:04:58.307Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
-    
-    <lastmod>2017-07-31T13:12:08.239Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/08/Summary-of-the-papers/</loc>
-    
-    <lastmod>2017-07-31T05:11:35.911Z</lastmod>
     
   </url>
   

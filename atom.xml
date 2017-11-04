@@ -87,9 +87,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
@@ -129,9 +129,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="tensorflow" scheme="http://yoursite.com/tags/tensorflow/"/>
     
@@ -173,9 +173,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="GAN" scheme="http://yoursite.com/tags/GAN/"/>
     
@@ -199,9 +199,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -221,11 +221,11 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -238,7 +238,7 @@
     <published>2017-07-08T09:49:20.000Z</published>
     <updated>2017-07-31T05:11:35.911Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="Deep-Reinforcement-Learning-with-Double-Q-learning"><a href="#Deep-Reinforcement-Learning-with-Double-Q-learning" class="headerlink" title="Deep Reinforcement Learning with Double Q-learning"></a>Deep Reinforcement Learning with Double Q-learning</h3><p>The idea of Double Q-learning is to reduce overestimations by decomposing the max operation in the target into action selection and action evaluation. Although not fully decoupled, the target network in the DQN architecture provides a natural candidate for the second value function, without having introduce additional networks. We therefore propose to evaluate the greedy policy according to the online network, but using the target network to estimate its value. In reference to both Double Q-learning and DQN, we refer to the resulting algorithm as Double DQN. Its update is the same as for DQN, but replacing the target $Y_t^{DQN}$ with<br>$$<br>Y_t^{\text{DoubleDQN}} \equiv R_{t+1} + \gamma Q(S_{t+1}, {\arg \max}_a Q(S_{t+1},a; \boldsymbol{\theta}_t),\boldsymbol{\theta}_t^{\mathbf{-}}).<br>$$<br>In comparison to Double Q-learning<br>$$<br>Y_t^{\text{DoubleDQN}} \equiv R_{t+1} + \gamma Q(S_{t+1}, {\arg \max}_a Q(S_{t+1},a; \boldsymbol{\theta}_t),\boldsymbol{\theta}_t^{\boldsymbol{\prime}}),<br>$$<br>the weights of the second network $\boldsymbol{\theta_t^{\prime}}$ are replaced with the weights of the target network $\boldsymbol{\theta_t^{-}}$ for the evaluation of the current greedy policy. The update to the target stays unchanged from DQN, and remains a periodic copy of the online network.</p><hr><h3 id="Prioritized-Experience-Replay"><a href="#Prioritized-Experience-Replay" class="headerlink" title="Prioritized Experience Replay"></a>Prioritized Experience Replay</h3><p><img src="http://o7ie0tcjk.bkt.clouddn.com/rl/papersdouble-dqn-priori-exper-replay.png" alt="double-dqn-priori-exper-replay"></p><p>where $p_i &gt; 0$ is the priority of transition $i$. The exponent $\alpha$ determines how much prioritization is used, with $\alpha=0$ corresponding to the uniform case.</p><p>The first we consider is the direct, proportional prioritization where $p_i = |\delta_i| + \epsilon$, where $\delta_i$ is the TD-error of transition $i$ and $\epsilon$ is a small positive constant that prevent the edge-case of transitions not being revisited once their error is zero. The second variant is an indirect, rand-based prioritization where $p_i = \frac{1}{\text{rank}(i)}$, where $\text{rank}_i$ is the rank of transition $i$ when the replay memory is sorted according to $|\delta_i|$</p><hr><h3 id="Dueling-Network-Architectures-for-Deep-Reinforcement-Learning"><a href="#Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" class="headerlink" title="Dueling Network Architectures for Deep Reinforcement Learning"></a>Dueling Network Architectures for Deep Reinforcement Learning</h3><p><img src="http://o7ie0tcjk.bkt.clouddn.com/rl/papersduel-network-rl-arch.png" alt="duel-network-arch"></p><p>Let us consider the dueling network shown in above, where we make one stream of fully-connected layers output a scalar $V(s;\theta,\beta)$, and the other stream output an $\mathcal{A}$-dimensional vector $A(s, a; \theta, \alpha)$. Here, $\theta$ denotes the parameters of the convolutional layers, while $\alpha$ and $\beta$ are the parameters of the two streams of fully-connected layers. Using the definition of advantage, we might be tempted to construct the aggregating module as follows:<br>$$<br>Q(s,a;\theta,\alpha,\beta) = V(s;\theta,\beta) + A(s, a; \theta, \alpha),<br>$$<br>Note that this expression applies to all $(s, a)$ instances; that is, to express equation above in matrix form we need to replicate the scalar, $V(s;\theta,\beta)$, $|\mathcal{A}|$ times.</p><p>Equation above is unidentifiable in the sense that given $Q$ we cannot recover V and A uniquely. To see this, add a constant to $V(s;\theta,\beta)$ and subtract the same constant from $A(s, a; \theta, \alpha)$. This constant cancels out resulting in the same $Q$ value. This lack of identifiability is mirrored by poor practical performance when this equation is used directly.</p><p>To address this issue of identifiability, we can replace the equation above to this one:<br>$$<br>Q(s,a;\theta,\alpha,\beta) = V(s;\theta,\beta) + \Big( A(s, a; \theta, \alpha) - \frac{1}{|\mathcal{A}|} \sum_{a^{\prime}} A(s, a^{\prime}; \theta, \alpha) \Big).<br>$$</p><hr><h3 id="Learning-Tetris-Using-the-Noisy-Cross-Entropy-Method"><a href="#Learning-Tetris-Using-the-Noisy-Cross-Entropy-Method" class="headerlink" title="Learning Tetris Using the Noisy Cross-Entropy Method"></a>Learning Tetris Using the Noisy Cross-Entropy Method</h3><p>the paper works on solving Tetris with modified cross entropy method. original CE method in reinforcement learning usually results in early convergence.</p><h3 id="Cross-entropy-method-in-reinforcement-learning"><a href="#Cross-entropy-method-in-reinforcement-learning" class="headerlink" title="Cross entropy method in reinforcement learning"></a>Cross entropy method in reinforcement learning</h3><ul><li>first we start with a random uniform distribution <code>F_0</code></li><li>drawn from <code>F_0</code> and get N samples θ_0, θ_1, …</li><li>choose the top K samples that get the highest scores and use these selected sample(θ_0, θ_1, …) update distribution and get <code>F_1</code></li></ul><h4 id="keypoints"><a href="#keypoints" class="headerlink" title="keypoints"></a>keypoints</h4><ul><li>add noise to the cross-entropy method to prevent early converge</li><li>if we decrease the noise, which is only depend on time steps, the performance can even be better.</li><li>noise 👉 prevent early converge</li></ul><h4 id="note"><a href="#note" class="headerlink" title="note"></a>note</h4><ul><li>can view the noise apply to std as ensure enough exploration</li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="Deep-Reinforcement-Learning-with-Double-Q-learning"><a href="#Deep-Reinforcement-Learning-with-Double-Q-learning" class="headerlink" title="Deep Reinforcement Learning with Double Q-learning"></a>Deep Reinforcement Learning with Double Q-learning</h3><p>The idea of Double Q-learning is to reduce overestimations by decomposing the max operation in the target into action selection and action evaluation. Although not fully decoupled, the target network in the DQN architecture provides a natural candidate for the second value function, without having introduce additional networks. We therefore propose to evaluate the greedy policy according to the online network, but using the target network to estimate its value. In reference to both Double Q-learning and DQN, we refer to the resulting algorithm as Double DQN. Its update is the same as for DQN, but replacing the target $Y_t^{DQN}$ with<br>$$<br>Y_t^{\text{DoubleDQN}} \equiv R_{t+1} + \gamma Q(S_{t+1}, {\arg \max}_a Q(S_{t+1},a; \boldsymbol{\theta}_t),\boldsymbol{\theta}_t^{\mathbf{-}}).<br>$$<br>In comparison to Double Q-learning<br>$$<br>Y_t^{\text{DoubleDQN}} \equiv R_{t+1} + \gamma Q(S_{t+1}, {\arg \max}_a Q(S_{t+1},a; \boldsymbol{\theta}_t),\boldsymbol{\theta}_t^{\boldsymbol{\prime}}),<br>$$<br>the weights of the second network $\boldsymbol{\theta_t^{\prime}}$ are replaced with the weights of the target network $\boldsymbol{\theta_t^{-}}$ for the evaluation of the current greedy policy. The update to the target stays unchanged from DQN, and remains a periodic copy of the online network.</p><hr><h3 id="Prioritized-Experience-Replay"><a href="#Prioritized-Experience-Replay" class="headerlink" title="Prioritized Experience Replay"></a>Prioritized Experience Replay</h3><p><img src="http://o7ie0tcjk.bkt.clouddn.com/rl/papersdouble-dqn-priori-exper-replay.png" alt="double-dqn-priori-exper-replay"></p><p>where $p_i &gt; 0$ is the priority of transition $i$. The exponent $\alpha$ determines how much prioritization is used, with $\alpha=0$ corresponding to the uniform case.</p><p>The first we consider is the direct, proportional prioritization where $p_i = |\delta_i| + \epsilon$, where $\delta_i$ is the TD-error of transition $i$ and $\epsilon$ is a small positive constant that prevent the edge-case of transitions not being revisited once their error is zero. The second variant is an indirect, rand-based prioritization where $p_i = \frac{1}{\text{rank}(i)}$, where $\text{rank}_i$ is the rank of transition $i$ when the replay memory is sorted according to $|\delta_i|$</p><hr><h3 id="Dueling-Network-Architectures-for-Deep-Reinforcement-Learning"><a href="#Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" class="headerlink" title="Dueling Network Architectures for Deep Reinforcement Learning"></a>Dueling Network Architectures for Deep Reinforcement Learning</h3><p><img src="http://o7ie0tcjk.bkt.clouddn.com/rl/papersduel-network-rl-arch.png" alt="duel-network-arch"></p><p>Let us consider the dueling network shown in above, where we make one stream of fully-connected layers output a scalar $V(s;\theta,\beta)$, and the other stream output an $\mathcal{A}$-dimensional vector $A(s, a; \theta, \alpha)$. Here, $\theta$ denotes the parameters of the convolutional layers, while $\alpha$ and $\beta$ are the parameters of the two streams of fully-connected layers. Using the definition of advantage, we might be tempted to construct the aggregating module as follows:<br>$$<br>Q(s,a;\theta,\alpha,\beta) = V(s;\theta,\beta) + A(s, a; \theta, \alpha),<br>$$<br>Note that this expression applies to all $(s, a)$ instances; that is, to express equation above in matrix form we need to replicate the scalar, $V(s;\theta,\beta)$, $|\mathcal{A}|$ times.</p><p>Equation above is unidentifiable in the sense that given $Q$ we cannot recover V and A uniquely. To see this, add a constant to $V(s;\theta,\beta)$ and subtract the same constant from $A(s, a; \theta, \alpha)$. This constant cancels out resulting in the same $Q$ value. This lack of identifiability is mirrored by poor practical performance when this equation is used directly.</p><p>To address this issue of identifiability, we can replace the equation above to this one:<br>$$<br>Q(s,a;\theta,\alpha,\beta) = V(s;\theta,\beta) + \Big( A(s, a; \theta, \alpha) - \frac{1}{|\mathcal{A}|} \sum_{a^{\prime}} A(s, a^{\prime}; \theta, \alpha) \Big).<br>$$</p><hr><h3 id="Learning-Tetris-Using-the-Noisy-Cross-Entropy-Method"><a href="#Learning-Tetris-Using-the-Noisy-Cross-Entropy-Method" class="headerlink" title="Learning Tetris Using the Noisy Cross-Entropy Method"></a>Learning Tetris Using the Noisy Cross-Entropy Method</h3><p>the paper works on solving Tetris with modified cross entropy method. original CE method in reinforcement learning usually results in early convergence.</p><h4 id="Cross-entropy-method-in-reinforcement-learning"><a href="#Cross-entropy-method-in-reinforcement-learning" class="headerlink" title="Cross entropy method in reinforcement learning"></a>Cross entropy method in reinforcement learning</h4><ul><li>first we start with a random uniform distribution <code>F_0</code></li><li>drawn from <code>F_0</code> and get N samples θ_0, θ_1, …</li><li>choose the top K samples that get the highest scores and use these selected sample(θ_0, θ_1, …) update distribution and get <code>F_1</code></li></ul><h4 id="keypoints"><a href="#keypoints" class="headerlink" title="keypoints"></a>keypoints</h4><ul><li>add noise to the cross-entropy method to prevent early converge</li><li>if we decrease the noise, which is only depend on time steps, the performance can even be better.</li><li>noise 👉 prevent early converge</li></ul><h4 id="note"><a href="#note" class="headerlink" title="note"></a>note</h4><ul><li>can view the noise apply to std as ensure enough exploration</li></ul><hr><h3 id="Doubly-Robust-Off-policy-Value-Evaluation-for-Reinforcement-Learning"><a href="#Doubly-Robust-Off-policy-Value-Evaluation-for-Reinforcement-Learning" class="headerlink" title="Doubly Robust Off-policy Value Evaluation for Reinforcement Learning"></a>Doubly Robust Off-policy Value Evaluation for Reinforcement Learning</h3><p>We study the off-policy value evaluation problem, where one aims to estimate the value of a policy with data collected by another policy.</p><p>There are roughly two classes of approaches to off-policy value evaluation. The first is to fit an MDP model from data via regression, and evaluate the policy against the model; The second class of approaches are based on the idea of importance sampling (IS), which corrects the mismatch between the distributions induces by the target policy ang by the behavior policy.</p><h4 id="Importance-Sampling-Estimators"><a href="#Importance-Sampling-Estimators" class="headerlink" title="Importance Sampling Estimators"></a>Importance Sampling Estimators</h4><h5 id="The-basic-IS-Estimator"><a href="#The-basic-IS-Estimator" class="headerlink" title="The basic IS Estimator"></a>The basic IS Estimator</h5><p>The IS estimator provides an unbiased estimate of $\pi_1$’s value by averaging the following function of each trajectory $(s_1, a_1, r_1, \cdots, s_{H+1})$ in the data: define the per-step importance ratio as $\rho_t := \pi_1(a_t|s_t)/\pi_0(a_t|s_t)$, and the cumulative importance ratio $\rho_{1:t}:=\prod_{t^{\prime}=1}^{t}\rho_{t^{\prime}}$; the basic (trajectory-wise) IS estimator, and an improved step-wise version are given as follows:<br>$$<br>V_{\text{IS}} := \rho_{1:H} \cdot (\sum_{t=1}^{H} \gamma^{t-1} r_t),<br>$$</p><p>$$<br>V_{\text{step-IS}} := \sum_{t=1}^{H} \gamma^{t-1}\rho_{1:t}r_t.<br>$$</p><p>Given a dataset $D$, the IS estimator is simply the average estimate over the trajectories, namely $\frac{1}{|D|}\sum_{i=1}V_{\text{IS}}^{(i)}$, where $|D|$ is the number of trajectories in $D$ and $V_{\text{IS}}^{(i)}$ is IS applied to the $i$-th trajectory.</p><h5 id="The-weighted-importance-sampling-WIS"><a href="#The-weighted-importance-sampling-WIS" class="headerlink" title="The weighted importance sampling (WIS)"></a>The weighted importance sampling (WIS)</h5><p>Define $w_t = \sum_{i=1}^{|D|}\rho_{1:t}^{(i)}/|D|$ as the average cumulative importance ratio at horizon $t$ in a dataset $D$, then for each trajectory in $D$, the estimates given by trajectory-wise and step-wise WIS are respectively<br>$$<br>V_{\text{WIS}} = \frac{\rho_{1:H}}{w_{H}}(\sum_{t=1}^H\gamma^{t-1}r_t),<br>$$</p><p>$$<br>V_{\text{step-WIS}} = \sum_{t=1}^H\gamma^{t-1}\frac{\rho_{1:t}}{w_t}r_t.<br>$$</p><h5 id="The-doubly-robust-estimator-for-contextual-bandits"><a href="#The-doubly-robust-estimator-for-contextual-bandits" class="headerlink" title="The doubly robust estimator for contextual bandits"></a>The doubly robust estimator for contextual bandits</h5><p>$$<br>V_{\text{DR}} := \widehat{V}(s) + \rho(r - \widehat{R}(s, a)),<br>$$</p><p>where $\rho := \frac{\pi_1(a|s)}{\pi_0(a|s)}$ and $\widehat{V}(s) := \sum_a \pi_1(a|s)\widehat{R}(s, a)$. If $\widehat{R}(s, a)$ is a good estimator of $r$, the magnitude of $r - \widehat{R}(s, a)$ can be much smaller than of $r$. Consequently, the variance of $\rho(r - \widehat{R}(s, a))$ tends to be smaller than that of $\rho r$, implying that DR often has a lower variance that IS (Dud´ık et al., 2011).</p><h5 id="DR-Estimator-for-the-Sequential-Setting"><a href="#DR-Estimator-for-the-Sequential-Setting" class="headerlink" title="DR Estimator for the Sequential Setting"></a>DR Estimator for the Sequential Setting</h5><p>A key observation is that Eqn.(6) can be written in a recursive form. Define $V_{\text{step-IS}}^0 := 0$, and for $t=1, \cdots, H$,<br>$$<br>V_{\text{step-IS}}^{H+1-t} := \rho_t (r_t + \gamma V_{\text{step-IS}}^{H-t}).<br>$$<br>We can apply the bandit DR estimator at each horizon, and obtain the following unbiased estimator: define $V_{\text{DR}}^0 := 0$, and<br>$$<br>V_{\text{DR}}^{H+1-t} := \widehat{V}(s_t) + \rho_t (r_t + \gamma V_{\text{DR}}^{H-t} - \widehat{Q}(s_t, a_t)).<br>$$<br>The DR estimator of the policy value is then $V_{\text{DR}} := V_{\text{DR}}^H$.</p><p>One modification of DR that further reduces the variance in state transitions is:<br>$$<br>V_{\text{DR-v2}}^{H+1-t} := \widehat{V}(s_t) + \rho_t (r_t + \gamma V_{\text{DR-v2}}^{H-t} - \widehat{Q}(s_t, a_t) - \gamma \widehat{V}(s_{t+1})).<br>$$</p>]]></content>
     
     <summary type="html">
     
@@ -267,11 +267,11 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -295,11 +295,11 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -321,9 +321,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -343,9 +343,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -365,9 +365,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="TD" scheme="http://yoursite.com/tags/TD/"/>
     
@@ -389,9 +389,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="TD" scheme="http://yoursite.com/tags/TD/"/>
     
@@ -404,7 +404,7 @@
     <published>2017-06-30T13:07:44.000Z</published>
     <updated>2017-07-31T13:12:08.239Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h1><ul><li>Sutton’s book has new <a href="https://github.com/ewanlee/RL-Resources/blob/master/book/bookdraft2017june.pdf" target="_blank" rel="external">update</a> (draft, version 2017) !</li><li><a href="https://github.com/ewanlee/RL-Resources/blob/master/book/RLAlgsInMDPs.pdf" target="_blank" rel="external">Algorithms for Reinforcement Learning (Morgan)</a></li></ul><h1 id="Papers"><a href="#Papers" class="headerlink" title="Papers"></a>Papers</h1><ul><li><a href="https://arxiv.org/pdf/1509.06461.pdf" target="_blank" rel="external">Deep Reinforcement Learning with Double Q-learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Deep-Reinforcement-Learning-with-Double-Q-learning" target="_blank" rel="external">Summary</a></li><li><a href="https://ewanlee.github.io/2017/07/09/Using-Tensorflow-and-Deep-Q-Network-Double-DQN-to-Play-Breakout/" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://arxiv.org/abs/1511.05952" target="_blank" rel="external">Prioritized Experience Replay</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Prioritized-Experience-Replay" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">Dueling Network Architectures for Deep Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li><li><a href="https://github.com/rlcode/reinforcement-learning/blob/master/3-atari/1-breakout/breakout_dueling_ddqn.py" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://iew3.technion.ac.il/CE/files/papers/Learning%20Tetris%20Using%20the%20Noisy%20Cross-Entropy%20Method.pdf" target="_blank" rel="external">Learning Tetris Using the Noisy Cross-Entropy Method</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Learning-Tetris-Using-the-Noisy-Cross-Entropy-Method" target="_blank" rel="external">Summary</a></li><li><a href="https://gist.github.com/andrewliao11/d52125b52f76a4af73433e1cf8405a8f" target="_blank" rel="external">Project</a></li></ul></li></ul><h1 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Using-Keras-and-Deep-Q-Network-to-Play-FlappyBird-Repost/" target="_blank" rel="external">Using Keras and Deep Q-Network to Play FlappyBird</a></li></ul><h1 id="Blogs"><a href="#Blogs" class="headerlink" title="Blogs"></a>Blogs</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Demystifying-Deep-Reinforcement-Learning/" target="_blank" rel="external">Demystifying Deep Reinforcement Learning</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h1><ul><li>Sutton’s book has new <a href="https://github.com/ewanlee/RL-Resources/blob/master/book/bookdraft2017june.pdf" target="_blank" rel="external">update</a> (draft, version 2017) !</li><li><a href="https://github.com/ewanlee/RL-Resources/blob/master/book/RLAlgsInMDPs.pdf" target="_blank" rel="external">Algorithms for Reinforcement Learning (Morgan)</a></li></ul><h1 id="Papers"><a href="#Papers" class="headerlink" title="Papers"></a>Papers</h1><ul><li><a href="https://arxiv.org/pdf/1509.06461.pdf" target="_blank" rel="external">Deep Reinforcement Learning with Double Q-learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Deep-Reinforcement-Learning-with-Double-Q-learning" target="_blank" rel="external">Summary</a></li><li><a href="https://ewanlee.github.io/2017/07/09/Using-Tensorflow-and-Deep-Q-Network-Double-DQN-to-Play-Breakout/" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://arxiv.org/abs/1511.05952" target="_blank" rel="external">Prioritized Experience Replay</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Prioritized-Experience-Replay" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">Dueling Network Architectures for Deep Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li><li><a href="https://github.com/rlcode/reinforcement-learning/blob/master/3-atari/1-breakout/breakout_dueling_ddqn.py" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://iew3.technion.ac.il/CE/files/papers/Learning%20Tetris%20Using%20the%20Noisy%20Cross-Entropy%20Method.pdf" target="_blank" rel="external">Learning Tetris Using the Noisy Cross-Entropy Method</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Learning-Tetris-Using-the-Noisy-Cross-Entropy-Method" target="_blank" rel="external">Summary</a></li><li><a href="https://gist.github.com/andrewliao11/d52125b52f76a4af73433e1cf8405a8f" target="_blank" rel="external">Project</a></li></ul></li><li><a href="https://arxiv.org/abs/1511.03722" target="_blank" rel="external">Doubly Robust Off-policy Value Evaluation for Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Doubly-Robust-Off-policy-Value-Evaluation-for-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li></ul></li></ul><h1 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Using-Keras-and-Deep-Q-Network-to-Play-FlappyBird-Repost/" target="_blank" rel="external">Using Keras and Deep Q-Network to Play FlappyBird</a></li></ul><h1 id="Blogs"><a href="#Blogs" class="headerlink" title="Blogs"></a>Blogs</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Demystifying-Deep-Reinforcement-Learning/" target="_blank" rel="external">Demystifying Deep Reinforcement Learning</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -413,9 +413,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -435,9 +435,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   

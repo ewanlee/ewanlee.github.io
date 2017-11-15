@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/07/08/Summary-of-the-papers/</loc>
+    <loc>http://yoursite.com/2017/11/14/Word2Vec-The-Skip-Gram-Model/</loc>
     
-    <lastmod>2017-11-06T08:32:25.043Z</lastmod>
+    <lastmod>2017-11-14T13:41:00.309Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</loc>
     
-    <lastmod>2017-11-04T08:59:07.108Z</lastmod>
+    <lastmod>2017-11-06T11:23:47.494Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/Summary-of-the-papers/</loc>
+    
+    <lastmod>2017-11-06T11:23:44.797Z</lastmod>
     
   </url>
   

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-20T05:23:15.767Z</updated>
+  <updated>2017-11-21T01:10:23.025Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The Right Way to Oversample in Predictive Modeling</title>
+    <link href="http://yoursite.com/2017/11/21/The-Right-Way-to-Oversample-in-Predictive-Modeling/"/>
+    <id>http://yoursite.com/2017/11/21/The-Right-Way-to-Oversample-in-Predictive-Modeling/</id>
+    <published>2017-11-21T01:10:22.000Z</published>
+    <updated>2017-11-21T01:10:23.025Z</updated>
+    
+    <content type="html"><![CDATA[<p>The Source Blog: <a href="https://beckernick.github.io/oversampling-modeling/" target="_blank" rel="external">https://beckernick.github.io/oversampling-modeling/</a></p><p>Imbalanced datasets spring up everywhere. Amazon wants to classify fake reviews, banks want to predict fraudulent credit card charges, and, as of this November, Facebook researchers are probably wondering if they can predict which news articles are fake.</p><p>In each of these cases, only a small fraction of observations are actually positives. I’d guess that only 1 in 10,000 credit card charges are fraudulent, at most. Recently, oversampling the minority class observations has become a common approach to improve the quality of predictive modeling. By oversampling, models are sometimes better able to learn patterns that differentiate classes.</p><p>However, this post isn’t about how this can improve modeling. Instead, it’s about how the <strong>*timing*</strong> of oversampling can affect the generalization ability of a model. Since one of the primary goals of model validation is to estimate how it will perform on unseen data, oversampling correctly is critical.</p><h1 id="Preparing-the-Data"><a href="#Preparing-the-Data" class="headerlink" title="Preparing the Data"></a>Preparing the Data</h1><p>I’m going to try to predict whether someone will default on or a creditor will have to charge off a loan, using data from Lending Club. I’ll start by importing some modules and loading the data.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</div><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</div><div class="line"><span class="keyword">from</span> imblearn.over_sampling <span class="keyword">import</span> SMOTE</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">loans = pd.read_csv(<span class="string">'../lending-club-data.csv.zip'</span>)</div><div class="line">loans.iloc[<span class="number">0</span>]</div></pre></td></tr></table></figure><p>There’s a lot of cool person and loan-specific information in this dataset. The target variable is <code>bad_loans</code>, which is 1 if the loan was charged off or the lessee defaulted, and 0 otherwise. I know this dataset should be imbalanced (most loans are paid off), but how imbalanced is it?</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">loans.bad_loans.value_counts()</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>    <span class="number">99457</span></div><div class="line"><span class="number">1</span>    <span class="number">23150</span></div><div class="line">Name: bad_loans, dtype: int64</div></pre></td></tr></table></figure><p>Charge offs occurred or people defaulted on about 19% of loans, so there’s some imbalance in the data but it’s not terrible. I’ll remove a few observations with missing values for a payment-to-income ratio and then pick a handful of features to use in a random forest model.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">loans = loans[~loans.payment_inc_ratio.isnull()]</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">model_variables = [<span class="string">'grade'</span>, <span class="string">'home_ownership'</span>,<span class="string">'emp_length_num'</span>, <span class="string">'sub_grade'</span>,<span class="string">'short_emp'</span>, <span class="string">'dti'</span>, <span class="string">'term'</span>, <span class="string">'purpose'</span>, <span class="string">'int_rate'</span>, <span class="string">'last_delinq_none'</span>, <span class="string">'last_major_derog_none'</span>, <span class="string">'revol_util'</span>, <span class="string">'total_rec_late_fee'</span>, <span class="string">'payment_inc_ratio'</span>, <span class="string">'bad_loans'</span>]</div><div class="line"></div><div class="line">loans_data_relevent = loans[model_variables]</div></pre></td></tr></table></figure><p>Next, I need to one-hot encode the categorical features as binary variables to use them in sklearn’s random forest classifier.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">loans_relevant_enconded = pd.get_dummies(loans_data_relevent)</div></pre></td></tr></table></figure><h1 id="Creating-the-Training-and-Test-Sets"><a href="#Creating-the-Training-and-Test-Sets" class="headerlink" title="Creating the Training and Test Sets"></a>Creating the Training and Test Sets</h1><p>With the data prepared, I can create a training dataset and a test dataset. I’ll use the training dataset to build and validate the model, and treat the test dataset as the unseen new data I’d see if the model were in production.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">training_features, test_features, \</div><div class="line">training_target, test_target, = train_test_split(loans_relevant_enconded.drop([<span class="string">'bad_loans'</span>], axis=<span class="number">1</span>),                        loans_relevant_enconded[<span class="string">'bad_loans'</span>],</div><div class="line">			    test_size = <span class="number">.1</span>,</div><div class="line">			    random_state=<span class="number">12</span>)</div></pre></td></tr></table></figure><h1 id="The-Wrong-Way-to-Oversample"><a href="#The-Wrong-Way-to-Oversample" class="headerlink" title="The Wrong Way to Oversample"></a>The Wrong Way to Oversample</h1><p>With my training data created, I’ll upsample the bad loans using the <a href="https://www.jair.org/media/953/live-953-2037-jair.pdf" target="_blank" rel="external">SMOTE algorithm</a> (Synthetic Minority Oversampling Technique). At a high level, SMOTE creates synthetic observations of the minority class (bad loans) by:</p><ol><li>Finding the k-nearest-neighbors for minority class observations (finding similar observations)</li><li>Randomly choosing one of the k-nearest-neighbors and using it to create a similar, but randomly tweaked, new observation.</li></ol><p>After upsampling to a class ratio of 1.0, I should have a balanced dataset. There’s no need (and often it’s not smart) to balance the classes, but it magnifies the issue caused by incorrectly timed oversampling.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sm = SMOTE(random_state=<span class="number">12</span>, ratio = <span class="number">1.0</span>)</div><div class="line">x_res, y_res = sm.fit_sample(training_features, training_target)</div><div class="line"><span class="keyword">print</span> training_target.value_counts(), np.bincount(y_res)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>    <span class="number">89493</span></div><div class="line"><span class="number">1</span>    <span class="number">20849</span></div><div class="line">Name: bad_loans, dtype: int64 [<span class="number">89493</span> <span class="number">89493</span>]</div></pre></td></tr></table></figure><p>After upsampling, I’ll split the data into separate training and validation sets and build a random forest model to classify the bad loans.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x_train_res, x_val_res, y_train_res, y_val_res = train_test_split(x_res,</div><div class="line">                                                    y_res,</div><div class="line">                                                    test_size = <span class="number">.1</span>,</div><div class="line">                                                    random_state=<span class="number">12</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">clf_rf = RandomForestClassifier(n_estimators=<span class="number">25</span>, random_state=<span class="number">12</span>)</div><div class="line">clf_rf.fit(x_train_res, y_train_res)</div><div class="line">clf_rf.score(x_val_res, y_val_res)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">0.88468629532376108</span></div></pre></td></tr></table></figure><p>88% accuracy looks good, but I’m not just interested in accuracy. I also want to know how well I can specifically classify bad loans, since they’re more important. In statistics, this is called <a href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity" target="_blank" rel="external">recall</a>, and it’s the number of correctly predicted “positives” divided by the total number of “positives”.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">recall_score(y_val_res, clf_rf.predict(x_val_res))</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">0.81192097332291546</span></div></pre></td></tr></table></figure><p>81% recall. That means the model correctly identified 81% of the total bad loans. That’s pretty great. But is this actually representative of how the model will perform? To find out, I’ll calculate the accuracy and recall for the model on the test dataset I created initially.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> clf_rf.score(test_features, test_target)</div><div class="line"><span class="keyword">print</span> recall_score(test_target, clf_rf.predict(test_features))</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0.801973737868</span></div><div class="line"><span class="number">0.129943502825</span></div></pre></td></tr></table></figure><p>Only 80% accuracy and 13% recall on the test data. That’s a <strong>huge</strong> difference!</p><h1 id="What-Happened"><a href="#What-Happened" class="headerlink" title="What Happened?"></a>What Happened?</h1><p>By oversampling before splitting into training and validation datasets, I “bleed” information from the validation set into the training of the model.</p><p>To see how this works, think about the case of simple oversampling (where I just duplicate observations). If I upsample a dataset before splitting it into a train and validation set, I could end up with the same observation in both datasets. As a result, a complex enough model will be able to perfectly predict the value for those observations when predicting on the validation set, inflating the accuracy and recall.</p><p>When upsampling using SMOTE, I don’t create duplicate observations. However, because the SMOTE algorithm uses the nearest neighbors of observations to create synthetic data, it still bleeds information. If the nearest neighbors of minority class observations in the training set end up in the validation set, their information is partially captured by the synthetic data in the training set. Since I’m splitting the data randomly, we’d expect to have this happen. As a result, the model will be better able to predict validation set values than completely new data.</p><h1 id="The-Right-Way-to-Oversample"><a href="#The-Right-Way-to-Oversample" class="headerlink" title="The Right Way to Oversample"></a>The Right Way to Oversample</h1><p>Okay, so I’ve gone through the wrong way to oversample. Now I’ll go through the right way: oversampling on only the training data.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x_train, x_val, y_train, y_val = \</div><div class="line">			train_test_split(training_features, 											    training_target,</div><div class="line">						    test_size = <span class="number">.1</span>,</div><div class="line">                              random_state=<span class="number">12</span>)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sm = SMOTE(random_state=<span class="number">12</span>, ratio = <span class="number">1.0</span>)</div><div class="line">x_train_res, y_train_res = sm.fit_sample(x_train, y_train)</div></pre></td></tr></table></figure><p>By oversampling only on the training data, none of the information in the validation data is being used to create synthetic observations. So these results should be generalizable. Let’s see if that’s true.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">clf_rf = RandomForestClassifier(n_estimators=<span class="number">25</span>, random_state=<span class="number">12</span>)</div><div class="line">clf_rf.fit(x_train_res, y_train_res)</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'Validation Results'</span></div><div class="line"><span class="keyword">print</span> clf_rf.score(x_val, y_val)</div><div class="line"><span class="keyword">print</span> recall_score(y_val, clf_rf.predict(x_val))</div><div class="line"><span class="keyword">print</span> <span class="string">'\nTest Results'</span></div><div class="line"><span class="keyword">print</span> clf_rf.score(test_features, test_target)</div><div class="line"><span class="keyword">print</span> recall_score(test_target, clf_rf.predict(test_features))</div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Validation Results</div><div class="line"><span class="number">0.800362483009</span></div><div class="line"><span class="number">0.138195777351</span></div><div class="line"></div><div class="line">Test Results</div><div class="line"><span class="number">0.803278688525</span></div><div class="line"><span class="number">0.142546718818</span></div></pre></td></tr></table></figure><p>The validation results closely match the unseen test data results, which is exactly what I would want to see after putting a model into production.</p><h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Oversampling is a well-known way to potentially improve models trained on imbalanced data. But it’s important to remember that oversampling incorrectly can lead to thinking a model will generalize better than it actually does. Random forests are great because the model architecture reduces overfitting (see <a href="https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf" target="_blank" rel="external">Brieman 2001</a> for a proof), but poor sampling practices can still lead to false conclusions about the quality of a model.</p><p>When the model is in production, it’s predicting on unseen data. The main point of model validation is to estimate how the model will generalize to new data. If the decision to put a model into production is based on how it performs on a validation set, it’s critical that oversampling is done correctly.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The Source Blog: &lt;a href=&quot;https://beckernick.github.io/oversampling-modeling/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://beckernick.github.i
+    
+    </summary>
+    
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Note of the DenseNet (contains TensorFlow and PyTorch Implementation)</title>
@@ -31,9 +51,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
@@ -53,9 +73,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="natural language process" scheme="http://yoursite.com/tags/natural-language-process/"/>
     
@@ -133,9 +153,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
@@ -175,9 +195,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="tensorflow" scheme="http://yoursite.com/tags/tensorflow/"/>
     
@@ -219,9 +239,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="GAN" scheme="http://yoursite.com/tags/GAN/"/>
     
@@ -245,9 +265,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -267,11 +287,11 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -293,11 +313,11 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
@@ -317,11 +337,11 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -345,11 +365,11 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="deep reinforcement learning" scheme="http://yoursite.com/tags/deep-reinforcement-learning/"/>
     
@@ -371,9 +391,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -393,9 +413,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -415,9 +435,9 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="TD" scheme="http://yoursite.com/tags/TD/"/>
     
@@ -439,33 +459,11 @@
     </summary>
     
     
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
       <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="TD" scheme="http://yoursite.com/tags/TD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Machine Learning Resources</title>
-    <link href="http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/"/>
-    <id>http://yoursite.com/2017/06/30/Reinforcement-Learning-Resources/</id>
-    <published>2017-06-30T13:07:44.000Z</published>
-    <updated>2017-11-20T05:23:01.172Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h1><ul><li>Sutton’s book has new <a href="https://github.com/ewanlee/RL-Resources/blob/master/book/bookdraft2017june.pdf" target="_blank" rel="external">update</a> (draft, version 2017) !</li><li><a href="https://github.com/ewanlee/RL-Resources/blob/master/book/RLAlgsInMDPs.pdf" target="_blank" rel="external">Algorithms for Reinforcement Learning (Morgan)</a></li></ul><h1 id="Papers"><a href="#Papers" class="headerlink" title="Papers"></a>Papers</h1><h2 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h2><ul><li><a href="https://arxiv.org/pdf/1509.06461.pdf" target="_blank" rel="external">Deep Reinforcement Learning with Double Q-learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Deep-Reinforcement-Learning-with-Double-Q-learning" target="_blank" rel="external">Summary</a></li><li><a href="https://ewanlee.github.io/2017/07/09/Using-Tensorflow-and-Deep-Q-Network-Double-DQN-to-Play-Breakout/" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://arxiv.org/abs/1511.05952" target="_blank" rel="external">Prioritized Experience Replay</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Prioritized-Experience-Replay" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://arxiv.org/pdf/1511.06581.pdf" target="_blank" rel="external">Dueling Network Architectures for Deep Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li><li><a href="https://github.com/rlcode/reinforcement-learning/blob/master/3-atari/1-breakout/breakout_dueling_ddqn.py" target="_blank" rel="external">Project</a></li></ul></li><li><a href="http://iew3.technion.ac.il/CE/files/papers/Learning%20Tetris%20Using%20the%20Noisy%20Cross-Entropy%20Method.pdf" target="_blank" rel="external">Learning Tetris Using the Noisy Cross-Entropy Method</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Learning-Tetris-Using-the-Noisy-Cross-Entropy-Method" target="_blank" rel="external">Summary</a></li><li><a href="https://gist.github.com/andrewliao11/d52125b52f76a4af73433e1cf8405a8f" target="_blank" rel="external">Project</a></li></ul></li><li><a href="https://arxiv.org/abs/1511.03722" target="_blank" rel="external">Doubly Robust Off-policy Value Evaluation for Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Doubly-Robust-Off-policy-Value-Evaluation-for-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://arxiv.org/abs/1705.08422" target="_blank" rel="external">Continuous State-Space Models for Optimal Sepsis Treatment: a Deep Reinforcement Learning Approach</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Continuous-State-Space-Models-for-Optimal-Sepsis-Treatment-a-Deep-Reinforcement-Learning-Approach" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://arxiv.org/abs/1704.06300" target="_blank" rel="external">A Reinforcement Learning Approach to Weaning of Mechanical Ventilation in Intensive Care Units</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#A-Reinforcement-Learning-Approach-to-Weaning-of-Mechanical-Ventilation-in-Intensive-Care-Units" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://drive.google.com/file/d/0B_j5EZzjlxchV2l3TGJPdTljM1k/view" target="_blank" rel="external">Deep Reinforcement Learning, Decision Making and Control (ICML 2017 Tutorial)</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Deep-Reinforcement-Learning-Decision-Making-and-Control-ICML-2017-Tutorial" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="http://www.robots.ox.ac.uk/~mobile/Papers/DeepIRL_2015.pdf" target="_blank" rel="external">Maximum Entropy Deep Inverse Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Maximum-Entropy-Deep-Inverse-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="https://www.aaai.org/Papers/AAAI/2008/AAAI08-227.pdf" target="_blank" rel="external">Maximum Entropy Inverse Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Maximum-Entropy-Inverse-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li></ul></li><li><a href="http://ai.stanford.edu/~ang/papers/icml04-apprentice.pdf" target="_blank" rel="external">Apprenticeship Learning via Inverse Reinforcement Learning</a><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#Apprenticeship-Learning-via-Inverse-Reinforcement-Learning" target="_blank" rel="external">Summary</a></li></ul></li></ul><h2 id="Deep-Learning"><a href="#Deep-Learning" class="headerlink" title="Deep Learning"></a>Deep Learning</h2><ul><li><p><a href="https://arxiv.org/pdf/1711.05225.pdf" target="_blank" rel="external">CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning</a></p><ul><li><a href="https://ewanlee.github.io/2017/07/08/Summary-of-the-papers/#CheXNet-Radiologist-Level-Pneumonia-Detection-on-Chest-X-Rays-with-Deep-Learning" target="_blank" rel="external">Summary</a></li></ul><p>​</p></li></ul><h1 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Using-Keras-and-Deep-Q-Network-to-Play-FlappyBird-Repost/" target="_blank" rel="external">Using Keras and Deep Q-Network to Play FlappyBird</a></li></ul><h1 id="Blogs"><a href="#Blogs" class="headerlink" title="Blogs"></a>Blogs</h1><ul><li><a href="https://ewanlee.github.io/2017/07/07/Demystifying-Deep-Reinforcement-Learning/" target="_blank" rel="external">Demystifying Deep Reinforcement Learning</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Books&quot;&gt;&lt;a href=&quot;#Books&quot; class=&quot;headerlink&quot; title=&quot;Books&quot;&gt;&lt;/a&gt;Books&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;Sutton’s book has new &lt;a href=&quot;https://github.com/ewa
-    
-    </summary>
-    
-    
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
-      <category term="reinforcement learning" scheme="http://yoursite.com/tags/reinforcement-learning/"/>
     
   </entry>
   

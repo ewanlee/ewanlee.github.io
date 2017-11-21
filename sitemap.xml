@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/11/21/The-Right-Way-to-Oversample-in-Predictive-Modeling/</loc>
+    
+    <lastmod>2017-11-21T01:10:23.025Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/11/20/Note-of-the-DenseNet-contains-TensorFlow-and-PyTorch-Implementation/</loc>
     
     <lastmod>2017-11-20T05:23:15.767Z</lastmod>

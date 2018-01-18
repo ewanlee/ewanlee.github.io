@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/01/18/Understanding-Convolutions/</loc>
+    
+    <lastmod>2018-01-18T09:53:31.982Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/17/PCA-With-Tensorflow/</loc>
     
     <lastmod>2018-01-17T09:07:11.626Z</lastmod>

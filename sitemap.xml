@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/01/21/Seq2Seq-with-Attention-and-Beam-Search-Repost/</loc>
+    
+    <lastmod>2018-01-21T10:35:43.214Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/18/Understanding-Convolutions/</loc>
     
-    <lastmod>2018-01-18T10:12:29.686Z</lastmod>
+    <lastmod>2018-01-18T10:26:33.245Z</lastmod>
     
   </url>
   

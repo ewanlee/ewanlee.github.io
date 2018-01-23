@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/01/23/Introduction-to-Genetic-Algorithm/</loc>
+    
+    <lastmod>2018-01-23T07:14:51.190Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/22/Evolution-Strategies-as-a-Scalable-Alternative-to-Reinforcement-Learning-Repost/</loc>
     
     <lastmod>2018-01-22T08:53:40.634Z</lastmod>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/03/27/Understanding-nested-list-comprehension-syntax-in-Python/</loc>
+    
+    <lastmod>2018-03-27T13:06:48.955Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/03/19/Python%E5%A4%9A%E6%A0%B8%E7%BC%96%E7%A8%8Bmpi4py%E5%AE%9E%E8%B7%B5/</loc>
     
     <lastmod>2018-03-19T05:39:28.570Z</lastmod>

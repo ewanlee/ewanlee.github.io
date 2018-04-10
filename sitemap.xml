@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/04/10/A-Brief-History-of-CNNs-in-Image-Segmentation-From-R-CNN-to-Mask-R-CNN/</loc>
+    
+    <lastmod>2018-04-10T08:37:06.784Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/03/27/Understanding-nested-list-comprehension-syntax-in-Python/</loc>
     
     <lastmod>2018-03-27T13:06:48.955Z</lastmod>

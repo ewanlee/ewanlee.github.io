@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-16T13:48:22.867Z</updated>
+  <updated>2018-10-16T13:52:22.383Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="http://yoursite.com/2018/10/16/Validation-Checklist-in-Kaggle-Competition/"/>
     <id>http://yoursite.com/2018/10/16/Validation-Checklist-in-Kaggle-Competition/</id>
     <published>2018-10-16T13:47:42.000Z</published>
-    <updated>2018-10-16T13:48:22.867Z</updated>
+    <updated>2018-10-16T13:52:22.383Z</updated>
     
-    <content type="html"><![CDATA[<p>Data Splitting Strategies</p><ul><li>Random</li><li>Timewise</li><li>By id (maybe hidden)</li><li>Combined</li></ul><p>Notices</p><ul><li><strong>Make sure the strategy used by train/val splitting is same as train/test splitting.</strong></li><li><strong>Different models trained from different data splitting strategies have much performance gap.</strong></li><li><strong>Logic of feature generation depends on the data splitting strategy.</strong></li></ul><p>Validation problems</p><ul><li>Validation stage<ul><li>Causes of different scores and optimal parameters<ul><li>Too little data</li><li>Too diverse and inconsistent data</li></ul></li><li>Solutions<ul><li>Average scores from different K-Fold splits</li><li>Tune model on one split and evaluate score on the other</li></ul></li></ul></li><li>Submission stage<ul><li>We can observe that<ul><li>LB score is consistently higher/lower than validation score</li><li>LB score is not correlated with validation score at all</li></ul></li><li>Causes<ul><li>We may already have quite different scores in K-Fold<ul><li>make sure split train/validation correct</li></ul></li><li>too litter data in public LB<ul><li>Just trust your validation scores</li></ul></li><li>train and test data are from different distributions<ul><li>classes show in the test set not show in the train set<ul><li>make a shift to your prediction (mean of train minus mean of test) – LB probing</li></ul></li><li>classes ratio is not same<ul><li>make the validation classes ratio is same as test classes ratio</li></ul></li></ul></li></ul></li></ul></li></ul><p>Expect LB shuffle because of</p><ul><li>Randomness</li><li>Litter amount of data</li><li>Different public/private distributions</li></ul>]]></content>
+    <content type="html"><![CDATA[<p><strong>Data Splitting Strategies</strong></p><ul><li>Random</li><li>Timewise</li><li>By id (maybe hidden)</li><li>Combined</li></ul><p><strong>Notices</strong></p><ul><li><strong>Make sure the strategy used by train/val splitting is same as train/test splitting.</strong></li><li><strong>Different models trained from different data splitting strategies have much performance gap.</strong></li><li><strong>Logic of feature generation depends on the data splitting strategy.</strong></li></ul><p><strong>Validation problems</strong></p><ul><li>Validation stage<ul><li>Causes of different scores and optimal parameters<ul><li>Too little data</li><li>Too diverse and inconsistent data</li></ul></li><li>Solutions<ul><li>Average scores from different K-Fold splits</li><li>Tune model on one split and evaluate score on the other</li></ul></li></ul></li><li>Submission stage<ul><li>We can observe that<ul><li>LB score is consistently higher/lower than validation score</li><li>LB score is not correlated with validation score at all</li></ul></li><li>Causes<ul><li>We may already have quite different scores in K-Fold<ul><li>make sure split train/validation correct</li></ul></li><li>too litter data in public LB<ul><li>Just trust your validation scores</li></ul></li><li>train and test data are from different distributions<ul><li>classes show in the test set not show in the train set<ul><li>make a shift to your prediction (mean of train minus mean of test) – LB probing</li></ul></li><li>classes ratio is not same<ul><li>make the validation classes ratio is same as test classes ratio</li></ul></li></ul></li></ul></li></ul></li></ul><p><strong>Expect LB shuffle because of</strong></p><ul><li>Randomness</li><li>Litter amount of data</li><li>Different public/private distributions</li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Data Splitting Strategies&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Random&lt;/li&gt;&lt;li&gt;Timewise&lt;/li&gt;&lt;li&gt;By id (maybe hidden)&lt;/li&gt;&lt;li&gt;Combined&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Notices&lt;/p&gt;&lt;ul&gt;&lt;li
+      &lt;p&gt;&lt;strong&gt;Data Splitting Strategies&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Random&lt;/li&gt;&lt;li&gt;Timewise&lt;/li&gt;&lt;li&gt;By id (maybe hidden)&lt;/li&gt;&lt;li&gt;Combined&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;
     
     </summary>
     

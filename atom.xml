@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-16T07:15:25.325Z</updated>
+  <updated>2018-10-16T07:23:19.410Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,259 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Processing Anonymized Features</title>
+    <link href="http://yoursite.com/2018/10/16/Processing-anonymized-features/"/>
+    <id>http://yoursite.com/2018/10/16/Processing-anonymized-features/</id>
+    <published>2018-10-16T07:22:45.000Z</published>
+    <updated>2018-10-16T07:23:19.410Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>IMPORTANT:</strong> You will not be able to run this notebook at coursera platform, as the dataset is not there. The notebook is in read-only mode.</p><p>But you can run the notebook locally and download the dataset using <a href="https://habrastorage.org/storage/stuff/special/beeline/00.beeline_bigdata.zip" target="_blank" rel="external">this link</a> to explore the data interactively.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.set_option(<span class="string">'max_columns'</span>, <span class="number">100</span>)</div></pre></td></tr></table></figure><h1 id="Load-the-data"><a href="#Load-the-data" class="headerlink" title="Load the data"></a>Load the data</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">train = pd.read_csv(<span class="string">'./train.csv'</span>)</div><div class="line">train.head()</div></pre></td></tr></table></figure><a id="more"></a><div><br><style><br>.dataframe thead tr:only-child th{<br>        text-align:right}<br><br>.dataframe thead th{<br>        text-align:left}<br><br>.dataframe tbody tr th{<br>        vertical-align:top}<br></style><br><table border="1" class="dataframe"><br><thead><br><tr style="text-align:right"><br><th></th><br><th>x0</th><br><th>x1</th><br><th>x2</th><br><th>x3</th><br><th>x4</th><br><th>x5</th><br><th>x6</th><br><th>x7</th><br><th>x8</th><br><th>x9</th><br><th>x10</th><br><th>x11</th><br><th>x12</th><br><th>x13</th><br><th>x14</th><br><th>x15</th><br><th>x16</th><br><th>x17</th><br><th>x18</th><br><th>x19</th><br><th>x20</th><br><th>x21</th><br><th>x22</th><br><th>x23</th><br><th>x24</th><br><th>x25</th><br><th>x26</th><br><th>x27</th><br><th>x28</th><br><th>x29</th><br><th>x30</th><br><th>x31</th><br><th>x32</th><br><th>x33</th><br><th>x34</th><br><th>x35</th><br><th>x36</th><br><th>x37</th><br><th>x38</th><br><th>x39</th><br><th>x40</th><br><th>x41</th><br><th>x42</th><br><th>x43</th><br><th>x44</th><br><th>x45</th><br><th>x46</th><br><th>x47</th><br><th>x48</th><br><th>x49</th><br><th>x50</th><br><th>x51</th><br><th>x52</th><br><th>x53</th><br><th>x54</th><br><th>x55</th><br><th>x56</th><br><th>x57</th><br><th>x58</th><br><th>x59</th><br><th>x60</th><br><th>x61</th><br><th>y</th><br></tr><br></thead><br><tbody><br><tr><br><th>0</th><br><td>b4d8a653ea</td><br><td>16a14a2d17</td><br><td>06330986ed</td><br><td>ca63304de0</td><br><td>a62168d626</td><br><td>1746600cb0</td><br><td>1</td><br><td>1</td><br><td>-0.688706</td><br><td>7e5c97705a</td><br><td>e5df3eff9b</td><br><td>91bb549494</td><br><td>e33c63cf35</td><br><td>3694.0</td><br><td>6e40247e69</td><br><td>617a4ad3f9</td><br><td>718c61545b</td><br><td>c26d08129a</td><br><td>634e3cf3ac</td><br><td>dd9c9e0da2</td><br><td>17c99905b6</td><br><td>513a3e3f36</td><br><td>9aba4d7f51</td><br><td>40.579612</td><br><td>-0.112693</td><br><td>-0.172191</td><br><td>1.166667</td><br><td>1.674538</td><br><td>0.630889</td><br><td>37.000000</td><br><td>1.294922</td><br><td>55.0</td><br><td>0.166667</td><br><td>10.0</td><br><td>0.0</td><br><td>0.000000</td><br><td>1.0</td><br><td>9.0</td><br><td>0.0</td><br><td>1.0</td><br><td>23.0</td><br><td>3.67</td><br><td>0.12</td><br><td>1.935</td><br><td>2.2</td><br><td>0.625</td><br><td>0.250</td><br><td>0.125</td><br><td>0.000</td><br><td>0.813</td><br><td>0.074</td><br><td>0.634</td><br><td>0.548</td><br><td>0.235333</td><br><td>0.264952</td><br><td>0.000000</td><br><td>0.333333</td><br><td>0.333333</td><br><td>0.333333</td><br><td>0.000000</td><br><td>0.000000</td><br><td>9.0</td><br><td>2</td><br></tr><br><tr><br><th>1</th><br><td>467f9617a3</td><br><td>16a14a2d17</td><br><td>06330986ed</td><br><td>ca63304de0</td><br><td>b7584c2d52</td><br><td>1746600cb0</td><br><td>1</td><br><td>1</td><br><td>0.870871</td><br><td>5624b8f759</td><br><td>fa0b797a92</td><br><td>669ea3d319</td><br><td>f178803074</td><br><td>18156.0</td><br><td>01ede04b4b</td><br><td>617a4ad3f9</td><br><td>718c61545b</td><br><td>d342e2765f</td><br><td>bb20e1ca06</td><br><td>8a6c8cef83</td><br><td>1b02793146</td><br><td>992153ed65</td><br><td>9aba4d7f51</td><br><td>28.765503</td><br><td>2.612285</td><br><td>2.159091</td><br><td>4.000000</td><br><td>1.710714</td><br><td>1.713538</td><br><td>0.166667</td><br><td>0.027669</td><br><td>109.0</td><br><td>0.000000</td><br><td>31.0</td><br><td>0.0</td><br><td>0.000000</td><br><td>1.0</td><br><td>244.0</td><br><td>1.0</td><br><td>1.0</td><br><td>68.0</td><br><td>17.25</td><br><td>0.57</td><br><td>3.452</td><br><td>4.0</td><br><td>0.409</td><br><td>0.619</td><br><td>0.579</td><br><td>0.248</td><br><td>0.346</td><br><td>0.541</td><br><td>0.522</td><br><td>0.000</td><br><td>1.782346</td><br><td>1.322409</td><br><td>0.011647</td><br><td>0.397671</td><br><td>0.239601</td><br><td>0.249584</td><br><td>0.068220</td><br><td>0.033278</td><br><td>601.0</td><br><td>4</td><br></tr><br><tr><br><th>2</th><br><td>190436e528</td><br><td>16a14a2d17</td><br><td>06330986ed</td><br><td>ca63304de0</td><br><td>b7584c2d52</td><br><td>1746600cb0</td><br><td>1</td><br><td>1</td><br><td>0.437655</td><br><td>5624b8f759</td><br><td>152af2cb2f</td><br><td>91bb549494</td><br><td>e33c63cf35</td><br><td>1178.0</td><br><td>cc69cbe29a</td><br><td>617a4ad3f9</td><br><td>e8a040423a</td><br><td>c82c3dbd33</td><br><td>ee3501282b</td><br><td>199ce7c484</td><br><td>5f17dedd5c</td><br><td>5c5025bd0a</td><br><td>9aba4d7f51</td><br><td>24.943933</td><br><td>-0.814660</td><br><td>-0.708308</td><br><td>1.500000</td><br><td>-0.512422</td><br><td>-0.733967</td><br><td>0.333333</td><br><td>14.837728</td><br><td>11.0</td><br><td>0.000000</td><br><td>24.0</td><br><td>0.0</td><br><td>0.000000</td><br><td>1.0</td><br><td>29.0</td><br><td>0.0</td><br><td>3.0</td><br><td>11.0</td><br><td>4.42</td><br><td>0.15</td><br><td>0.161</td><br><td>0.2</td><br><td>1.000</td><br><td>1.000</td><br><td>1.000</td><br><td>1.000</td><br><td>1.000</td><br><td>0.520</td><br><td>0.533</td><br><td>0.835</td><br><td>-0.586540</td><br><td>0.672436</td><br><td>0.000000</td><br><td>0.606061</td><br><td>0.121212</td><br><td>0.212121</td><br><td>0.060606</td><br><td>0.000000</td><br><td>33.0</td><br><td>3</td><br></tr><br><tr><br><th>3</th><br><td>43859085bc</td><br><td>16a14a2d17</td><br><td>06330986ed</td><br><td>ca63304de0</td><br><td>a62168d626</td><br><td>1746600cb0</td><br><td>1</td><br><td>1</td><br><td>0.004439</td><br><td>f67f142e40</td><br><td>c4dd2197c3</td><br><td>91bb549494</td><br><td>e33c63cf35</td><br><td>14559.0</td><br><td>6e40247e69</td><br><td>617a4ad3f9</td><br><td>718c61545b</td><br><td>c26d08129a</td><br><td>9e166b965d</td><br><td>466f8951b0</td><br><td>fde72a6d5c</td><br><td>acfadc5c01</td><br><td>9aba4d7f51</td><br><td>41.576860</td><br><td>-0.907833</td><br><td>-0.761736</td><br><td>0.500000</td><br><td>-0.627525</td><br><td>-0.805801</td><br><td>1.166667</td><br><td>0.004395</td><br><td>0.0</td><br><td>0.500000</td><br><td>0.0</td><br><td>0.0</td><br><td>0.000000</td><br><td>7.0</td><br><td>7.0</td><br><td>0.0</td><br><td>3.0</td><br><td>15.0</td><br><td>8.92</td><br><td>0.29</td><br><td>0.226</td><br><td>0.8</td><br><td>0.000</td><br><td>0.000</td><br><td>0.000</td><br><td>0.000</td><br><td>0.000</td><br><td>1.000</td><br><td>0.000</td><br><td>0.000</td><br><td>-1.600326</td><br><td>-1.838680</td><br><td>0.000000</td><br><td>1.000000</td><br><td>0.000000</td><br><td>0.000000</td><br><td>0.000000</td><br><td>0.000000</td><br><td>1.0</td><br><td>4</td><br></tr><br><tr><br><th>4</th><br><td>a4c3095b75</td><br><td>16a14a2d17</td><br><td>06330986ed</td><br><td>ca63304de0</td><br><td>b7584c2d52</td><br><td>1746600cb0</td><br><td>1</td><br><td>1</td><br><td>0.480977</td><br><td>7e5c97705a</td><br><td>e071d01df5</td><br><td>91bb549494</td><br><td>e33c63cf35</td><br><td>5777.0</td><br><td>6e40247e69</td><br><td>617a4ad3f9</td><br><td>4b9480aa42</td><br><td>e84655292c</td><br><td>527b6ca8cc</td><br><td>dd9c9e0da2</td><br><td>17c99905b6</td><br><td>0fc56ea1f0</td><br><td>9aba4d7f51</td><br><td>31.080282</td><br><td>-0.371787</td><br><td>-0.367616</td><br><td>1.666667</td><br><td>0.271307</td><br><td>0.013112</td><br><td>17.333333</td><br><td>1713.439128</td><br><td>33.0</td><br><td>0.000000</td><br><td>6.0</td><br><td>1.0</td><br><td>0.666667</td><br><td>8.0</td><br><td>108.0</td><br><td>1.0</td><br><td>4.0</td><br><td>86.0</td><br><td>1.58</td><br><td>0.05</td><br><td>2.032</td><br><td>2.4</td><br><td>0.348</td><br><td>0.762</td><br><td>0.550</td><br><td>0.392</td><br><td>0.489</td><br><td>0.517</td><br><td>1.000</td><br><td>0.642</td><br><td>0.960991</td><br><td>0.790990</td><br><td>0.020161</td><br><td>0.645161</td><br><td>0.258065</td><br><td>0.036290</td><br><td>0.040323</td><br><td>0.000000</td><br><td>248.0</td><br><td>3</td><br></tr><br></tbody><br></table><br></div><h1 id="Build-a-quick-baseline"><a href="#Build-a-quick-baseline" class="headerlink" title="Build a quick baseline"></a>Build a quick baseline</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</div><div class="line"></div><div class="line"><span class="comment"># Create a copy to work with</span></div><div class="line">X = train.copy()</div><div class="line"></div><div class="line"><span class="comment"># Save and drop labels</span></div><div class="line">y = train.y</div><div class="line">X = X.drop(<span class="string">'y'</span>, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># fill NANs </span></div><div class="line">X = X.fillna(<span class="number">-999</span>)</div><div class="line"></div><div class="line"><span class="comment"># Label encoder</span></div><div class="line"><span class="keyword">for</span> c <span class="keyword">in</span> train.columns[train.dtypes == <span class="string">'object'</span>]:</div><div class="line">    X[c] = X[c].factorize()[<span class="number">0</span>]</div><div class="line">    </div><div class="line">rf = RandomForestClassifier()</div><div class="line">rf.fit(X,y)</div></pre></td></tr></table></figure><pre><code>RandomForestClassifier(bootstrap=True, class_weight=None, criterion=&apos;gini&apos;,
+            max_depth=None, max_features=&apos;auto&apos;, max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+            verbose=0, warm_start=False)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plt.plot(rf.feature_importances_)</div><div class="line">plt.xticks(np.arange(X.shape[<span class="number">1</span>]), X.columns.tolist(), rotation=<span class="number">90</span>);</div></pre></td></tr></table></figure><pre><code>/home/dulyanov/miniconda2/lib/python2.7/site-packages/matplotlib/font_manager.py:1297: UserWarning: findfont: Font family [u&apos;serif&apos;] not found. Falling back to DejaVu Sans
+  (prop.get_family(), self.defaultFamily[fontext]))
+</code></pre><p><img src="https://github.com/ewanlee/blog-image-hosting/blob/master/output_6_1.png?raw=true" alt="png"></p><p>There is something interesting about <code>x8</code>.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># we see it was standard scaled, most likely, if we concat train and test, we will get exact mean=1, and std 1 </span></div><div class="line"><span class="keyword">print</span> <span class="string">'Mean:'</span>, train.x8.mean()</div><div class="line"><span class="keyword">print</span> <span class="string">'std:'</span>, train.x8.std()</div></pre></td></tr></table></figure><pre><code>Mean: -0.000252352028622
+std: 1.02328163601
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># And we see that it has a lot of repeated values</span></div><div class="line">train.x8.value_counts().head(<span class="number">15</span>)</div></pre></td></tr></table></figure><pre><code>-2.984750    2770
+ 0.480977    2569
+ 0.610941    1828
+ 0.654263    1759
+ 0.567620    1746
+ 0.697585    1691
+ 0.524298    1639
+ 0.740906    1628
+ 0.394333    1610
+ 0.437655    1513
+ 0.351012    1450
+ 0.264369    1429
+ 0.307690    1401
+ 0.221047    1372
+ 0.784228    1293
+Name: x8, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># It's very hard to work with scaled feature, so let's try to scale them back</span></div><div class="line"><span class="comment"># Let's first take a look at difference between neighbouring values in x8</span></div><div class="line"></div><div class="line">x8_unique = train.x8.unique()</div><div class="line">x8_unique_sorted = np.sort(x8_unique)</div><div class="line">                           </div><div class="line">np.diff(x8_unique_sorted)</div></pre></td></tr></table></figure><pre><code>array([ 43.27826527,  38.98942817,   0.21660793,   0.04332159,
+         0.17328635,   0.21660793,   0.08664317,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.12996476,   0.04332159,
+         0.04332159,   0.04332159,   0.04332159,   0.04332159,
+         0.04332159,   0.04332159,   0.21660793,   1.16968285,
+         0.04332159,   0.38989428,          nan])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The most of the diffs are 0.04332159! </span></div><div class="line"><span class="comment"># The data is scaled, so we don't know what was the diff value for the original feature</span></div><div class="line"><span class="comment"># But let's assume it was 1.0</span></div><div class="line"><span class="comment"># Let's devide all the numbers by 0.04332159 to get the right scaling</span></div><div class="line"><span class="comment"># note, that feature will still have zero mean</span></div><div class="line"></div><div class="line">np.diff(x8_unique_sorted/<span class="number">0.04332159</span>)</div></pre></td></tr></table></figure><pre><code>array([ 998.99992752,  899.9999347 ,    4.99999964,    0.99999993,
+          3.99999971,    4.99999964,    1.99999985,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    2.99999978,    0.99999993,
+          0.99999993,    0.99999993,    0.99999993,    0.99999993,
+          0.99999993,    0.99999993,    4.99999964,   26.99999804,
+          0.99999993,    8.99999935,           nan])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(train.x8/<span class="number">0.04332159</span>).head(<span class="number">10</span>)</div></pre></td></tr></table></figure><pre><code>0   -15.897530
+1    20.102468
+2    10.102468
+3     0.102469
+4    11.102468
+5   -68.897526
+6    10.102468
+7    15.102468
+8     9.102468
+9   -68.897526
+Name: x8, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Ok, now we see .102468 in every value</span></div><div class="line"><span class="comment"># this looks like a part of a mean that was subtracted during standard scaling</span></div><div class="line"><span class="comment"># If we subtract it, the values become almost integers</span></div><div class="line">(train.x8/<span class="number">0.04332159</span> - <span class="number">.102468</span>).head(<span class="number">10</span>)</div></pre></td></tr></table></figure><pre><code>0   -15.999998
+1    20.000000
+2    10.000000
+3     0.000001
+4    11.000000
+5   -68.999994
+6    10.000000
+7    15.000000
+8     9.000000
+9   -68.999994
+Name: x8, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># let's round them </span></div><div class="line">x8_int = (train.x8/<span class="number">0.04332159</span> - <span class="number">.102468</span>).round()</div><div class="line">x8_int.head(<span class="number">10</span>)</div></pre></td></tr></table></figure><pre><code>0   -16.0
+1    20.0
+2    10.0
+3     0.0
+4    11.0
+5   -69.0
+6    10.0
+7    15.0
+8     9.0
+9   -69.0
+Name: x8, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Ok, what's next? In fact it is not obvious how to find shift parameter, </span></div><div class="line"><span class="comment"># and how to understand what the data this feature actually store</span></div><div class="line"><span class="comment"># But ...</span></div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">x8_int.value_counts()</div></pre></td></tr></table></figure><pre><code>-69.0      2770
+ 11.0      2569
+ 14.0      1828
+ 15.0      1759
+ 13.0      1746
+ 16.0      1691
+ 12.0      1639
+ 17.0      1628
+ 9.0       1610
+ 10.0      1513
+ 8.0       1450
+ 6.0       1429
+ 7.0       1401
+ 5.0       1372
+ 18.0      1293
+ 1.0       1290
+ 4.0       1276
+ 2.0       1250
+ 3.0       1213
+-1.0       1085
+ 0.0       1080
+-2.0       1006
+-4.0        995
+-3.0        976
+-5.0        954
+-8.0        923
+-9.0        921
+-6.0        906
+ 19.0       893
+-7.0        881
+           ... 
+ 26.0         3
+-40.0         3
+-41.0         3
+ 25.0         2
+-59.0         2
+ 31.0         2
+ 34.0         2
+-46.0         2
+-49.0         2
+ 33.0         2
+-42.0         2
+ 32.0         2
+ 37.0         2
+ 30.0         2
+-45.0         2
+-54.0         1
+ 36.0         1
+-51.0         1
+ 27.0         1
+ 79.0         1
+-47.0         1
+ 69.0         1
+ 70.0         1
+-50.0         1
+-1968.0       1
+ 42.0         1
+-63.0         1
+-48.0         1
+-64.0         1
+ 35.0         1
+Name: x8, Length: 99, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># do you see this -1968? Doesn't it look like a year? ... So my hypothesis is that this feature is a year of birth! </span></div><div class="line"><span class="comment"># Maybe it was a textbox where users enter their year of birth, and someone entered 0000 instead</span></div><div class="line"><span class="comment"># The hypothesis looks plausible, isn't it?</span></div></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(x8_int + <span class="number">1968.0</span>).value_counts().sort_index()</div></pre></td></tr></table></figure><pre><code>0.0          1
+999.0        4
+1899.0    2770
+1904.0       1
+1905.0       1
+1909.0       2
+1914.0       1
+1916.0       3
+1917.0       1
+1918.0       1
+1919.0       2
+1920.0       1
+1921.0       1
+1922.0       2
+1923.0       2
+1924.0       4
+1925.0       4
+1926.0       2
+1927.0       3
+1928.0       3
+1929.0       4
+1930.0       4
+1931.0      12
+1932.0      10
+1933.0       7
+1934.0      13
+1935.0      28
+1936.0      35
+1937.0      35
+1938.0      45
+          ... 
+1978.0    1513
+1979.0    2569
+1980.0    1639
+1981.0    1746
+1982.0    1828
+1983.0    1759
+1984.0    1691
+1985.0    1628
+1986.0    1293
+1987.0     893
+1988.0     624
+1989.0     434
+1990.0     233
+1991.0     110
+1992.0      31
+1993.0       2
+1994.0       3
+1995.0       1
+1998.0       2
+1999.0       2
+2000.0       2
+2001.0       2
+2002.0       2
+2003.0       1
+2004.0       1
+2005.0       2
+2010.0       1
+2037.0       1
+2038.0       1
+2047.0       1
+Name: x8, Length: 99, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># After the competition ended the organisers told it was really a year of birth</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; You will not be able to run this notebook at coursera platform, as the dataset is not there. The notebook is in read-only mode.&lt;/p&gt;&lt;p&gt;But you can run the notebook locally and download the dataset using &lt;a href=&quot;https://habrastorage.org/storage/stuff/special/beeline/00.beeline_bigdata.zip&quot;&gt;this link&lt;/a&gt; to explore the data interactively.&lt;/p&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;pd.set_option(&lt;span class=&quot;string&quot;&gt;&#39;max_columns&#39;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&quot;Load-the-data&quot;&gt;&lt;a href=&quot;#Load-the-data&quot; class=&quot;headerlink&quot; title=&quot;Load the data&quot;&gt;&lt;/a&gt;Load the data&lt;/h1&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;train = pd.read_csv(&lt;span class=&quot;string&quot;&gt;&#39;./train.csv&#39;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;train.head()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Exploratory Data Analysis</title>
@@ -588,28 +841,6 @@ Name: Impressions, Length: 8135, dtype: int64
       <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
       <category term="CNN" scheme="http://yoursite.com/tags/CNN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PCA With Tensorflow</title>
-    <link href="http://yoursite.com/2018/01/17/PCA-With-Tensorflow/"/>
-    <id>http://yoursite.com/2018/01/17/PCA-With-Tensorflow/</id>
-    <published>2018-01-17T09:04:36.000Z</published>
-    <updated>2018-01-17T09:07:11.626Z</updated>
-    
-    <content type="html"><![CDATA[<p>PCA (<strong>P</strong>rincipal <strong>C</strong>omponent <strong>A</strong>nalysis) is probably the oldest trick in the book.</p><p>PCA is well studied and there are numerous ways to get to the same solution, we will talk about two of them here, Eigen decomposition and Singular Value Decomposition (SVD) and then we will implement the SVD way in TensorFlow.</p><p>From now on, X will be our data matrix, of shape (n, p) where n is the number of examples, and p are the dimensions.</p><p>So given X, both methods will try to find, in their own way, a way to manipulate and decompose X in a manner that later on we could multiply the decomposed results to represent maximum information in less dimensions. I know I know, sounds horrible but I will spare you most of the math but keep the parts that contribute to the understanding of the method pros and cons.</p><p>So Eigen decomposition and SVD are both ways to decompose matrices, lets see how they help us in PCA and how they are connected.</p><p>Take a glance at the flow chart below and I will explain right after.</p><p><img src="https://cdn-images-1.medium.com/max/1600/1*xnomew0zpnxftxutG8xoFw.png" alt="img"></p><p>Figure 1 PCA workflow</p><p>So why should you care about this? Well there is something very fundamental about the two procedures that tells us a lot about PCA.</p><p>As you can see both methods are pure linear algebra, that basically tells us that using PCA is looking at the real data, from a different angle — this is unique to PCA since the other methods start with random representation of lower dimensional data and try to get it to behave like the high dimensional data.</p><p>Some other notable things are that all operations are linear and with SVD are super-super fast.</p><p>Also given the same data PCA will always give the same answer (which is not true about the other two methods).</p><p>Notice how in SVD we choose the r (r is the number of dimensions we want to reduce to) left most values of Σ to lower dimensionality?</p><p>Well there is something special about Σ .</p><p>Σ is a diagonal matrix, there are p (number of dimensions) diagonal values (called singular values) and their magnitude indicates how significant they are to preserving the information.</p><p>So we can choose to reduce dimensionality, to the number of dimensions that will preserve approx. given amount of percentage of the data and I will demonstrate that in the code (e.g. gives us the ability to reduce dimensionality with a constraint of losing a max of 15% of the data).</p><p>As you will see, coding this in TensorFlow is pretty simple — what we are are going to code is a class that has <code>fit</code> method and a <code>reduce</code> method which we will supply the dimensions to.</p><h3 id="CODE-PCA"><a href="#CODE-PCA" class="headerlink" title="CODE (PCA)"></a><strong>CODE (PCA)</strong></h3><p>Lets see how the <code>fit</code> method looks like, given <code>self.X</code> contains the data and <code>self.dtype=tf.float32</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self)</span>:</span></div><div class="line">    self.graph = tf.Graph()</div><div class="line">    <span class="keyword">with</span> self.graph.as_default():</div><div class="line">        self.X = tf.placeholder(self.dtype, shape=self.data.shape)</div><div class="line"></div><div class="line">        <span class="comment"># Perform SVD</span></div><div class="line">        singular_values, u, _ = tf.svd(self.X)</div><div class="line"></div><div class="line">        <span class="comment"># Create sigma matrix</span></div><div class="line">        sigma = tf.diag(singular_values)</div><div class="line"></div><div class="line">    <span class="keyword">with</span> tf.Session(graph=self.graph) <span class="keyword">as</span> session:</div><div class="line">        self.u, self.singular_values, self.sigma = session.run([u, singular_values, sigma],</div><div class="line">                                                               feed_dict=&#123;self.X: self.data&#125;)</div></pre></td></tr></table></figure><p>So the goal of <code>fit</code> is to create our Σ and U for later use.</p><p>We’ll start with the line <code>tf.svd</code> which gives us the singular values, which are the diagonal values of what was denoted as Σ in Figure 1, and the matrices U and V.</p><p>Then <code>tf.diag</code> is TensorFlow’s way of converting a 1D vector, to a diagonal matrix, which in our case will result in Σ.</p><p>At the end of the <code>fit</code> call we will have the singular values, Σ and U.</p><p>Now lets lets implement <code>reduce</code>.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">reduce</span><span class="params">(self, n_dimensions=None, keep_info=None)</span>:</span></div><div class="line">    <span class="keyword">if</span> keep_info:</div><div class="line">        <span class="comment"># Normalize singular values</span></div><div class="line">        normalized_singular_values = self.singular_values / sum(self.singular_values)</div><div class="line"></div><div class="line">        <span class="comment"># Create the aggregated ladder of kept information per dimension</span></div><div class="line">        ladder = np.cumsum(normalized_singular_values)</div><div class="line"></div><div class="line">        <span class="comment"># Get the first index which is above the given information threshold</span></div><div class="line">        index = next(idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> enumerate(ladder) <span class="keyword">if</span> value &gt;= keep_info) + <span class="number">1</span></div><div class="line">        n_dimensions = index</div><div class="line"></div><div class="line">    <span class="keyword">with</span> self.graph.as_default():</div><div class="line">        <span class="comment"># Cut out the relevant part from sigma</span></div><div class="line">        sigma = tf.slice(self.sigma, [<span class="number">0</span>, <span class="number">0</span>], [self.data.shape[<span class="number">1</span>], n_dimensions])</div><div class="line"></div><div class="line">        <span class="comment"># PCA</span></div><div class="line">        pca = tf.matmul(self.u, sigma)</div><div class="line"></div><div class="line">    <span class="keyword">with</span> tf.Session(graph=self.graph) <span class="keyword">as</span> session:</div><div class="line">        <span class="keyword">return</span> session.run(pca, feed_dict=&#123;self.X: self.data&#125;)</div></pre></td></tr></table></figure><p>So as you can see <code>reduce</code> gets either <code>keep_info</code> or <code>n_dimensions</code> (I didn’t implement the input check where <strong>only one must be supplied</strong>).</p><p>If we supply <code>n_dimensions</code> it will simply reduce to that number, but if we supply <code>keep_info</code> which should be a float between 0 and 1, we will preserve that much information from the original data (0.9 — preserve 90% of the data).</p><p>In the first ‘if’, we normalize and check how many singular values are needed, basically figuring out <code>n_dimensions</code> out of <code>keep_info</code>.</p><p>In the graph, we just slice the Σ (sigma) matrix for as much data as we need and perform the matrix multiplication.</p><p>So lets try it out on the iris dataset, which is (150, 4) dataset of 3 species of iris flowers.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</div><div class="line"></div><div class="line">tf_pca = TF_PCA(iris_dataset.data, iris_dataset.target)</div><div class="line">tf_pca.fit()</div><div class="line">pca = tf_pca.reduce(keep_info=<span class="number">0.9</span>)  <span class="comment"># Results in 2 dimensions</span></div><div class="line"></div><div class="line">color_mapping = &#123;<span class="number">0</span>: sns.xkcd_rgb[<span class="string">'bright purple'</span>], <span class="number">1</span>: sns.xkcd_rgb[<span class="string">'lime'</span>], <span class="number">2</span>: sns.xkcd_rgb[<span class="string">'ochre'</span>]&#125;</div><div class="line">colors = list(map(<span class="keyword">lambda</span> x: color_mapping[x], tf_pca.target))</div><div class="line"></div><div class="line">plt.scatter(pca[:, <span class="number">0</span>], pca[:, <span class="number">1</span>], c=colors)</div></pre></td></tr></table></figure><p><img src="https://cdn-images-1.medium.com/max/2000/1*-am5UfbZoJkUA4C8z5d0vQ.png" alt="img"></p><p>Figure 2 Iris dataset PCA 2 dimensional plot</p><p>Not so bad huh?</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;PCA (&lt;strong&gt;P&lt;/strong&gt;rincipal &lt;strong&gt;C&lt;/strong&gt;omponent &lt;strong&gt;A&lt;/strong&gt;nalysis) is probably the oldest trick in the book.&lt;/p&gt;&lt;p&gt;PCA
-    
-    </summary>
-    
-    
-      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
-    
-      <category term="tensorflow" scheme="http://yoursite.com/tags/tensorflow/"/>
     
   </entry>
   

@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/03/20/TD-VAE/</loc>
+    
+    <lastmod>2019-03-20T13:52:43.904Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/03/20/Survey-of-Sim2Real-Part-I/</loc>
+    
+    <lastmod>2019-03-20T13:51:30.849Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/03/20/Variational-Discreminator-Bottlenect/</loc>
+    
+    <lastmod>2019-03-20T13:49:32.851Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/10/26/Accelerate-your-pandas-workflows-by-changing-one-line-of-code/</loc>
     
     <lastmod>2018-10-26T15:48:18.748Z</lastmod>
